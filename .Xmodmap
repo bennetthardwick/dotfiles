@@ -1,0 +1,4 @@
+clear mod1
+clear mod4
+add mod1 = Super_L Alt_R
+add mod4 = Alt_L Super_R 
