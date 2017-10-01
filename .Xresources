@@ -1,0 +1,82 @@
+! -----------------------------------------------------------------------------
+! File: gruvbox-URxvt256.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 13 Dec 2013
+! -----------------------------------------------------------------------------
+
+font: xft: Noto Sans:size=11
+
+URxvt.scrollBar: false
+
+#define fonts xft: Fantasque Sans Mono:size=11,\
+		xft:FontAwesome:style=Regular,\
+		xft:icomoon:style=Regular,\
+		xft:octicons:style=Medium,\
+		xft:Pomodoro:style=Regular,\
+		xft:Meslo\ LG\ S\ for\ Powerline:style=Regular,\
+		
+
+URxvt.font: fonts
+
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+URxvt.color244: #928374
+URxvt.color245: #928374
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
+
+URxvt.color0: #282828
+URxvt.color1: #cc241d
+URxvt.color2: #98971a
+URxvt.color3: #d79921
+URxvt.color4: #458588
+URxvt.color5: #b16286
+URxvt.color6: #689d6a
+URxvt.color7: #a89984
+URxvt.color8: #928374
+URxvt.color9: #fb4934
+URxvt.color10: #b8bb26
+URxvt.color11: #fabd2f
+URxvt.color12: #83a598
+URxvt.color13: #d3869b
+URxvt.color14: #8ec07c
+URxvt.color15: #ebdbb2
+
+URxvt.background: #282828
+URxvt.foreground: #ebdbb2
+
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: #282828, #282828, #282828
+
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #282828, #ebdbb2, #282828, #282828, #458588
+rofi.color-active: #282828, #282828, #282828, #282828, #fabd2f
+rofi.color-urgent: #282828, #282828, #282828, #282828, #cc241d
