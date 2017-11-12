@@ -90,10 +90,10 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 alias lock="i3lock-fancy -f Fantasque-Sans-Mono-Regular"
 
+alias sa="subl -a"
+alias sd="subl -a ."
 
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
-
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

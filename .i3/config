@@ -27,13 +27,14 @@ font xft:Fantasque Sans Mono 8
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
+
 set $up l
 set $down k
 set $left j
 set $right semicolon
 
-set $sup Mod1
-set $mod Mod4
+set $sup Mod4
+set $mod Mod1
 
 
 bindsym $sup+b exec chromium
@@ -201,3 +202,9 @@ bindsym $mod+n exec subl -n
 exec nm-applet &
 exec xset -b &
 exec xmodmap ~/.Xmodmap &
+
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json'"
+exec subl &
+exec urxvt -e zsh &
+exec urxvt -e zsh &
+
