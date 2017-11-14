@@ -10,12 +10,11 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background-alt = #181818
-background = #080808
+background = #090909
 ;foreground = ${xrdb:color7:#222}
-foreground = #838383
-;#ebdbb2
-foreground-alt = #838383
-primary = #838383
+foreground = #ebdbb2
+foreground-alt = #fbf1c7
+primary = #fb4934
 secondary = #b8bb26
 alert = #fb4934
 
@@ -50,31 +49,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=9;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Wuncon\ Siji:pixelsize=9;1
-font-3 = FontAwesome:pixelsize=9;1
-modules-left = bspwm i3
+font-0 = "fixed:pixelsize=8;1
+font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
+font-2 = "Wuncon\ Siji:pixelsize=8;1"
+font-3 = "FontAwesome:pixelsize=8;1"
+modules-left = i3
 modules-center = 
-modules-right = xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
-; removed: xbacklight, eth, battery,  
+modules-right =  volume memory cpu battery temperature date
 tray-position = right
 tray-padding = 1
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
-;bottom = true
 
 [module/xwindow]
 type = internal/xwindow
@@ -106,29 +89,38 @@ label-unmounted-foreground = ${colors.foreground}
 [module/bspwm]
 type = internal/bspwm
 
-;label-focused = %index%
-label-focused = %name%
+label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-padding = 2
 label-focused-foreground = ${colors.red}
 
-;label-occupied = %index%
-label-occupied = %name%
+label-occupied = %index%
 label-occupied-padding = 2
 
-;label-urgent = %index%!
-label-urgent = %name%!
-
+label-urgent = %index%!
 label-urgent-background = ${colors.alert}
 label-urgent-foreground = ${colors.foreground}
 label-urgent-padding = 2
 
-;label-empty = %index%
-label-empty = %name%
+label-empty = %index%
 label-empty-foreground = ${colors.red}
 label-empty-padding = 2
 
 [module/i3]
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon 9 = 10;
+
+ws-icon-default = ♟
+
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -142,21 +134,21 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
