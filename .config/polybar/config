@@ -10,11 +10,12 @@
 [colors]
 ;background = ${xrdb:color0:#222}
 background-alt = #181818
-background = #090909
+background = #080808
 ;foreground = ${xrdb:color7:#222}
-foreground = #ebdbb2
-foreground-alt = #fbf1c7
-primary = #fb4934
+foreground = #838383
+;#ebdbb2
+foreground-alt = #838383
+primary = #838383
 secondary = #b8bb26
 alert = #fb4934
 
@@ -105,20 +106,25 @@ label-unmounted-foreground = ${colors.foreground}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
+;label-focused = %index%
+label-focused = %name%
 label-focused-background = ${colors.background-alt}
 label-focused-padding = 2
 label-focused-foreground = ${colors.red}
 
-label-occupied = %index%
+;label-occupied = %index%
+label-occupied = %name%
 label-occupied-padding = 2
 
-label-urgent = %index%!
+;label-urgent = %index%!
+label-urgent = %name%!
+
 label-urgent-background = ${colors.alert}
 label-urgent-foreground = ${colors.foreground}
 label-urgent-padding = 2
 
-label-empty = %index%
+;label-empty = %index%
+label-empty = %name%
 label-empty-foreground = ${colors.red}
 label-empty-padding = 2
 
