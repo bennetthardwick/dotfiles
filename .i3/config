@@ -174,7 +174,7 @@ bindsym $mod+r mode "resize"
 
 exec --no-startup-id hsetroot -solid '#282828' &
 exec $HOME/.config/reload.sh &
-exec --no-startup-id compton &
+exec --no-startup-id compton -b &
 bindsym $mod+Shift+t exec --no-startup-id $HOME/.config/reload.sh
 
 new_window 1pixel
