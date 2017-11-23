@@ -49,13 +49,12 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "fixed:pixelsize=8;1
-font-1 = "Unifont:fontformat=truetype:size=8:antialias=false;0"
-font-2 = "Wuncon\ Siji:pixelsize=8;1"
-font-3 = "FontAwesome:pixelsize=8;1"
+font-1 = "Cantarell:pixelsize=8;1
+font-0 = "FontAwesome:pixelsize=8;1"
+
 modules-left = i3
 modules-center = 
-modules-right =  volume memory cpu battery temperature date
+modules-right =  volume cpu battery temperature date
 tray-position = right
 tray-padding = 1
 
@@ -148,11 +147,11 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -185,7 +184,7 @@ interval = 2
 
 format = <label>
 
-label =  %percentage%%
+label =  %percentage%%
 
 [module/memory]
 type = internal/memory
@@ -238,7 +237,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
@@ -250,7 +249,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -284,14 +283,14 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 =  
+ramp-capacity-1 = 
+ramp-capacity-2 =  
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 =  
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
