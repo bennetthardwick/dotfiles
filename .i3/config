@@ -33,9 +33,8 @@ set $down k
 set $left j
 set $right semicolon
 
-set $sup Mod4
-set $mod Mod1
-
+set $sup Mod1
+set $mod Mod4
 
 bindsym $sup+b exec chromium
 
@@ -201,7 +200,6 @@ bindsym $mod+n exec subl -n
 
 exec nm-applet &
 exec xset -b &
-exec xmodmap ~/.Xmodmap &
 
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
 
