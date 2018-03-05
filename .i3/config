@@ -121,7 +121,7 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+0 workspace 10; exec [ $( ps -p $(pgrep Google\ Play\ Mus) | wc -l) = 0 ] && gpmdp
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -178,7 +178,7 @@ bindsym $mod+Shift+t exec --no-startup-id $HOME/.config/reload.sh
 
 new_window 1pixel
 
-client.focused		#090909 #090909 #8c8c8c #282828 #090909
+client.focused		#458588 #458588 #090909 #689d6a #458588
 client.unfocused	#090909 #090909 #282828 #282828 #282828
 client.focused_inactive #090909 #090909 #282828 #282828 #282828
 client.placeholder	#090909 #090909 #282828 #282828 #282828	
@@ -190,11 +190,11 @@ bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 10%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- unmute
 bindsym XF86AudioMute exec amixer -D pulse set Master toggle
 
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 assign [class="Chromium"] 2
-
+assign [class="Google Play Music Desktop Player"] 10
 bindsym $mod+m exec spacefm
 bindsym $mod+n exec subl -n
 

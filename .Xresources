@@ -8,7 +8,8 @@
 
 
 URxvt.scrollBar: false
-
+URxvt.depth: 0
+URxvt.trasparent: false
 #define fonts xft:Fantasque Sans Mono:size=11,\
 		xft:FontAwesome:style=Regular,\
 		xft:icomoon:style=Regular,\
