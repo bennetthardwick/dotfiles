@@ -182,9 +182,9 @@ new_window 1pixel
 
 client.focused		#458588 #458588 #090909 #b16286 #458588
 client.unfocused	#090909 #090909 #458588 #090909 #282828
-client.focused_inactive #090909 #090909 #458588 #090909 #282828
-client.placeholder	#090909 #090909 #458588 #090909 #282828	
-client.urgent		#090909 #090909 #090909 #090909 #282828
+client.focused_inactive #458588 #458588 #090909 #b16286 #282828
+client.placeholder	#090909 #282828 #458588 #090909 #282828	
+client.urgent		#cc241d #cc241d #090909 #cc241d #cc241d
 
 client.background	#282828
 
