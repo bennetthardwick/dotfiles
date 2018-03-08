@@ -116,7 +116,7 @@ hotswap() {
 	git checkout $1 && rsync -avz --exclude=.git --exclude=README.md ~/git/dotfiles/ ~/
 	xrdb ~/.Xresources
 	i3-msg reload
-
+	~/.config/reload.sh &
 }
 
 
