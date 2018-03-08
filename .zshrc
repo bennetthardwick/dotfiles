@@ -110,3 +110,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+hotswap() {
+
+	cd ~/git/dotfiles
+	git checkout $1 && rsync -avz --exclude=.git --exclude=README.md ~/git/dotfiles/ ~/
+	xrdb ~/.Xresources
+	i3-msg reload
+
+}
+
+
