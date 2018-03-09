@@ -207,4 +207,5 @@ exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && 
 
 bindsym $mod+o exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
 
+for_window[class=".*"] border pixel 1
 
