@@ -75,12 +75,12 @@ font:Fantasque\ Sans\ Mono 11
 rofi.color-enabled: true
 rofi.font:Fantasque\ Sans\ Mono 11
 !                  bg       border   separator
-rofi.color-window: #282828, #282828, #282828
+rofi.color-window: argb:EE282828, #282828, #282828
 
 !                  bg       fg       bg-alt   hl-bg    hl-fg
-rofi.color-normal: #282828, #ebdbb2, #282828, #282828, #458588
-rofi.color-active: #282828, #282828, #282828, #282828, #fabd2f
-rofi.color-urgent: #282828, #282828, #282828, #282828, #cc241d
+rofi.color-normal: argb:00282828, #458588, argb:00282828, #458588, #282828
+rofi.color-active: argb:00282828, #fabd2f, argb:00282828, #fabd2f, #282828
+rofi.color-urgent: argb:00282828, #cc241d, argb:00282828, #cc241d, #282828
 
 xterm.borderWidth: 0
 xterm.termName: xterm-256-color
