@@ -95,8 +95,14 @@ alias code="code-oss"
 alias sa="subl -a"
 alias sd="subl -a ."
 
+alias term="urxvt -e zsh"
+
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export VISUAL="vim"
+export SHELL="zsh"
+
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -106,10 +112,6 @@ fi
 eval $(thefuck --alias)
 
 source $ZSH/oh-my-zsh.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="$PATH:/home/bennett/.cabal/bin"
 export PATH="$PATH:/home/bennett/.cargo/bin"
