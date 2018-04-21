@@ -116,16 +116,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:/home/bennett/.cabal/bin"
 export PATH="$PATH:/home/bennett/.cargo/bin"
 
-
-
-
-
-
-
-
-
-
-
+stty -ixon
 
 
 
