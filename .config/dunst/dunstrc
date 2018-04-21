@@ -1,7 +1,7 @@
 [global]
     font = "Fantasque Sans Mono 10"
     allow_markup = yes
-    format = "%a\n<b>%s</b>\n%b"
+    format = "<b>%s</b>\n%b"
     sort = yes
     indicate_hidden = yes
     alignment = left
@@ -22,8 +22,10 @@
     separator_color = "#1d2021"
     startup_notification = false
     # https://github.com/knopwob/dunst/issues/26#issuecomment-36159395
-    #icon_position = left
-    #icon_folders = /usr/share/icons/elementary/actions/16/
+    
+		icon_position = left
+    icon_folders = /usr/share/icons/Arc/actions/24@2x/
+		max_icon_size = 32
 
 [frame]
     width = 1
