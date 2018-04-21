@@ -7,6 +7,7 @@ set tabstop=2
 set shiftwidth=2
 set autoindent
 set smartindent
+set updatetime=100
 
 filetype plugin indent on
 
@@ -17,5 +18,7 @@ let g:javascript_plugin_ngdoc=1
 
 let g:ycm_server_python_interpreter="python2"
 let g:ycm_global_ycm_extra_conf="~/.vim/.ycmd_flags.py"
+
+let g:airline_powerline_fonts = 1
 
 colorscheme gruvbox

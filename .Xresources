@@ -84,3 +84,7 @@ rofi.color-urgent: #282828, #282828, #282828, #282828, #cc241d
 
 xterm.borderWidth: 0
 xterm.termName: xterm-256-color
+
+URxvt.perl-ext-common: ...,font-size
+
+
