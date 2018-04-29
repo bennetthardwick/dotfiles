@@ -9,9 +9,13 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kana/vim-surround'
 Plug 'exvim/ex-searchcompl'
-Plug 'leafgarland/typescript-vim'
+Plug 'mhartington/nvim-typescript'
 Plug 'airblade/vim-gitgutter'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'Shougo/deoplete.nvim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'zchee/deoplete-clang'
+Plug 'donRaphaco/neotex', { 'for': 'tex' }
 
 call plug#end()
 
@@ -38,5 +42,8 @@ let g:airline_powerline_fonts = 1
 
 let g:gruvbox_contrast_dark = "medium"
 
+let g:deoplete#enable_at_startup = 1
+
 colorscheme gruvbox
 
+set wildignore+=*/node_modules/**/*
