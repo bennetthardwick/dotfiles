@@ -100,7 +100,7 @@ alias term="urxvt -e zsh"
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-export VISUAL="vim"
+export VISUAL="nvim"
 export SHELL="zsh"
 
 

@@ -33,6 +33,7 @@ if dein#load_state('~/.cache/dein')
  call dein#add('HerringtonDarkholme/yats.vim')
  call dein#add('zchee/deoplete-clang')
  call dein#add('donRaphaco/neotex')
+ call dein#add('justmao945/vim-clang')
 
  call dein#end()
  call dein#save_state()
