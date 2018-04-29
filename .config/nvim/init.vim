@@ -1,23 +1,42 @@
-call plug#begin('~/.vim/plugged')
+if &compatible
+ set nocompatible
+endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'morhetz/gruvbox'
-Plug 'ervandew/supertab'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'kana/vim-surround'
-Plug 'exvim/ex-searchcompl'
-Plug 'mhartington/nvim-typescript'
-Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'Shougo/deoplete.nvim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'zchee/deoplete-clang'
-Plug 'donRaphaco/neotex', { 'for': 'tex' }
+if dein#load_state('~/.cache/dein')
+ call dein#begin('~/.cache/dein')
 
-call plug#end()
+ call dein#add('~/.cache/dein')
+ call dein#add('Shougo/deoplete.nvim')
+ if !has('nvim')
+   call dein#add('roxma/nvim-yarp')
+   call dein#add('roxma/vim-hug-neovim-rpc')
+ endif
+
+ filetype plugin indent on
+ syntax enable
+
+ call dein#add('tpope/vim-fugitive')
+ call dein#add('scrooloose/nerdtree')
+ call dein#add('kien/ctrlp.vim')
+ call dein#add('morhetz/gruvbox')
+ call dein#add('ervandew/supertab')
+ call dein#add('bling/vim-airline')
+ call dein#add('vim-airline/vim-airline-themes')
+ call dein#add('kana/vim-surround')
+ call dein#add('exvim/ex-searchcompl')
+ call dein#add('mhartington/nvim-typescript')
+ call dein#add('airblade/vim-gitgutter')
+ call dein#add('terryma/vim-multiple-cursors')
+ call dein#add('Shougo/deoplete.nvim')
+ call dein#add('HerringtonDarkholme/yats.vim')
+ call dein#add('zchee/deoplete-clang')
+ call dein#add('donRaphaco/neotex')
+
+ call dein#end()
+ call dein#save_state()
+endif
 
 set number
 set relativenumber
