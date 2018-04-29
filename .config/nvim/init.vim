@@ -34,6 +34,7 @@ if dein#load_state('~/.cache/dein')
  call dein#add('zchee/deoplete-clang')
  call dein#add('donRaphaco/neotex')
  call dein#add('justmao945/vim-clang')
+ call dein#add('Shougo/echodoc.vim')
 
  call dein#end()
  call dein#save_state()
@@ -48,6 +49,7 @@ set shiftwidth=2
 set autoindent
 set smartindent
 set updatetime=100
+set noshowmode
 set background=dark
 set clipboard+=unnamedplus
 filetype plugin indent on
@@ -62,8 +64,51 @@ let g:airline_powerline_fonts = 1
 
 let g:gruvbox_contrast_dark = "medium"
 
+" --- Deoplete ---"
 let g:deoplete#enable_at_startup = 1
-
+set shortmess+=c
+inoremap <expr> <Tab>  deoplete#mappings#manual_complete()
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
 colorscheme gruvbox
+set splitbelow
+autocmd CompleteDone * pclose
 
 set wildignore+=*/node_modules/**/*
+
+function! Preview_func()
+	if &pvw
+		setlocal nonumber norelativenumber
+	 endif
+endfunction
+autocmd WinEnter * call Preview_func()
+
+let g:nvim_typescript#kind_symbols = {
+      \ 'keyword': 'keyword',
+      \ 'class': '',
+      \ 'interface': '',
+      \ 'script': 'script',
+      \ 'module': '',
+      \ 'local class': 'local class',
+      \ 'type': '',
+      \ 'enum': '',
+      \ 'enum member': '',
+      \ 'alias': '',
+      \ 'type parameter': 'type param',
+      \ 'primitive type': 'primitive type',
+      \ 'var': '',
+      \ 'local var': '',
+      \ 'property': '',
+      \ 'let': '',
+      \ 'const': '',
+      \ 'label': 'label',
+      \ 'parameter': 'param',
+      \ 'index': 'index',
+      \ 'function': '',
+      \ 'local function': 'local function',
+      \ 'method': '',
+      \ 'getter': '',
+      \ 'setter': '',
+      \ 'call': 'call',
+      \ 'constructor': '',
+      \}
