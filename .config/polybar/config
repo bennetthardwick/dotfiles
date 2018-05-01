@@ -109,7 +109,8 @@ label-empty-padding = 2
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = 10;
+ws-icon-2 = 9;
+ws-icon-3 = 10;
 
 ws-icon-default = 
 
