@@ -120,7 +120,7 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace 9; exec [ $( ps -p $(pgrep Discord) | wc - l) = 0 ] && discord
 bindsym $mod+0 workspace 10; exec [ $( ps -p $(pgrep Google\ Play\ Mus) | wc -l) = 0 ] && gpmdp
 
 # move focused container to workspace
@@ -196,7 +196,9 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 assign [class="Chromium"] 2
+assign [class="discord"] 9
 assign [class="Google Play Music Desktop Player"] 10
+
 bindsym $mod+m exec spacefm
 bindsym $mod+n exec subl -n
 
