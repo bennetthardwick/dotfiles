@@ -111,6 +111,7 @@ ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 9;
 ws-icon-3 = 10;
+ws-icon-4 = anki;
 
 ws-icon-default = 
 

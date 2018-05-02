@@ -10,13 +10,9 @@
 URxvt.scrollBar: false
 URxvt.trasparent: false
 #define fonts xft:Fantasque Sans Mono:size=11,\
-		xft:FontAwesome:style=Regular,\
-		xft:icomoon:style=Regular,\
-		xft:octicons:style=Medium,\
 		xft:Pomodoro:style=Regular,\
-		xft:MesloLGS Nerd Font:style=RegularForPowerline,\
-		xft:Noto Emoji:style=Regular,\
-		xft:Noto Sans Mono:style=Regular
+		xft:DeJaVuSansMono Nerd Font Mono:style=Regular
+		
 font:Fantasque\ Sans\ Mono 11
 *font: fonts
 
@@ -80,8 +76,6 @@ URxvt.color246: #a89984
 URxvt.color248: #bdae93
 URxvt.color250: #d5c4a1
 
-*background: #282828
-*foreground: #ebdbb2
 
 rofi.color-enabled: true
 rofi.font:Fantasque\ Sans\ Mono 11
@@ -97,5 +91,4 @@ xterm.borderWidth: 0
 xterm.termName: xterm-256-color
 
 URxvt.perl-ext-common: ...,font-size
-
 
