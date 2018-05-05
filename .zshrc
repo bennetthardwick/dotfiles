@@ -117,10 +117,3 @@ export PATH="$PATH:/home/bennett/.cabal/bin"
 export PATH="$PATH:/home/bennett/.cargo/bin"
 
 stty -ixon
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-
-
-
