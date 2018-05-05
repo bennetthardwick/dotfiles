@@ -170,7 +170,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resiz"
+bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+s exec deepin-screenshot
 
