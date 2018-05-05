@@ -170,7 +170,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resiz"
+bindsym $mod+r mode "resize"
 
 bindsym $mod+Shift+s exec deepin-screenshot
 
@@ -189,9 +189,9 @@ client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
 client.background	#282828
 
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 10%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- unmute
-bindsym XF86AudioMute exec amixer -D pulse set Master toggle
+bindsym XF86AudioRaiseVolume exec pamixer --sink 0 -u -i 10
+bindsym XF86AudioLowerVolume exec pamixer --sink 0 -u -d 10
+bindsym XF86AudioMute exec pamixer --sink 0 -t
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
