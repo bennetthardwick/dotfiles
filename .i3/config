@@ -120,9 +120,13 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9; exec [ $( ps -p $(pgrep Discord) | wc - l) = 0 ] && discord
-bindsym $mod+0 workspace 10; exec [ $( ps -p $(pgrep Google\ Play\ Mus) | wc -l) = 0 ] && gpmdp
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10;
+
 bindsym $mod+n workspace anki; exec [ $( ps -p $(prep Anki) | wc -l) = 0 ] && anki
+bindsym $mod+m workspace mastodon; exec [ $( ps -p $(pidof mstdn) | wc - l) = 0 ] && discord
+bindsym $mod+, workspace discord; exec [ $( ps -p $(pgrep Discord) | wc - l) = 0 ] && discord
+bindsym $mod+. workspace music; exec [ $( ps -p $(pgrep Google\ Play\ Mus) | wc -l) = 0 ] && gpmdp
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
@@ -197,9 +201,10 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
 assign [class="Chromium"] 2
-assign [class="discord"] 9
-assign [class="Google Play Music Desktop Player"] 10
+assign [class="discord"] discord
+assign [class="Google Play Music Desktop Player"] music
 assign [class="Anki"] anki
+assign [class="Msdtn"] mastodon
 
 
 exec nm-applet &
