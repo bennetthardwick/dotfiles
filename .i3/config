@@ -205,10 +205,6 @@ assign [class="Anki"] anki
 exec nm-applet &
 exec xset -b &
 
-exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
-
-bindsym $mod+o exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
-
 for_window[class=".*"] border pixel 1
 
 for_window [instance="__scratchpad"] move scratchpad 
