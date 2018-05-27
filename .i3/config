@@ -188,9 +188,9 @@ client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
 client.background	#282828
 
-bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 10%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 10%- unmute
-bindsym XF86AudioMute exec amixer -D pulse set Master toggle
+bindsym XF86AudioRaiseVolume exec pamixer --sink 0 -u -i 10
+bindsym XF86AudioLowerVolume exec pamixer --sink 0 -u -d 10
+bindsym XF86AudioMute exec pamixer --sink 0 -t
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
@@ -204,10 +204,6 @@ assign [class="Msdtn"] 8
 
 exec nm-applet &
 exec xset -b &
-
-exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
-
-bindsym $mod+o exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.i3/develop.json' && subl & urxvt -e zsh & urxvt -e zsh &" 
 
 for_window[class=".*"] border pixel 1
 
