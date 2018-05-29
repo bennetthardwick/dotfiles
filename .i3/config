@@ -188,8 +188,8 @@ client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
 client.background	#282828
 
-bindsym XF86AudioRaiseVolume exec pamixer --sink 0 -u -i 10
-bindsym XF86AudioLowerVolume exec pamixer --sink 0 -u -d 10
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 10%+
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 10%-
 bindsym XF86AudioMute exec pamixer --sink 0 -t
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
@@ -212,3 +212,5 @@ exec --no-startup-id urxvt -name __scratchpad -e zsh
 
 gaps inner 5
 smart_gaps on
+
+exec jack_control start &
