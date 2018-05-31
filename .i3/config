@@ -214,3 +214,4 @@ gaps inner 5
 smart_gaps on
 
 exec jack_control start &
+exec redshift &
