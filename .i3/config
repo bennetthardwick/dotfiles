@@ -198,8 +198,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 assign [class="Chromium"] 2
 assign [class="discord"] 9
 assign [class="Google Play Music Desktop Player"] 10
-assign [class="Anki"] 6
-assign [class="Msdtn"] 8
+assign [class="Anki"] 8
 
 
 exec nm-applet &
