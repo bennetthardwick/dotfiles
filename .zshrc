@@ -117,3 +117,5 @@ export PATH="$PATH:/home/bennett/.cabal/bin"
 export PATH="$PATH:/home/bennett/.cargo/bin"
 
 stty -ixon
+
+export CHROME_BIN=chromium
