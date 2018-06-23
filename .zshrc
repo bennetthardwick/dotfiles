@@ -91,10 +91,6 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 alias lock="i3lock-fancy -f Fantasque-Sans-Mono-Regular"
 
-alias code="code-oss"
-alias sa="subl -a"
-alias sd="subl -a ."
-
 alias term="urxvt -e zsh"
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
