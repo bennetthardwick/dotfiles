@@ -5,7 +5,7 @@ Gruvbox inspired Arch Llinux i3wm rice.
 + __Terminal:__ RXVT-Unicode + zsh  
 + __Bar:__ Polybar
 ## Preview
-![Sublime Text / URXVT](https://i.imgur.com/iNEVpHY.png)
-![Rofi](https://i.imgur.com/tbH5znV.png)
-![Neofetch](https://i.imgur.com/Ie4dTYx.png)
-![Pretending to work](https://i.imgur.com/fCzlymA.png)
+![NeofetchT](https://i.imgur.com/pn7Q4CK.png)
+![Rofi](https://i.imgur.com/4qcvrys.png)
+![GTK](https://i.imgur.com/26TZUfk.png)
+![Pretending to work](https://i.imgur.com/u8Z4MeC.png)
