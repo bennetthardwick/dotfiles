@@ -121,3 +121,7 @@ export NVM_DIR="$HOME/.nvm"
 
 . ~/git/z/z.sh
 
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+

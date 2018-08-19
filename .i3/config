@@ -36,8 +36,6 @@ set $right semicolon
 set $sup Mod1
 set $mod Mod4
 
-bindsym $sup+b exec chromium
-
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 

@@ -112,3 +112,6 @@ let g:nvim_typescript#kind_symbols = {
       \ 'call': 'call',
       \ 'constructor': '',
       \}
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP .'
