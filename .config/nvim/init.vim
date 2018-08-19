@@ -75,6 +75,7 @@ set splitbelow
 autocmd CompleteDone * pclose
 
 set wildignore+=*/node_modules/**/*
+set wildignore+=*.aux
 
 function! Preview_func()
 	if &pvw
