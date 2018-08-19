@@ -35,6 +35,8 @@ if dein#load_state('~/.cache/dein')
  call dein#add('donRaphaco/neotex')
  call dein#add('justmao945/vim-clang')
  call dein#add('Shougo/echodoc.vim')
+ call dein#add('neomake/neomake')
+ call dein#add('zchee/deoplete-jedi')
 
  call dein#end()
  call dein#save_state()
@@ -116,3 +118,5 @@ let g:nvim_typescript#kind_symbols = {
 
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP .'
+
+call neomake#configure#automake('nrwi', 500)
