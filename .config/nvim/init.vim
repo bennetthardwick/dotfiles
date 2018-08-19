@@ -1,7 +1,8 @@
 if &compatible
  set nocompatible
 endif
-" Add the dein installation directory into runtimepath
+
+"-- Dein -- "
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
@@ -42,9 +43,10 @@ if dein#load_state('~/.cache/dein')
  call dein#save_state()
 endif
 
+
+" -- Vim Config -- "
 set number
 set relativenumber
-syntax on
 set mouse=a
 set tabstop=2
 set shiftwidth=2
@@ -54,17 +56,17 @@ set updatetime=100
 set noshowmode
 set background=dark
 set clipboard+=unnamedplus
+
+set wildignore+=*/node_modules/**/*
+set wildignore+=*.aux
+
 filetype plugin indent on
+syntax on
 
-let g:javascript_plugin_jsdoc=1
-let g:javascript_plugin_ngdoc=1
-
-let g:ycm_server_python_interpreter="python2"
-let g:ycm_global_ycm_extra_conf="~/.vim/.ycmd_flags.py"
 
 let g:airline_powerline_fonts = 1
-
 let g:gruvbox_contrast_dark = "medium"
+
 
 " --- Deoplete ---"
 let g:deoplete#enable_at_startup = 1
@@ -76,16 +78,17 @@ colorscheme gruvbox
 set splitbelow
 autocmd CompleteDone * pclose
 
-set wildignore+=*/node_modules/**/*
-set wildignore+=*.aux
 
+" -- Deoplete Preview Window "
 function! Preview_func()
 	if &pvw
 		setlocal nonumber norelativenumber
 	 endif
 endfunction
+
 autocmd WinEnter * call Preview_func()
 
+" -- Deoplete Typescript -- "
 let g:nvim_typescript#kind_symbols = {
       \ 'keyword': 'keyword',
       \ 'class': '',
@@ -116,7 +119,12 @@ let g:nvim_typescript#kind_symbols = {
       \ 'constructor': '',
       \}
 
+let g:javascript_plugin_jsdoc=1
+let g:javascript_plugin_ngdoc=1
+
+" -- CtrlP Fuzzy Search -- "
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP .'
 
+" -- Neomake -- "
 call neomake#configure#automake('nrwi', 500)
