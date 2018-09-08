@@ -122,8 +122,13 @@ let g:nvim_typescript#kind_symbols = {
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_ngdoc=1
 
+" -- Typescript Functions -- "
+autocmd Filetype typescript map <F10> :TSDefPreview<CR>
+autocmd Filetype typescript map <F9> :TSDef<CR>
+
 " -- CtrlP Fuzzy Search -- "
 nnoremap <C-p> :GFiles<CR>
+nnoremap <C-F> :Ag<CR>
 
 " -- ALE Linting -- "
 let g:ale_fix_on_save = 1
