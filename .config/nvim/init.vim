@@ -49,7 +49,7 @@ set number
 set relativenumber
 set mouse=a
 set tabstop=2
-:set expandtab
+set expandtab
 set shiftwidth=2
 set autoindent
 set smartindent
