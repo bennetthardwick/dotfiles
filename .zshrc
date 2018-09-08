@@ -95,6 +95,9 @@ alias term="urxvt -e zsh"
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+alias vim="nvim"
+alias vi="nvim"
+
 export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export VISUAL="nvim"
 export SHELL="zsh"
@@ -122,6 +125,4 @@ export NVM_DIR="$HOME/.nvm"
 . ~/git/z/z.sh
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
 
