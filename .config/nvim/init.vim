@@ -35,9 +35,9 @@ if dein#load_state('~/.cache/dein')
  call dein#add('donRaphaco/neotex')
  call dein#add('justmao945/vim-clang')
  call dein#add('Shougo/echodoc.vim')
- call dein#add('neomake/neomake')
  call dein#add('zchee/deoplete-jedi')
  call dein#add('junegunn/fzf.vim')
+ call dein#add('w0rp/ale')
 
  call dein#end()
  call dein#save_state()
@@ -125,5 +125,8 @@ let g:javascript_plugin_ngdoc=1
 " -- CtrlP Fuzzy Search -- "
 nnoremap <C-p> :GFiles<CR>
 
-" -- Neomake -- "
-call neomake#configure#automake('nrwi', 500)
+" -- ALE Linting -- "
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \  'typescript': [ 'prettier', 'tslint' ]
+      \}
