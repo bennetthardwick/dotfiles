@@ -9,3 +9,9 @@ Gruvbox inspired Arch Llinux i3wm rice.
 ![Rofi](https://i.imgur.com/4qcvrys.png)
 ![GTK](https://i.imgur.com/26TZUfk.png)
 ![Pretending to work](https://i.imgur.com/u8Z4MeC.png)
+
+## Installing on Arch Linux
+### Nvim Stuff
+```
+sudo pacman -S the_silver_searchver fzf
+```

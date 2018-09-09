@@ -20,7 +20,6 @@ if dein#load_state('~/.cache/dein')
 
  call dein#add('tpope/vim-fugitive')
  call dein#add('scrooloose/nerdtree')
- call dein#add('kien/ctrlp.vim')
  call dein#add('morhetz/gruvbox')
  call dein#add('ervandew/supertab')
  call dein#add('bling/vim-airline')
@@ -36,8 +35,9 @@ if dein#load_state('~/.cache/dein')
  call dein#add('donRaphaco/neotex')
  call dein#add('justmao945/vim-clang')
  call dein#add('Shougo/echodoc.vim')
- call dein#add('neomake/neomake')
  call dein#add('zchee/deoplete-jedi')
+ call dein#add('junegunn/fzf.vim')
+ call dein#add('w0rp/ale')
 
  call dein#end()
  call dein#save_state()
@@ -50,6 +50,7 @@ set relativenumber
 set expandtab
 set mouse=a
 set tabstop=2
+set expandtab
 set shiftwidth=2
 set autoindent
 set smartindent
@@ -79,12 +80,11 @@ colorscheme gruvbox
 set splitbelow
 autocmd CompleteDone * pclose
 
-
 " -- Deoplete Preview Window "
 function! Preview_func()
-	if &pvw
-		setlocal nonumber norelativenumber
-	 endif
+  if &pvw
+    setlocal nonumber norelativenumber
+  endif
 endfunction
 
 autocmd WinEnter * call Preview_func()
@@ -123,9 +123,18 @@ let g:nvim_typescript#kind_symbols = {
 let g:javascript_plugin_jsdoc=1
 let g:javascript_plugin_ngdoc=1
 
-" -- CtrlP Fuzzy Search -- "
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP .'
+" -- Typescript Functions -- "
+autocmd Filetype typescript map <F10> :TSDefPreview<CR>
+autocmd Filetype typescript map <F9> :TSDef<CR>
 
-" -- Neomake -- "
-call neomake#configure#automake('nrwi', 500)
+" -- CtrlP Fuzzy Search -- "
+nnoremap <C-p> :GFiles<CR>
+nnoremap <C-F> :Ag<CR>
+
+" -- ALE Linting -- "
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \ 'typescript': [ 'prettier', 'tslint' ],
+      \ 'markdown': [],
+      \ '*': [ 'remove_trailing_lines', 'trim_whitespace' ]
+      \}
