@@ -47,6 +47,7 @@ endif
 " -- Vim Config -- "
 set number
 set relativenumber
+set expandtab
 set mouse=a
 set tabstop=2
 set shiftwidth=2
