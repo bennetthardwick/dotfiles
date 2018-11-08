@@ -1,0 +1,15 @@
+{
+  "modules-left": [ "sway/workspaces" ],
+  "modules-center": [ "sway/window" ],
+  "modules-right": [ "clock" ],
+  "sway/workspaces": {
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "9": "",
+      "10": "",
+      "8": "",
+      "default": ""
+    }
+  }
+}
