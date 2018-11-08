@@ -8,50 +8,38 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background-alt = #181818
+background-alt = #191919
 background = #090909
-;foreground = ${xrdb:color7:#222}
-foreground = #ebdbb2
-foreground-alt = #fbf1c7
-primary = #fb4934
-secondary = #b8bb26
-alert = #fb4934
-
+foreground = #acacac
+foreground-alt = #ebdbb2
 red = #fb4934
-green = #b8bb26
-yellow = #fabd2f
-blue = #83a598
-purple = #d3869b
-aqua = #8ec07c
-orange = #fe8019
+blue = #458588
 
 [bar/gruvbox]
-monitor = ${env:MONITOR:DisplayPort-1}
+;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-fixed-center = false
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 1
+line-size = 2
 line-color = #f00
 
-border-size = 0
-border-color = #00000000
-
 padding-left = 0
-padding-right = 2
+padding-right = 5
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
-font-1 = "Cantarell:pixelsize=12;1
-font-0 = "FontAwesome:pixelsize=12;1"
+font-1 = "Cantarell:pixelsize=8;1
+font-0 = "FontAwesome:pixelsize=8;1"
 
 modules-left = i3
-modules-center = 
-modules-right =  volume cpu battery date
+modules-center = title
+modules-right =  volume battery date
+
+; Hide the tray
 tray-position = right
 tray-padding = 1
 
@@ -75,12 +63,13 @@ wrapping-scroll = false
 
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.red}
 
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-background = ${colors.background-alt}
 label-focused-padding = 2
+label-focused-underline = ${colors.blue}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
@@ -93,7 +82,8 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
-label-urgent-background = ${colors.alert}
+label-urgent-background = ${colors.red}
+label-urgent-foreground = ${colors.foreground-alt}
 label-urgent-padding = 2
 
 [module/cpu]
@@ -108,14 +98,11 @@ label =  %percentage%%
 type = internal/date
 interval = 5
 
-date =
+date = " %d/%m"
 date-alt = " %Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
 
@@ -127,7 +114,7 @@ label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
 label-muted = sound muted
 
 bar-volume-width = 10
@@ -138,7 +125,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -151,25 +138,24 @@ format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.foreground}
 
-ramp-capacity-0 =  
+ramp-capacity-0 = 
 ramp-capacity-1 = 
-ramp-capacity-2 =  
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
 animation-charging-1 = 
-animation-charging-2 =  
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
+
+[module/title]
+type = internal/xwindow
 
 [settings]
 screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
 
 [global/wm]
 margin-top = 5
