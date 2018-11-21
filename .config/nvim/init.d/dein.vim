@@ -13,11 +13,6 @@ if dein#load_state('~/.cache/dein')
 
  " Visuals "
  call dein#add('morhetz/gruvbox')
- call dein#add('bling/vim-airline')
- call dein#add('vim-airline/vim-airline-themes')
-
- " Dark Powered "
- call dein#add('Shougo/echodoc.vim')
 
  " Util "
  call dein#add('kana/vim-surround')
