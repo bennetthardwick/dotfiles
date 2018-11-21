@@ -15,8 +15,6 @@ if dein#load_state('~/.cache/dein')
  call dein#add('morhetz/gruvbox')
 
  " Util "
- call dein#add('kana/vim-surround')
- call dein#add('scrooloose/nerdtree')
  call dein#add('junegunn/fzf.vim')
  call dein#add('w0rp/ale')
 
