@@ -5,5 +5,4 @@ source ~/.config/nvim/init.d/visuals.vim
 source ~/.config/nvim/init.d/mappings.vim
 source ~/.config/nvim/init.d/linting.vim
 
-source ~/.config/nvim/languages/typescript.vim
-source ~/.config/nvim/languages/rust.vim
+source ~/.config/nvim/languages.vim

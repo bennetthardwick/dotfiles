@@ -20,23 +20,15 @@ if dein#load_state('~/.cache/dein')
 
  " Git "
  call dein#add('airblade/vim-gitgutter')
- call dein#add('tpope/vim-fugitive')
 
- " JavaScript "
- call dein#add('zchee/deoplete-jedi', { 'on_ft': 'javascript' })
+ " Language Servers "
+  call dein#add('autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' })
 
  " Latex "
  call dein#add('lervag/vimtex')
 
  " TypeScript "
  call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': 'typescript' })
- call dein#add('mhartington/nvim-typescript', { 'build': './install.sh', 'on_ft': 'typescript' })
-
- " C "
- call dein#add('zchee/deoplete-clang', { 'on_ft': [ 'c', 'cpp' ] })
-
- " Rust "
- call dein#add('sebastianmarkow/deoplete-rust', { 'on_ft': 'rust' })
 
  call dein#end()
  call dein#save_state()
