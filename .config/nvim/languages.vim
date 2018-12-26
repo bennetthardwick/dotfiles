@@ -2,9 +2,10 @@
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': [ 'rls' ],
     \ 'typescript': [ 'javascript-typescript-stdio' ],
-    \ 'javascript': [ 'javascript-typescript-stdio' ]
+    \ 'typescript.tsx': [ 'javascript-typescript-stdio' ],
+    \ 'javascript': [ 'javascript-typescript-stdio' ],
+    \ 'rust': [ 'rls' ]
     \ }
 
 function LC_maps()

@@ -21,7 +21,7 @@ if dein#load_state('~/.cache/dein')
  " Git "
  call dein#add('airblade/vim-gitgutter')
 
- " Language Servers "
+ " Language Server "
   call dein#add('autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' })
 
  " Latex "

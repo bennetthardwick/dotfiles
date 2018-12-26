@@ -6,7 +6,6 @@ endif
 
 set number
 set relativenumber
-set expandtab
 set mouse=a
 set tabstop=2
 set expandtab
