@@ -17,6 +17,8 @@ if dein#load_state('~/.cache/dein')
   " Util "
   call dein#add('junegunn/fzf.vim')
   call dein#add('w0rp/ale')
+  call dein#add('sbdchd/neoformat')
+  call dein#add('sheerun/vim-polyglot')
 
   " Git "
   call dein#add('airblade/vim-gitgutter')
@@ -24,14 +26,8 @@ if dein#load_state('~/.cache/dein')
   " Language Server "
   call dein#add('autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' })
 
-  " Latex "
-  call dein#add('lervag/vimtex')
-
   " EchoDoc "
   call dein#add('Shougo/echodoc.vim')
-
-  " TypeScript "
-  call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': 'typescript' })
 
   call dein#end()
   call dein#save_state()

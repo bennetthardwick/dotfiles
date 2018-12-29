@@ -21,3 +21,4 @@ set wildignore+=*.aux
 set path+=./**
 
 syntax on
+filetype plugin indent on
