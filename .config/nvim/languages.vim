@@ -5,7 +5,8 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': [ 'javascript-typescript-stdio' ],
     \ 'typescript.tsx': [ 'javascript-typescript-stdio' ],
     \ 'javascript': [ 'javascript-typescript-stdio' ],
-    \ 'rust': [ 'rls' ]
+    \ 'rust': [ 'rls' ],
+    \ 'lua': [ 'lua-lsp' ]
     \ }
 
 function LC_maps()
@@ -17,5 +18,10 @@ function LC_maps()
     nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
   endif
 endfunction
+
+" EchoDoc "
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
 
 autocmd FileType * call LC_maps()

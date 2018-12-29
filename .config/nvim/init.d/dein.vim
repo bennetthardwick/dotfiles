@@ -1,35 +1,38 @@
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
- call dein#begin('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
- call dein#add('~/.cache/dein')
- call dein#add('Shougo/deoplete.nvim')
+  call dein#add('~/.cache/dein')
+  call dein#add('Shougo/deoplete.nvim')
 
- if !has('nvim')
-   call dein#add('roxma/nvim-yarp')
-   call dein#add('roxma/vim-hug-neovim-rpc')
- endif
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
- " Visuals "
- call dein#add('morhetz/gruvbox')
+  " Visuals "
+  call dein#add('morhetz/gruvbox')
 
- " Util "
- call dein#add('junegunn/fzf.vim')
- call dein#add('w0rp/ale')
+  " Util "
+  call dein#add('junegunn/fzf.vim')
+  call dein#add('w0rp/ale')
 
- " Git "
- call dein#add('airblade/vim-gitgutter')
+  " Git "
+  call dein#add('airblade/vim-gitgutter')
 
- " Language Server "
+  " Language Server "
   call dein#add('autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': './install.sh' })
 
- " Latex "
- call dein#add('lervag/vimtex')
+  " Latex "
+  call dein#add('lervag/vimtex')
 
- " TypeScript "
- call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': 'typescript' })
+  " EchoDoc "
+  call dein#add('Shougo/echodoc.vim')
 
- call dein#end()
- call dein#save_state()
+  " TypeScript "
+  call dein#add('HerringtonDarkholme/yats.vim', { 'on_ft': 'typescript' })
+
+  call dein#end()
+  call dein#save_state()
 endif
