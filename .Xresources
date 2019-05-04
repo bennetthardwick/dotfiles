@@ -12,7 +12,7 @@ URxvt.trasparent: false
 #define fonts xft:Fantasque Sans Mono:size=11,\
 		xft:Pomodoro:style=Regular,\
 		xft:DeJaVuSansMono Nerd Font Mono:style=Regular
-		
+
 font:Fantasque\ Sans\ Mono 11
 *font: fonts
 
@@ -78,9 +78,9 @@ URxvt.color250: #d5c4a1
 
 
 rofi.color-enabled: true
-rofi.font:Fantasque\ Sans\ Mono 11
+rofi.font:Fantasque\ Sans\ Mono 20
 !                  bg       border   separator
-rofi.color-window: argb:EE282828, #282828, #282828
+rofi.color-window: argb:EE282828, #242424, #282828
 
 !                  bg       fg       bg-alt   hl-bg    hl-fg
 rofi.color-normal: argb:00282828, #458588, argb:00282828, #458588, #282828
@@ -91,4 +91,3 @@ xterm.borderWidth: 0
 xterm.termName: xterm-256-color
 
 URxvt.perl-ext-common: font-size
-
