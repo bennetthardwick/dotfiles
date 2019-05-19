@@ -1,3 +1,5 @@
+source /home/bennett/.bashrc
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -5,7 +7,11 @@ USER="bennett"
 DEFAULT_USER=`whoami`
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+if [ -d "/home/bennett/.oh-my-zsh" ]; then
+  ZSH=/home/bennett/.oh-my-zsh
+else
+  ZSH=/usr/share/oh-my-zsh/
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -108,8 +114,6 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-eval $(thefuck --alias)
-
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:/home/bennett/.cabal/bin"
@@ -122,7 +126,4 @@ export CHROME_BIN=chromium
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-. ~/git/z/z.sh
-
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
