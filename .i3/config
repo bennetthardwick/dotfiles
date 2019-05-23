@@ -112,8 +112,7 @@ bindsym $mod+minus scratchpad show
 
 # switch to workspace
 bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2;
-exec [ $(ps h -C qutebrowser | wc -l) = 0 ] && qutebrowser
+bindsym $mod+2 workspace 2; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -196,7 +195,11 @@ bindsym XF86AudioMute exec pamixer --sink 0 -t
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
+assign [class="Code"] 1
+assign [instance="nvim-visual-workspace"] 1
+
 assign [class="Chromium"] 2
+assign [class="Google-chrome"] 2
 assign [class="qutebrowser"] 2
 assign [class="discord"] 9
 assign [class="Google Play Music Desktop Player"] 10
@@ -216,3 +219,6 @@ smart_gaps on
 
 # exec jack_control start &
 exec redshift &
+
+exec /home/bennett/.i3/load-terminals &
+exec google-chrome --restore-last-session &

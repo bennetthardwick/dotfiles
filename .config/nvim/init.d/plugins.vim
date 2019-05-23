@@ -8,8 +8,6 @@ Plug 'morhetz/gruvbox'
 " Util "
 Plug 'junegunn/fzf.vim'
 
-Plug 'w0rp/ale'
-Plug 'sbdchd/neoformat'
 Plug 'sheerun/vim-polyglot'
 
 " Git "
