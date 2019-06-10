@@ -201,8 +201,13 @@ assign [instance="nvim-visual-workspace"] 1
 assign [class="Chromium"] 2
 assign [class="Google-chrome"] 2
 assign [class="qutebrowser"] 2
+
+assign [class="Slack"] 4
+
 assign [class="discord"] 9
+
 assign [class="Google Play Music Desktop Player"] 10
+
 assign [class="Anki"] 8
 
 
@@ -222,3 +227,4 @@ exec redshift &
 
 exec /home/bennett/.i3/load-terminals &
 exec google-chrome --restore-last-session &
+exec slack &

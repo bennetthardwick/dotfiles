@@ -8,10 +8,9 @@ Plug 'morhetz/gruvbox'
 " Util "
 Plug 'junegunn/fzf.vim'
 
-Plug 'sheerun/vim-polyglot'
-
-" Git "
 Plug 'airblade/vim-gitgutter'
+
+Plug 'sheerun/vim-polyglot'
 
 " Language Server "
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}

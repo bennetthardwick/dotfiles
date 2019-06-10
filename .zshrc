@@ -118,12 +118,25 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:/home/bennett/.cabal/bin"
 export PATH="$PATH:/home/bennett/.cargo/bin"
+export PATH="$PATH:/home/bennett/google-cloud-sdk"
 
 stty -ixon
 
 export CHROME_BIN=chromium
 
+export NODE_OPTIONS=--max_old_space_size=16384
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/sls.zsh ]] && . /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/slss.zsh ]] && . /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/slss.zsh
