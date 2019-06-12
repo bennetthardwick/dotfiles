@@ -140,3 +140,4 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/slss.zsh ]] && . /home/bennett/clipchamp-stack/backend/lambda/node_modules/tabtab/.completions/slss.zsh
+
