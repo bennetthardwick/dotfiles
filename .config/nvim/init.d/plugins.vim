@@ -7,9 +7,7 @@ Plug 'morhetz/gruvbox'
 
 " Util "
 Plug 'junegunn/fzf.vim'
-
 Plug 'airblade/vim-gitgutter'
-
 Plug 'sheerun/vim-polyglot'
 
 " Language Server "
