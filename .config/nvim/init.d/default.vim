@@ -16,5 +16,7 @@ set wildignore+=*.aux
 
 set path+=./**
 
+autocmd BufEnter * :syntax sync fromstart
+
 syntax on
 filetype plugin indent on

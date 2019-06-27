@@ -176,7 +176,6 @@ exec xrdb ~/.Xresources &
 
 exec --no-startup-id hsetroot -solid '#242424' &
 exec --no-startup-id polybar gruvbox &
-exec --no-startup-id compton -b &
 
 new_window 1pixel
 
