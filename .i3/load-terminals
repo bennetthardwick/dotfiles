@@ -1,15 +1,23 @@
 #!/bin/zsh
 
-i3-msg 'workspace 1; workspace 3; append_layout ~/.i3/terminal-workspace.json'
+source $HOME/.zshrc
 
-alacritty --class __htop -e "htop" &
+if [ `hostname` = "bennett-work" ]; then
 
-cd ~/clipchamp-static-website/apps/static-website && alacritty --class __static_website &
+  # Preload work layout
 
-cd ~/clipchamp-stack/backend && alacritty --class __backend &
+  i3-msg 'workspace 1; workspace 3; append_layout ~/.i3/terminal-workspace.json'
+  
+  alacritty --class __htop -e "htop" &
+  
+  cd ~/clipchamp-static-website/apps/static-website && alacritty --class __static_website &
+  
+  cd ~/clipchamp-stack/backend && alacritty --class __backend &
+  
+  cd ~/clipchamp-static-website/apps/project-sharing && alacritty --class __project_sharing &
+  
+  alacritty --class __scratchpad &
+  
+  cd ~/clipchamp-static-website && alacritty --class nvim-visual-workspace -e nvim &
 
-cd ~/clipchamp-static-website/apps/project-sharing && alacritty --class __project_sharing &
-
-alacritty --class __scratchpad &
-
-cd ~/clipchamp-static-website && alacritty --class nvim-visual-workspace -e nvim &
+fi
