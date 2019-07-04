@@ -4,5 +4,7 @@
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "python.formatting.provider": "yapf"
+  "python.formatting.provider": "yapf",
+  "tsserver.npm": "/home/bennett/.nvm/versions/node/v11.15.0/bin/npm",
+  "tsserver.log": "verbose"
 }

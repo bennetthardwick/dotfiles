@@ -16,7 +16,7 @@ red = #fb4934
 blue = #458588
 
 [bar/gruvbox]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:DP-0}
 width = 100%
 fixed-center = true
 
@@ -32,8 +32,8 @@ padding-right = 5
 module-margin-left = 2
 module-margin-right = 2
 
-font-1 = "Cantarell:pixelsize=8;1
-font-0 = "FontAwesome:pixelsize=8;1"
+font-1 = "Cantarell:pixelsize=9;1
+font-0 = "FontAwesome:pixelsize=9;1"
 
 modules-left = i3
 modules-center = title

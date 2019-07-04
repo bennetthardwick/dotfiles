@@ -14,7 +14,11 @@ set clipboard+=unnamedplus
 set wildignore+=*/node_modules/**/*
 set wildignore+=*.aux
 
+set diffopt+=vertical 
+
 set path+=./**
+
+autocmd BufEnter * :syntax sync fromstart
 
 syntax on
 filetype plugin indent on

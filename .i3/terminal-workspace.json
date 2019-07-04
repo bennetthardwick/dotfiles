@@ -1,0 +1,108 @@
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 460,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "bennett@bennett-desktop: ~",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^Alacritty$",
+               "instance": "^__static_website$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 460,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "bennett@bennett-desktop: ~",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^Alacritty$",
+               "instance": "^__backend$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "floating": "auto_off",
+            "layout": "splith",
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 2,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 460,
+                       "width": 724,
+                       "x": 0,
+                       "y": 0
+                    },
+                    "name": "bennett@bennett-desktop: ~",
+                    "percent": null,
+                    "swallows": [
+                       {
+                           "class": "^Alacritty$",
+                           "instance": "^__project_sharing$"
+                       }
+                    ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 2,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 460,
+               "width": 724,
+               "x": 0,
+               "y": 0
+            },
+            "name": "i3-save-tree --workspace 1 > ~/workspace-3.json",
+            "percent": 0.5,
+            "swallows": [
+               {
+               "class": "^Alacritty$",
+               "instance": "^__htop$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
