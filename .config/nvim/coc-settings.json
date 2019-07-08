@@ -6,5 +6,10 @@
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "python.formatting.provider": "yapf",
   "tsserver.npm": "/home/bennett/.nvm/versions/node/v11.15.0/bin/npm",
-  "tsserver.log": "verbose"
+  "tsserver.log": "verbose",
+  "python.autoComplete.extraPaths": [
+    "/opt/google-cloud-sdk/platform/google_appengine/",
+    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/"
+  ],
+  "python.jediEnabled": true
 }
