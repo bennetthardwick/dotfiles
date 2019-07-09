@@ -44,4 +44,11 @@ export CHROME_BIN=chromium
 
 export NODE_OPTIONS=--max_old_space_size=16384
 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+AUTO_SUGGEST=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+if [ -f "$AUTO_SUGGEST" ]
+then
+  source $AUTO_SUGGEST
+else
+  source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
