@@ -175,7 +175,6 @@ bindsym $mod+Shift+s exec deepin-screenshot
 exec xrdb ~/.Xresources &
 
 exec --no-startup-id hsetroot -solid '#242424' &
-exec --no-startup-id polybar gruvbox &
 exec --no-startup-id compton &
 
 new_window 1pixel
@@ -227,5 +226,6 @@ smart_gaps on
 exec redshift &
 
 exec /home/bennett/.i3/load-terminals &
+
 exec google-chrome --restore-last-session &
 exec slack &
