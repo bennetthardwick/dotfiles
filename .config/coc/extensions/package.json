@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "coc-json": "latest",
+    "coc-marketplace": "latest",
+    "coc-rls": "latest",
+    "coc-tsserver": "latest",
+    "coc-tslint-plugin": "latest",
+    "coc-python": "latest"
+  }
+}
