@@ -15,12 +15,14 @@
   "python.jediEnabled": true,
   "css.colorDecorators.enable": false,
   "scss.colorDecorators.enable": false,
+  "rust-client.channel": "stable",
   "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": [
         "c",
         "cpp",
+        "cuda",
         "objc",
         "objcpp"
       ],
