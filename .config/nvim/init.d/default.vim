@@ -19,6 +19,7 @@ set diffopt+=vertical
 set path+=./**
 
 autocmd BufEnter * :syntax sync fromstart
+autocmd TermOpen * :setlocal signcolumn=no nonumber norelativenumber
 
 syntax on
 filetype plugin indent on

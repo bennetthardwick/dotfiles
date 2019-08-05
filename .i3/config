@@ -225,6 +225,9 @@ smart_gaps on
 # exec jack_control start &
 exec redshift &
 
+
+exec --no-startup-id dunst &
+
 exec /home/bennett/.i3/load-terminals &
 
 exec google-chrome --restore-last-session &

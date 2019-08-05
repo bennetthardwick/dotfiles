@@ -91,3 +91,5 @@ xterm.borderWidth: 0
 xterm.termName: xterm-256-color
 
 URxvt.perl-ext-common: font-size
+
+Xcursor.size: 32

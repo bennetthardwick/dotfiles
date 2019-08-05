@@ -1,5 +1,5 @@
 [global]
-    font = "Fantasque Sans Mono 6"
+    font = "Fantasque Sans Mono 11"
     allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
