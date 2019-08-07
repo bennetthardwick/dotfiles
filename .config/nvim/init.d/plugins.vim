@@ -11,7 +11,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-startify'
 
 " Language Server "
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

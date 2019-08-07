@@ -10,11 +10,11 @@ nnoremap <silent> gas /@Component<CR>/styleUrl<CR>:noh<CR>f'gf<ESC>
 
 nnoremap <silent> gfn :!echo % \| xclip<CR>
 
-nnoremap <silent> <leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent> <leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <leader>] :exe "vertical resize " . (winwidth(0) + 30)<CR>
+nnoremap <silent> <leader>[ :exe "vertical resize " . (winwidth(0) - 30)<CR>
 
-nnoremap <silent> <leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <leader>_ :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <leader>= :exe "resize " . (winheight(0) + 10)<CR>
+nnoremap <silent> <leader>- :exe "resize " . (winheight(0) - 10)<CR>
 
 function! ToggleSpecFile()
   let l:file = expand('%')
@@ -37,3 +37,13 @@ endfunction
 
 nnoremap <silent> gsp :call ToggleSpecFile()<CR>
 
+
+function! TestCurrentFile()
+  if filereadable(@%)
+    execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool type "run-jest --coverage=false" && xdotool key Return'
+  else
+    echo "File doesn't exist!"
+  endif
+endfunction
+
+nnoremap <silent> gtf :call TestCurrentFile()<CR>
