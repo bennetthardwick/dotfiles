@@ -210,7 +210,6 @@ assign [class="Google Play Music Desktop Player"] 10
 
 assign [class="Anki"] 8
 
-
 # exec nm-applet &
 exec xset -b &
 

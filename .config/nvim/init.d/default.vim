@@ -18,6 +18,9 @@ set wildignore+=*.aux
 set diffopt+=vertical 
 
 set path+=./**
+set wildoptions=pum
+set pumblend=8
+highlight PmenuSel blend=0
 
 autocmd BufEnter * :syntax sync fromstart
 autocmd TermOpen * :setlocal signcolumn=no nonumber norelativenumber
