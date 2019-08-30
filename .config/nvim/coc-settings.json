@@ -14,5 +14,37 @@
   ],
   "python.jediEnabled": true,
   "css.colorDecorators.enable": false,
-  "scss.colorDecorators.enable": false
+  "scss.colorDecorators.enable": false,
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        },
+        "clang": {
+          "resourceDir": "/usr/lib/clang/6.0/",
+          "extraArgs": [
+            "-I",
+            "/home/bennett/git/darknet.js/include/",
+            "-I",
+            "/home/bennett/git/darknet.js/node_modules/node-addon-api/"
+          ]
+        }
+      }
+    }
+  }
 }
