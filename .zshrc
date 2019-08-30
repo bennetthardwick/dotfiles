@@ -23,7 +23,6 @@ alias lock="i3lock-fancy -f Fantasque-Sans-Mono-Regular"
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export VISUAL="nvim"
 export SHELL="zsh"
 
