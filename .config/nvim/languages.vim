@@ -50,6 +50,9 @@ nmap <silent> gr <Plug>(coc-references)
 " Use K for show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+set pumblend=5
+autocmd BufEnter * silent set winblend=5
+
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')

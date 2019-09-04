@@ -5,7 +5,7 @@
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "python.formatting.provider": "yapf",
-  "tsserver.npm": "/home/bennett/.nvm/versions/node/v11.15.0/bin/npm",
+  "tsserver.npm": "/home/bennett/.n/n/versions/node/11.15.0/bin/npm",
   "tsserver.log": "verbose",
   "typescript.suggest.completeFunctionCalls": false,
   "python.autoComplete.extraPaths": [
@@ -37,14 +37,10 @@
         },
         "clang": {
           "resourceDir": "/usr/lib/clang/6.0/",
-          "extraArgs": [
-            "-I",
-            "/home/bennett/git/darknet.js/include/",
-            "-I",
-            "/home/bennett/git/darknet.js/node_modules/node-addon-api/"
-          ]
+          "extraArgs": []
         }
       }
     }
-  }
+  },
+  "eslint.packageManager": "yarn"
 }

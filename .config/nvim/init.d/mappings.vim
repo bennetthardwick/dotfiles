@@ -4,9 +4,9 @@ nnoremap <C-F> :Ag<CR>
 command -nargs=* CSOpen :!cs-open <args>
 command CSCurrent :execute ':CSOpen '.expand('%').'\#L'.line('.').':'.col('.')
 
-nnoremap <silent> gcs :CSCurrent<CR>
-nnoremap <silent> gat /@Component<CR>/templateUrl<CR>:noh<CR>f'gf<ESC>
-nnoremap <silent> gas /@Component<CR>/styleUrl<CR>:noh<CR>f'gf<ESC>
+nnoremap <silent> <leader>cs :CSCurrent<CR>
+nnoremap <silent> <leader>at /@Component<CR>/templateUrl<CR>:noh<CR>f'gf<ESC>
+nnoremap <silent> <leader>as /@Component<CR>/styleUrl<CR>:noh<CR>f'gf<ESC>
 
 nnoremap <silent> gfn :!echo % \| xclip<CR>
 
@@ -35,15 +35,16 @@ function! ToggleSpecFile()
   endif
 endfunction
 
-nnoremap <silent> gsp :call ToggleSpecFile()<CR>
+nnoremap <silent> <leader>sp :call ToggleSpecFile()<CR>
 
 
 function! TestCurrentFile()
   if filereadable(@%)
-    execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool type "run-jest --coverage=false" && xdotool key Return'
+    execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool key Ctrl+c && xdotool type "run-jest --coverage=false" && xdotool key Return'
   else
     echo "File doesn't exist!"
   endif
 endfunction
 
-nnoremap <silent> gtf :call TestCurrentFile()<CR>
+nnoremap <silent> <leader>tf :call TestCurrentFile()<CR>
+nnoremap <silent> <leader>i :Format<CR>
