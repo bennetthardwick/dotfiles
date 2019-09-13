@@ -5,6 +5,7 @@ if &compatible
 endif
 
 set number relativenumber
+set shiftwidth=2
 set mouse=a
 set expandtab
 set autoindent

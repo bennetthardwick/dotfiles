@@ -21,7 +21,7 @@ if [ `hostname` = "bennett-work" ]; then
   cd ~/clipchamp-static-website && alacritty --class nvim-visual-workspace -e nvim &
 
 else
-  export MONITOR="eDP-1"
+  export MONITOR="eDP1"
 fi
 
 polybar gruvbox &

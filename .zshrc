@@ -19,7 +19,6 @@ export EDITOR="nvim"
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
-alias lock="i3lock-fancy -f Fantasque-Sans-Mono-Regular"
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
@@ -51,3 +50,5 @@ then
 else
   source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
+
+export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

@@ -1,14 +1,14 @@
 {
   "dependencies": {
-    "coc-ccls": "^0.0.4",
-    "coc-git": ">=1.5.15",
-    "coc-json": "latest",
+    "coc-ccls": ">=0.0.4",
+    "coc-git": ">=1.6.10",
+    "coc-json": ">=1.2.3",
     "coc-marketplace": ">=1.4.0",
-    "coc-python": ">=1.2.5",
-    "coc-rls": "latest",
+    "coc-python": ">=1.2.6",
+    "coc-rls": ">=1.1.2",
     "coc-tslint-plugin": ">=1.1.1",
-    "coc-tsserver": "latest",
-    "coc-eslint": ">=1.2.1",
-    "eslint": ">=6.0.1"
+    "coc-tsserver": ">=1.4.0",
+    "coc-eslint": ">=1.2.2",
+    "coc-prettier": ">=1.1.6"
   }
 }
