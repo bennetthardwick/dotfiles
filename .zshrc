@@ -1,5 +1,7 @@
 source $HOME/.bashrc
 
+eval $(ssh-agent)
+
 USER="bennett"
 DEFAULT_USER=`whoami`
 
@@ -51,4 +53,5 @@ else
   source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-export N_PREFIX="$HOME/.n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
