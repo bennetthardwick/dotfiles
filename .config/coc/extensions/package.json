@@ -9,6 +9,7 @@
     "coc-tsserver": ">=1.4.1",
     "coc-eslint": ">=1.2.2",
     "coc-prettier": ">=1.1.6",
-    "coc-vimtex": ">=1.0.2"
+    "coc-vimtex": ">=1.0.2",
+    "coc-go": ">=0.5.0"
   }
 }

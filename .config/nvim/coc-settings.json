@@ -1,0 +1,43 @@
+{
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "python.formatting.provider": "yapf",
+  "tsserver.npm": "/home/bennett/.nvm/versions/node/v11.15.0/bin/npm",
+  "tsserver.log": "verbose",
+  "typescript.suggest.completeFunctionCalls": false,
+  "python.autoComplete.extraPaths": [
+    "/opt/google-cloud-sdk/platform/google_appengine/",
+    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/"
+  ],
+  "python.jediEnabled": true,
+  "css.colorDecorators.enable": false,
+  "scss.colorDecorators.enable": false,
+  "rust-client.channel": "stable",
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": [
+        "c",
+        "cpp",
+        "cuda",
+        "objc",
+        "objcpp"
+      ],
+      "rootPatterns": [
+        ".ccls",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        }
+      }
+    }
+  }
+}
