@@ -112,7 +112,7 @@ bindsym $mod+minus scratchpad show, [instance="__scratchpad"] move position cent
 
 # switch to workspace
 bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome
+bindsym $mod+2 workspace 2; exec [ $(ps h -C chrome | wc -l) = 0 ] && google-chrome --restore-last-session
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -181,7 +181,7 @@ new_window 1pixel
 
 client.focused		#458588 #458588 #191919 #b16286 #458588
 client.unfocused	#191919 #191919 #458588 #191919 #242424
-client.focused_inactive #458588 #458588 #191919 #191919 #242424
+client.focused_inactive #2c3c3d #458588 #191919 #2c3c3d #2c3c3d
 client.placeholder	#191919 #282828 #458588 #191919 #282828
 client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
@@ -216,6 +216,7 @@ exec xset -b &
 for_window[class=".*"] border pixel 1
 
 for_window [instance="__scratchpad"] move scratchpad
+for_window [instance="__floating"] floating enable
 exec --no-startup-id alacritty --class __scratchpad
 
 gaps inner 15

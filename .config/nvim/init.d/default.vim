@@ -17,6 +17,8 @@ set wildignore+=*.aux
 
 set diffopt+=vertical 
 
+set spell
+
 set path+=./**
 set wildoptions=pum
 set pumblend=8
