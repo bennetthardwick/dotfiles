@@ -40,8 +40,7 @@ modules-center = title
 modules-right =  volume battery date
 
 ; Hide the tray
-tray-position = right
-tray-padding = 1
+tray-position = none
 
 [module/i3]
 
