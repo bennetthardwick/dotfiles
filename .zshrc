@@ -1,5 +1,8 @@
 source $HOME/.bashrc
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 eval $(ssh-agent) > /dev/null
 
 USER="bennett"
