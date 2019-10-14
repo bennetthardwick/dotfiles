@@ -170,7 +170,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym --release $mod+Shift+s exec scrot -s
+bindsym --release $mod+Shift+s exec "maim -s ~/screenshots/$(date +%s).png"
 
 exec xrdb ~/.Xresources &
 
