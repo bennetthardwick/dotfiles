@@ -17,3 +17,4 @@ Gruvbox inspired Arch Llinux i3wm rice.
 ```
 sudo pacman -S the_silver_searchver fzf
 ```
+
