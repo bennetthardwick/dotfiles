@@ -8,6 +8,9 @@ nnoremap <silent> <leader>cs :CSCurrent<CR>
 nnoremap <silent> <leader>at /@Component<CR>/templateUrl<CR>:noh<CR>f'gf<ESC>
 nnoremap <silent> <leader>as /@Component<CR>/styleUrl<CR>:noh<CR>f'gf<ESC>
 
+" Yank the current word and search using Rg
+nnoremap <silent> <leader>sw yiw:Rg <C-R>"<CR>
+
 nnoremap <silent> gfn :!echo % \| xclip<CR>
 
 nnoremap <silent> <leader>] :exe "vertical resize " . (winwidth(0) + 30)<CR>

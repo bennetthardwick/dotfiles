@@ -18,9 +18,8 @@ set wildignore+=*.aux
 
 set diffopt+=vertical 
 
-set spell
-
 set path+=./**
+set cursorline
 set wildoptions=pum
 set pumblend=8
 highlight PmenuSel blend=0
