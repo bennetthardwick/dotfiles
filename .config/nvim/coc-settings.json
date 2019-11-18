@@ -5,14 +5,15 @@
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "python.formatting.provider": "yapf",
-  "tsserver.npm": "/home/bennett/.nvm/versions/node/v11.15.0/bin/npm",
+  "tsserver.npm": "/home/bennett/.n/n/versions/node/12.13.0/bin/npm",
   "tsserver.log": "verbose",
   "typescript.suggest.completeFunctionCalls": false,
   "python.autoComplete.extraPaths": [
     "/opt/google-cloud-sdk/platform/google_appengine/",
-    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/"
+    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/",
+    "/home/bennett/clipchamp-stack/backend/modules/v2/"
   ],
-  "python.jediEnabled": true,
+  "python.jediEnabled": false,
   "css.colorDecorators.enable": false,
   "scss.colorDecorators.enable": false,
   "rust-client.channel": "stable",

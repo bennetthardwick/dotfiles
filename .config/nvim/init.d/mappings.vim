@@ -40,14 +40,19 @@ endfunction
 
 nnoremap <silent> <leader>sp :call ToggleSpecFile()<CR>
 
-
 function! TestCurrentFile()
   if filereadable(@%)
-    execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool key Ctrl+c && xdotool type "run-jest --coverage=false" && xdotool key Return'
+    let l:file = expand('%')
+    if empty(matchstr(l:file, '\.ts$'))
+      execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool key Ctrl+c && xdotool type "run-pytest" && xdotool key Return'
+    else
+      execute 'silent !echo % | xclip && i3-msg "scratchpad show, [instance=__scratchpad] move position center, [instance=__scratchpad] focus" && xdotool key Ctrl+c && xdotool type "run-jest --coverage=false" && xdotool key Return'
+    endif
   else
     echo "File doesn't exist!"
   endif
 endfunction
+
 
 nnoremap <silent> <leader>tf :call TestCurrentFile()<CR>
 nnoremap <silent> <leader>i :Format<CR>
