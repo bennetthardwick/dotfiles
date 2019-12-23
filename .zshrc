@@ -40,6 +40,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/google-cloud-sdk"
+export PATH="$PATH:$HOME/bin"
 
 stty -ixon
 
