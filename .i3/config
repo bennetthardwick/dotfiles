@@ -134,9 +134,6 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-
-
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -175,7 +172,7 @@ bindsym --release $mod+Shift+s exec "maim -s ~/screenshots/$(date +%s).png"
 exec xrdb ~/.Xresources &
 
 exec --no-startup-id hsetroot -solid '#242424' &
-exec --no-startup-id compton &
+exec --no-startup-id picom &
 
 new_window 1pixel
 

@@ -12,6 +12,7 @@ set autoindent
 set smartindent
 set clipboard+=unnamedplus
 set ignorecase smartcase
+set cpoptions+=y
 
 set wildignore+=*/node_modules/**/*
 set wildignore+=*.aux
