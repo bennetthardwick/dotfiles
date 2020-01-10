@@ -1,5 +1,5 @@
 #
-#i3 config file (v4)
+# i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -13,10 +13,6 @@
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:Fantasque Sans Mono 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -108,6 +104,9 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
+# Also center the scratchpad window when it is activated. This is important when
+# moving the scratchpad between different resolution displays since Alacrittty 
+# will resize and move itsself.
 bindsym $mod+minus scratchpad show, [instance="__scratchpad"] move position center
 
 # switch to workspace
@@ -167,15 +166,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Take a screenshot with maim by pressing <Mod+Shift+s>
 bindsym --release $mod+Shift+s exec "maim -s ~/screenshots/$(date +%s).png"
 
 exec xrdb ~/.Xresources &
 
+# Set an exciting background color
 exec --no-startup-id hsetroot -solid '#242424' &
+# Start picom - a fork of compton that is maintained. It does basic
+# compositing for the rice.
 exec --no-startup-id picom &
 
 new_window 1pixel
 
+# Gruvbox colors
 client.focused		#458588 #458588 #191919 #b16286 #458588
 client.unfocused	#191919 #191919 #458588 #191919 #242424
 client.focused_inactive #2c3c3d #458588 #191919 #533944 #2c3c3d
@@ -184,27 +188,24 @@ client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
 client.background	#282828
 
+# Let Thinkpad media keys change the volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-
+# as well as the brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
+# Give a bunch of applications their own workspaces
 assign [class="Code"] 1
 assign [instance="nvim-visual-workspace"] 1
-
 assign [class="Chromium"] 2
 assign [class="Google-chrome"] 2
 assign [class="qutebrowser"] 2
-
 assign [class="Slack"] 4
-
 assign [class="discord"] 9
-
 assign [class="Google Play Music Desktop Player"] 10
-
 assign [class="Anki"] 8
 
 # exec nm-applet &
@@ -214,6 +215,7 @@ for_window[class=".*"] border pixel 1
 
 for_window [instance="__scratchpad"] move scratchpad
 for_window [instance="__floating"] floating enable
+
 exec --no-startup-id alacritty --class __scratchpad
 
 gaps inner 15
@@ -221,7 +223,6 @@ smart_gaps on
 
 # exec jack_control start &
 exec redshift &
-
 
 exec --no-startup-id dunst &
 

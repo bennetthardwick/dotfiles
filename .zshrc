@@ -3,6 +3,7 @@ source $HOME/.bashrc
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 
+# Start ssh-agent so that I can call 
 eval $(ssh-agent) > /dev/null
 
 USER="bennett"
@@ -19,14 +20,15 @@ DISABLE_AUTO_UPDATE="true"
 
 plugins=(git)
 
-export EDITOR="nvim"
 
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+# Stay in the same folder when exiting ranger
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+export EDITOR="nvim"
 export VISUAL="nvim"
 export SHELL="zsh"
 

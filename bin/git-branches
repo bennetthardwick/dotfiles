@@ -1,2 +1,8 @@
 #!/bin/bash
-branches=$(git branch --all | grep -v HEAD) && branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+
+# Use `git branches` to open fzf and fuzzy search for a branch to checkout.
+
+branches=$(git branch --all | grep -v HEAD) \
+  && branch=$(echo "$branches" \
+    | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) \
+  && git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")

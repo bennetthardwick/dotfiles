@@ -12,7 +12,6 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'jxnblk/vim-mdx-js'
-" Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 

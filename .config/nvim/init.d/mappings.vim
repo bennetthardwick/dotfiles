@@ -13,9 +13,11 @@ nnoremap <silent> <leader>sw yiw:Rg <C-R>"<CR>
 
 nnoremap <silent> gfn :!echo % \| xclip<CR>
 
+" Use \[ and \] to vertically resize splits
 nnoremap <silent> <leader>] :exe "vertical resize " . (winwidth(0) + 30)<CR>
 nnoremap <silent> <leader>[ :exe "vertical resize " . (winwidth(0) - 30)<CR>
 
+" Use \- and \= to horizontally resize splits
 nnoremap <silent> <leader>= :exe "resize " . (winheight(0) + 10)<CR>
 nnoremap <silent> <leader>- :exe "resize " . (winheight(0) - 10)<CR>
 
