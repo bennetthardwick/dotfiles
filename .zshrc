@@ -9,13 +9,15 @@ eval $(ssh-agent) > /dev/null
 USER="bennett"
 DEFAULT_USER=`whoami`
 
+ZSH_CUSTOM="$HOME/.config/zsh-custom"
+
 if [ -d "$HOME/.oh-my-zsh" ]; then
   ZSH=$HOME/.oh-my-zsh
 else
   ZSH=/usr/share/oh-my-zsh/
 fi
 
-ZSH_THEME="agnoster"
+ZSH_THEME="gitster"
 DISABLE_AUTO_UPDATE="true"
 
 plugins=(git)
