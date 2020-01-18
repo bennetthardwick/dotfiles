@@ -2,7 +2,7 @@
   "dependencies": {
     "coc-ccls": ">=0.0.4",
     "coc-git": ">=1.6.16",
-    "coc-marketplace": ">=1.6.0",
+    "coc-marketplace": ">=1.7.0",
     "coc-python": ">=1.2.6",
     "coc-rls": ">=1.1.4",
     "coc-tslint-plugin": ">=1.1.1",
