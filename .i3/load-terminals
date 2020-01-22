@@ -19,11 +19,8 @@ if [ `hostname` = "bennett-work" ]; then
   alacritty --class __scratchpad &
   
   cd ~/clipchamp-static-website && alacritty --class nvim-visual-workspace -e nvim &
-
-elif [ `hostname` = "bennett-arch" ]; then
-  export MONITOR="DisplayPort-0"
-else
-  export MONITOR="eDP1"
 fi
+
+export MONITOR="$(xrandr | grep " connected " -m 1 | sed -n 's/^\([A-z0-9\-]*\).*$/\1/p')" 
 
 polybar gruvbox &

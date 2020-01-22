@@ -16,7 +16,7 @@ red = #fb4934
 blue = #458588
 
 [bar/gruvbox]
-monitor = ${env:MONITOR:DP-0}
+monitor = ${env:MONITOR:DP-1}
 width = 100%
 fixed-center = true
 
