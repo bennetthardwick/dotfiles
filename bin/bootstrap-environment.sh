@@ -107,7 +107,7 @@ sudo pacman -S --needed \
   fcitx \
   fcitx-gtk3 \
   fcitx-mozc \
-  fcitx-configtool
+  fcitx-configtool || echo "Not installing optional dependencies"
 
 # Get zsh environment variables
 source $HOME/.zshrc
