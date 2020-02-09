@@ -43,8 +43,9 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/google-cloud-sdk"
+export PATH="$PATH:/opt/google-cloud-sdk/bin"
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export NPM_TOKEN=${NPM_TOKEN:-""}
 

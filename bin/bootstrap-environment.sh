@@ -93,7 +93,9 @@ sudo pacman -S --noconfirm --needed \
   ttf-fantasque-sans-mono \
   cantarell-fonts \
   xclip \
-  ntp
+  ntp \
+  pulseaudio \
+  pavucontrol
 
 systemctl enable ntpd
 
