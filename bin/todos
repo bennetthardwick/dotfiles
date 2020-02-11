@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILES=$(rg -i "^-?\s?todo:" $HOME/notes --vimgrep)
+
+if [ -z "$FILES" ]
+then
+  echo "There's nothing to do! :)"
+else
+  nvim -q <(echo -e "$FILES") +copen
+fi
