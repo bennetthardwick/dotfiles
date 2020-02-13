@@ -7,7 +7,7 @@
     "coc-marketplace": ">=1.7.0",
     "coc-prettier": ">=1.1.11",
     "coc-python": ">=1.2.7",
-    "coc-rls": ">=1.1.4",
+    "coc-rust-analyzer": ">=0.4.0",
     "coc-styled-components": ">=0.3.0",
     "coc-tslint-plugin": ">=1.1.1",
     "coc-tsserver": ">=1.4.9",
