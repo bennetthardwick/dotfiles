@@ -67,8 +67,6 @@ fi
 
 export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
-alias note='nvim $HOME/notes/$(date +%F).md +norm!G'
-
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
