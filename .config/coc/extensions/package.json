@@ -6,7 +6,7 @@
     "coc-go": ">=0.6.2",
     "coc-marketplace": ">=1.7.0",
     "coc-prettier": ">=1.1.11",
-    "coc-python": ">=1.2.7",
+    "coc-python": ">=1.2.8",
     "coc-rust-analyzer": ">=0.4.2",
     "coc-styled-components": ">=0.3.0",
     "coc-tslint-plugin": ">=1.1.1",

@@ -54,7 +54,4 @@ then
   echo "# $(date '+%A, %B %e')" > $NOTE
 fi
 
-echo "" >> $NOTE
-echo "## $(date '+%R')" >> $NOTE
-
-nvim $NOTE '+norm!Go'
+nvim $NOTE '+norm!Go##'$(date '+%R')

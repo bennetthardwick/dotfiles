@@ -66,5 +66,9 @@ autocmd BufEnter * :syntax sync fromstart
 syntax on
 filetype plugin indent on
 
-
-
+" Enable undo file so you can undo after saving
+if has('persistent_undo')
+  silent !mkdir -p $HOME/.vim/undo
+  set undofile
+  set undodir=$HOME/.vim/undo
+endif
