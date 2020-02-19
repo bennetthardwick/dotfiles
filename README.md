@@ -73,6 +73,27 @@ In addition to this, you also need to install:
 - [polybar](https://aur.archlinux.org/packages/polybar)
 - [i3lock-fancy-rapid](https://aur.archlinux.org/packages/i3lock-fancy-rapid-git)
 
+## Tools
+
+I've got a bunch of small cli tools that I often use inside the `bin` folder. This folder is added to my path so they're easily accessible. 
+
+### note
+
+`note` is a utility that opens a markdown file for the current day in Vim and appends a timestamp as a title.
+These files are stored in a folder called `notes` in my home directory. This is a quick way for me to take notes and I've found it very useful. 
+
+The `note` command also has some command line flags like `-t/--type` which queries all notes and opens Vim with the matching ones in the quickfix list (i.e. `note -t todo` will open all notes with `- todo: something` in them). 
+
+It also has a command for searching `-s/--search` which uses ripgrep regex to search through the notes - adding them to the quickfix list.
+
+### todos
+
+`todos` is the same as `note -t todo`. It opens vim with all the todos in the quickfix list.
+
+### scratchpad
+
+`scratchpad` opens a large alacritty terminal in the i3 scratchpad workspace with a semi-transparent background.
+It can be shown/dismissed using `Mod+-`
 
 ## Preview
 ![first](/.config/images/first.png)
