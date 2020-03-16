@@ -1,1 +1,3 @@
+rust-analyzer.run
+rust-analyzer.collectGarbage
 rust-analyzer.joinLines

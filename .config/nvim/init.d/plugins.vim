@@ -8,6 +8,7 @@ Plug 'morhetz/gruvbox'
 " Util "
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'

@@ -107,7 +107,8 @@ bindsym $mod+Shift+minus move scratchpad
 # Also center the scratchpad window when it is activated. This is important when
 # moving the scratchpad between different resolution displays since Alacrittty 
 # will resize and move itsself.
-bindsym $mod+minus scratchpad show, [instance="__scratchpad"] move position center
+# Ensure scratchpad is always on DP-2
+bindsym $mod+minus focus output DP-2, scratchpad show, [instance="__scratchpad"] move position center
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -228,6 +229,8 @@ exec redshift &
 exec --no-startup-id dunst &
 
 exec /home/bennett/.i3/load-terminals &
+
+exec unclutter -idle 0.5 &
 
 exec google-chrome --restore-last-session &
 exec slack &

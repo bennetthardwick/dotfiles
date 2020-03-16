@@ -30,7 +30,8 @@ open_files () {
   local FILES=$1
   if [ -z "$FILES" ]
   then
-    echo "No files found :)"
+    echo "No files found :)" >&2
+    exit 1
   else
     nvim -q <(echo -e "$FILES") +copen
   fi
@@ -39,7 +40,7 @@ open_files () {
 
 if [ ! -z "$TYPE" ]
 then
-  FILES=$(rg -i "^-?\s?$TYPE:" $HOME/notes --vimgrep)
+  FILES=$(rg -i "^\s*-?\s?$TYPE:" $HOME/notes --vimgrep)
   open_files $FILES
 fi
 
@@ -54,4 +55,4 @@ then
   echo "# $(date '+%A, %B %e')" > $NOTE
 fi
 
-nvim $NOTE '+norm!Go##'$(date '+%R')
+nvim $NOTE '+norm!Go## '$(date '+%R')

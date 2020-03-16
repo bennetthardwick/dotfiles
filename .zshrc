@@ -41,7 +41,13 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+source /home/bennett/.ghcup/env
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper_lazy.sh
+
 export PATH="$PATH:$HOME/.cabal/bin"
+export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/opt/google-cloud-sdk/bin"
 export PATH="$PATH:$HOME/bin"
