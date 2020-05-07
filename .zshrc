@@ -70,6 +70,9 @@ else
   source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
+fpath+=~/.zfunc
+
+compinit -C
 
 export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
@@ -80,3 +83,4 @@ if [ "$(tty)" = "/dev/tty1" ]
 then
     startx
 fi
+
