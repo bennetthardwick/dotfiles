@@ -33,7 +33,7 @@ open_files () {
     echo "No files found :)" >&2
     exit 1
   else
-    nvim -q <(echo -e "$FILES") +copen
+    nvim -q <(echo -e $FILES) +copen
   fi
   exit 0
 }

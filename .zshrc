@@ -81,6 +81,6 @@ export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_
 # have the correct PATH / environment variables set.
 if [ "$(tty)" = "/dev/tty1" ]
 then
-    startx
+    sx
 fi
 

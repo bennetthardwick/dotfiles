@@ -5,7 +5,7 @@
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
   "python.formatting.provider": "yapf",
-  "tsserver.npm": "/home/bennett/.n/n/versions/node/12.13.0/bin/npm",
+  "tsserver.npm": "/home/bennett/.n/n/versions/node/12.16.3/bin/npm",
   "tsserver.log": "verbose",
   "typescript.suggest.completeFunctionCalls": false,
   "python.autoComplete.extraPaths": [
