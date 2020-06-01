@@ -74,7 +74,7 @@ sudo pacman -S --noconfirm --needed \
   neovim \
   openssh \
   htop \
-  xorg-xinit \
+  sx \
   i3-gaps \
   rofi \
   the_silver_searcher \
@@ -135,4 +135,4 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # Return home so new shells open at home
 cd $HOME
 
-startx
+sx

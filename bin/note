@@ -15,6 +15,23 @@ while (( "$#" )); do
       TYPE=$2
       shift 2
       ;;
+    -h|--help)
+      echo "usage: note"
+      echo "       note [--help]"
+      echo "       note [--search | -s <term>]"
+      echo "       note [--type | -t <type>]"
+      echo ""
+      echo "Create a new note, opening it in nvim:"
+      echo "       note"
+      echo ""
+      echo "Search all notes for a specific term, e.g. cats"
+      echo "       note --search cats"
+      echo ""
+      echo "Show everything that is marked as a todo"
+      echo "       note --type todo"
+      echo ""
+      exit 0
+      ;;
     --) # end argument parsing
       shift
       break
@@ -33,7 +50,7 @@ open_files () {
     echo "No files found :)" >&2
     exit 1
   else
-    nvim -q <(echo -e $FILES) +copen
+    nvim -q <(echo -e "$FILES") +copen
   fi
   exit 0
 }
@@ -41,13 +58,13 @@ open_files () {
 if [ ! -z "$TYPE" ]
 then
   FILES=$(rg -i "^\s*-?\s?$TYPE:" $HOME/notes --vimgrep)
-  open_files $FILES
+  open_files "$FILES"
 fi
 
 if [ ! -z "$SEARCH" ]
 then
   FILES=$(rg -i "$SEARCH" $HOME/notes --vimgrep)
-  open_files $FILES
+  open_files "$FILES"
 fi
 
 if [ ! -f $NOTE ]
