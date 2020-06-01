@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>comment</key>
-    <string>Based on original gruvbox color scheme.</string>
+    <string>Based on original gruvbox color scheme and then peaceant's version.</string>
     <key>author</key>
-    <string>peaceant</string>
+    <string>bennetthardwick</string>
     <key>name</key>
     <string>gruvbox</string>
     <key>settings</key>
@@ -20,7 +20,7 @@
             <string>#fcf9e3</string>
 
             <key>foreground</key>
-            <string>#fdf4c1aa</string>
+            <string>#ebdbb2</string>
 
             <key>invisibles</key>
             <string>#fabd2f</string>
@@ -109,7 +109,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -148,7 +148,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fa5c4b</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
     <dict>
@@ -161,7 +161,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fa5c4b</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
     <dict>
@@ -185,7 +185,7 @@
         <key>settings</key>
         <dict>
             <key>fontStyle</key>
-            <string>italic</string>
+            <string></string>
             <key>foreground</key>
             <string>#928374</string>
         </dict>
@@ -211,7 +211,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fabd2f</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
     <dict>
@@ -224,7 +224,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -237,7 +237,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -248,7 +248,7 @@
         <key>settings</key>
         <dict>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -261,7 +261,7 @@
             <key>background</key>
             <string>#932b1e</string>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -274,7 +274,7 @@
             <key>fontStyle</key>
             <string></string>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <dict>
@@ -371,7 +371,7 @@
         <key>settings</key>
         <dict>
             <key>foreground</key>
-            <string>#fa5c4b</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
     <dict>
@@ -473,7 +473,7 @@
         <key>settings</key>
         <dict>
             <key>foreground</key>
-            <string>#fa5c4b</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
     <dict>
@@ -609,7 +609,7 @@
         <key>settings</key>
         <dict>
             <key>foreground</key>
-            <string>#fdf4c1</string>
+            <string>#ebdbb2</string>
         </dict>
     </dict>
     <!-- SQL -->
@@ -754,7 +754,7 @@
         <key>settings</key>
         <dict>
             <key>foreground</key>
-            <string>#fa5c4b</string>
+            <string>#fb4934</string>
         </dict>
     </dict>
 

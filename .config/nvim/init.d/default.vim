@@ -2,6 +2,7 @@
 " You can find out what different things do by opening this file in Vim /
 " Neovim and pressing <Shift-K> when your cursor is on a word. This will take
 " you to the man pages. If you're lazy, you can read my comments.
+"
 
 if &compatible
  " If called from Vim, make sure it's nocompatible
@@ -49,7 +50,7 @@ if has('nvim')
   " Show completion items using the pop-up-menu (pum)
   set wildoptions=pum
   " Give the pum some transparency
-  set pumblend=8
+  set pumblend=0
 
   highlight PmenuSel blend=0
 

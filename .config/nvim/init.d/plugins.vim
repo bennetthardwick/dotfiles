@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 
 " Visuals "
 Plug 'morhetz/gruvbox'
+Plug 'chrisbra/Colorizer'
 
 " Util "
 Plug 'leafgarland/typescript-vim'
