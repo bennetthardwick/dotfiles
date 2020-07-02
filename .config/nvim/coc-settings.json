@@ -1,4 +1,4 @@
-e
+{
   "git.addedSign.hlGroup": "GitGutterAdd",
   "git.changedSign.hlGroup": "GitGutterChange",
   "git.removedSign.hlGroup": "GitGutterDelete",
@@ -14,9 +14,7 @@ e
     "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/"
   ],
   "python.jediEnabled": false,
-  "css.colorDecorators.enable": false,
-  "scss.colorDecorators.enable": false,
-  "rust-client.channel": "nightly",
+  "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
     "ccls": {
       "command": "ccls",

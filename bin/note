@@ -57,7 +57,7 @@ open_files () {
 
 if [ ! -z "$TYPE" ]
 then
-  FILES=$(rg -i "^\s*-?\s?$TYPE:" $HOME/notes --vimgrep)
+  FILES=$(rg -i "^\s*-?\s?$TYPE:" $HOME/notes --vimgrep | tac)
   open_files "$FILES"
 fi
 

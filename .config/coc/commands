@@ -1,4 +1,6 @@
+python.setShebangInterpreter
 python.setInterpreter
+python.runLinting
 rust-analyzer.run
 rust-analyzer.collectGarbage
 rust-analyzer.joinLines

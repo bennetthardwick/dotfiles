@@ -3,6 +3,7 @@
     "coc-eslint": ">=1.2.7",
     "coc-git": ">=1.7.13",
     "coc-go": ">=0.7.0",
+    "coc-json": ">=1.2.6",
     "coc-marketplace": ">=1.7.0",
     "coc-prettier": ">=1.1.14",
     "coc-python": ">=1.2.12",
