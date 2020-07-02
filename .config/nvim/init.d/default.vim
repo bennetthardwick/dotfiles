@@ -63,7 +63,6 @@ endif
 " to be slow but hasn't been too bad for me.
 autocmd BufEnter * :syntax sync fromstart
 
-
 syntax on
 filetype plugin indent on
 
