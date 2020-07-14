@@ -3,14 +3,13 @@ source $HOME/.bashrc
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 
-# Start ssh-agent so that I can call 
+# Start ssh-agent so that I can call ssh-add
 eval $(ssh-agent) > /dev/null
 
 USER="bennett"
 DEFAULT_USER=`whoami`
 
 ZSH_CUSTOM="$HOME/.config/zsh-custom"
-
 if [ -d "$HOME/.oh-my-zsh" ]; then
   ZSH=$HOME/.oh-my-zsh
 else
@@ -21,14 +20,6 @@ ZSH_THEME="gitster"
 DISABLE_AUTO_UPDATE="true"
 
 plugins=(git)
-
-
-alias ..="cd .."
-alias ...="cd ../../"
-alias ....="cd ../../../"
-
-# Stay in the same folder when exiting ranger
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -55,6 +46,7 @@ export PATH="$PATH:/opt/google-cloud-sdk/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 export NPM_TOKEN=${NPM_TOKEN:-""}
 
 stty -ixon
@@ -81,7 +73,17 @@ export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
-if [ "$(tty)" = "/dev/tty1" ]
-then
+if [ "$(tty)" = "/dev/tty1" ]; then
     sx
+    exit 0
 fi
+
+# Anything following this will only be sourced by shells
+
+alias ..="cd .."
+alias ...="cd ../../"
+alias ....="cd ../../../"
+
+# Stay in the same folder when exiting ranger
+alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"'
+alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
