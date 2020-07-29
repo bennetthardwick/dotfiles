@@ -216,6 +216,8 @@ for_window[class=".*"] border pixel 1
 
 for_window [instance="__scratchpad"] move scratchpad
 for_window [instance="__floating"] floating enable
+for_window [title="Steam - News"] floating enable
+for_window [title="Friends List"] floating enable
 for_window [class="Anki"] floating enable
 
 exec --no-startup-id alacritty --class __scratchpad

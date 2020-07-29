@@ -1,0 +1,293 @@
+/* Base Style */
+pre.chroma {
+  color: #111111;
+  background-color: #f9f9f9;
+}
+/* Punctuation */
+.chroma .p {
+  color: #111111;
+}
+/* Error */
+.chroma .err {
+  color: #111111;
+  background-color: #f07219;
+}
+/* Base Style */
+.chroma .n {
+  // color: #4271ae;
+  color: #111111;
+}
+/* Name Attribute */
+.chroma .na {
+  color: #4271ae;
+}
+/* Name Builtin */
+.chroma .nb {
+  color: #c99e00;
+}
+/* Name Class */
+.chroma .nc {
+  color: #111111;
+}
+/* Name Constant */
+.chroma .no {
+  color: #4271ae;
+}
+/* Name Decorator */
+.chroma .nd {
+  color: #4271ae;
+}
+/* Name Entity */
+.chroma .ni {
+  color: #4271ae;
+}
+/* Name Exception */
+.chroma .ne {
+  color: #4271ae;
+}
+/* Name Function */
+.chroma .nf {
+  color: #4271ae;
+}
+/* Name Label */
+.chroma .nl {
+  color: #4271ae;
+}
+/* Name Namespace */
+.chroma .nn {
+  color: #4271ae;
+}
+/* Name Other */
+.chroma .nx {
+  color: #4271ae;
+}
+/* Name Property */
+.chroma .py {
+  color: #4271ae;
+}
+/* Name Tag */
+.chroma .nt {
+  color: #4271ae;
+}
+/* Name Variable */
+.chroma .nv {
+  color: #4271ae;
+}
+/* Name Variable Class */
+.chroma .vc {
+  color: #4271ae;
+}
+/* Name Variable Global */
+.chroma .vg {
+  color: #4271ae;
+}
+/* Name Variable Instance */
+.chroma .vi {
+  color: #4271ae;
+}
+/* Name Builtin Pseudo */
+.chroma .bp {
+  color: #f07219;
+}
+/* Base Style */
+.chroma .g {
+  background-color: #f07219;
+}
+/*  */
+.chroma .gd {
+  background-color: #f07219;
+}
+/* Base Style */
+.chroma .o {
+  color: #4271ae;
+}
+/* Operator Word */
+.chroma .ow {
+  color: #4271ae;
+}
+/* Base Style */
+.chroma .c {
+  color: #8e908c;
+}
+/* Comment Multiline */
+.chroma .cm {
+  color: #8e908c;
+}
+/* Comment Preproc */
+.chroma .cp {
+  color: #8959a8;
+}
+/* Comment Single */
+.chroma .c1 {
+  color: #8e908c;
+}
+/* Comment Special */
+.chroma .cs {
+  color: #8e908c;
+}
+/* Base Style */
+.chroma .k {
+  color: #8959a8;
+}
+/* Keyword Constant */
+.chroma .kc {
+  color: #8959a8;
+}
+/* Keyword Declaration */
+.chroma .kd {
+  color: #8959a8;
+}
+/* Keyword Namespace */
+.chroma .kn {
+  color: #8959a8;
+}
+/* Keyword Pseudo */
+.chroma .kp {
+  color: #8959a8;
+}
+/* Keyword Reserved */
+.chroma .kr {
+  color: #8959a8;
+}
+/* Keyword Type */
+.chroma .kt {
+  color: #8959a8;
+}
+/* Base Style */
+.chroma .l {
+  color: #f07219;
+}
+/* Literal Date */
+.chroma .ld {
+  color: #f07219;
+}
+/* Literal Number */
+.chroma .m {
+  color: #f07219;
+}
+/* Literal Number Float */
+.chroma .mf {
+  color: #f07219;
+}
+/* Literal Number Hex */
+.chroma .mh {
+  color: #f07219;
+}
+/* Literal Number Integer */
+.chroma .mi {
+  color: #f07219;
+}
+/* Literal Number Oct */
+.chroma .mo {
+  color: #f07219;
+}
+/* Literal Number Integer Long */
+.chroma .il {
+  color: #f07219;
+}
+.chroma .cpf {
+  color: #839c00;
+}
+/* Literal String */
+.chroma .s {
+  color: #839c00;
+}
+/* Literal String Backtick */
+.chroma .sb {
+  color: #f07219;
+}
+/* Literal String Char */
+.chroma .sc {
+  color: #f07219;
+}
+/* Literal String Doc */
+.chroma .sd {
+  color: #839c00;
+}
+/* Literal String Double */
+.chroma .s2 {
+  color: #f07219;
+}
+/* Literal String Escape */
+.chroma .se {
+  color: #f07219;
+}
+/* Literal String Heredoc */
+.chroma .sh {
+  color: #f07219;
+}
+/* Literal String Interpol */
+.chroma .si {
+  color: #c82728;
+}
+/* Literal String Other */
+.chroma .sx {
+  color: #f07219;
+}
+/* Literal String Regex */
+.chroma .sr {
+  color: #839c00;
+}
+/* Literal String Single */
+.chroma .s1 {
+  color: #839c00;
+}
+/* Literal String Symbol */
+.chroma .ss {
+  color: #f07219;
+}
+
+// These currently don't seem to be used? :shrug:
+//
+// /* Base Style */
+// .chroma .g {
+//   color: transparent;
+// }
+// /* Generic Deleted */
+// .chroma .gd {
+//   color: transparent;
+// }
+// /* Generic Emph */
+// .chroma .ge {
+//   color: transparent;
+// }
+// /* Generic Error */
+// .chroma .gr {
+//   color: transparent;
+// }
+// /* Generic Heading */
+// .chroma .gh {
+//   color: transparent;
+// }
+// /* Generic Inserted */
+// .chroma .gi {
+//   color: transparent;
+// }
+// /* Generic Output */
+// .chroma .go {
+//   color: transparent;
+// }
+// /* Generic Prompt */
+// .chroma .gp {
+//   color: transparent;
+// }
+// /* Generic Strong */
+// .chroma .gs {
+//   color: transparent;
+// }
+// /* Generic Subheading */
+// .chroma .gu {
+//   color: transparent;
+// }
+// /* Generic Traceback */
+// .chroma .gt {
+//   color: transparent;
+// }
+// /* Other */
+// .chroma .x {
+//   color: transparent;
+// }
+// /* Text Whitespace */
+// .chroma .w {
+//   color: transparent;
+// }

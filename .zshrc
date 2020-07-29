@@ -87,3 +87,4 @@ alias ....="cd ../../../"
 # Stay in the same folder when exiting ranger
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"'
 alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
+alias xcp="xclip -o -selection primary"

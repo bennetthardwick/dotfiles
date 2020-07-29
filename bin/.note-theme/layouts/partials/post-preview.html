@@ -1,0 +1,16 @@
+<div class="post-preview">
+  <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+  <small>
+    {{ if isset . "DateString" }} {{ .DateString }} {{ end }}
+    {{ if .Date }} {{ .Date.Format "January 02, 2006" }} {{ end }}
+    {{ if .WordCount }} - {{ .WordCount }} words {{ end }}
+    {{ if .ReadingTime }} - {{ .ReadingTime }} mins {{ end }}
+  </small>
+  <div class="summary">
+    {{ if .Summary }} {{ .Summary | safeHTML }} {{ end }}
+    {{ if isset . "SummaryMarkdown" }} {{ .SummaryMarkdown | markdownify }} {{ end }}
+    {{ if .Truncated }}
+    <a href="{{ .RelPermalink }}">Read More…</a>
+    {{ end }}
+  </div>
+</div>

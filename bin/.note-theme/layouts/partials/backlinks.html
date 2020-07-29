@@ -1,0 +1,29 @@
+{{ $path :=  printf "a class=\"ref( tag)?\" href=\"%s\"" .RelPermalink }}
+{{ $noResults := true }}
+{{ $first := true }}
+{{ $page := (replaceRE ":" "%3a" .Permalink) | urlize }}
+{{ $pagesSeen := 0 }}
+
+{{ range sort (where .Site.Pages "Section" "wiki") "Lastmod" "desc" }}
+  {{ if le $pagesSeen 100 }}
+    {{ $matches := findRE $path .Content }}
+    {{ if $matches }} 
+      {{ $pagesSeen = add $pagesSeen 1 }}
+
+      {{ $count := len $matches }}
+      {{ if $first }}
+        {{ $first = false }}
+        <h2>Linked references:</h2>
+          <ul>
+      {{ end }}
+      {{ $noResults = false }}
+      <li>
+        {{ if .Date }}<small>{{ .Date.Format "January 02, 2006" }}</small><br>{{ end }}
+        <a class="ref" href="{{ .Permalink }}?highlight={{ $page }}">{{ if ne .Title "Wiki" }}{{ .Parent.Title }} / {{ end }}{{ .Title }} ({{ $count }})</a>
+      </li>
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ if not $noResults }}
+</ul>
+{{ end }}

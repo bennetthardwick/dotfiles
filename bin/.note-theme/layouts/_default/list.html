@@ -1,0 +1,41 @@
+{{ define "head" }}
+  {{ if .Params.noindex }}
+    <meta name="robots" content="noindex">
+  {{ end }}
+{{ end }}
+
+{{ define "title" }}
+  <title>{{ .Title }}</title>
+{{ end }}
+
+{{ define "main" }}
+  {{ if .Parent }}
+    <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>
+  {{ end }}
+  <h1>{{ .Title }}</h1>
+
+  {{ if .Params.dev }}
+    <blockquote>
+      <p>Note: this section is still under development, who knows if it’ll exist in the future</p>
+    </blockquote>
+  {{ end }}
+
+  {{ .Content }}
+
+  {{ if .Params.parent }}
+    <h2>Nested references</h2>
+    <ul>
+
+    {{ $parent := .Permalink }}
+    {{ range sort .Pages "Date" "desc" }}
+      {{ if eq .Parent.Permalink $parent }}
+        <li>
+          <a class="ref" href="{{ .Permalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.LogicalName }}{{ end }}</a>
+        </li>
+      {{ end }}
+    {{ end }}
+    </ul>
+  {{ end }}
+
+  {{ partial "backlinks.html" . }}
+{{ end }}

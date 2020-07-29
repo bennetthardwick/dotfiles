@@ -1,0 +1,60 @@
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+/>
+
+<meta charset="utf-8">
+
+{{ if .Description }}
+<meta name="description" content="{{ .Description }}">
+<meta name="twitter:description" content="{{ .Description }}">
+{{ else if .Site.Params.description }}
+<meta name="description" content="{{ .Site.Params.description }}">
+<meta name="twitter:description" content="{{ .Site.Params.description }}">
+{{ end }}
+
+<meta name="twitter:card" content="summary">
+{{ if isset .Site.Params "twitter" }}
+  <meta name="twitter:creator" content="@{{ .Site.Params.twitter }}">
+  <meta name="twitter:site" content="@{{ .Site.Params.twitter }}">
+{{ end }}
+
+{{ if isset .Site.Params "accent" }}
+<meta name="theme-color" content="{{ .Site.Params.accent }}" />
+{{ end }}
+
+{{ if and (isset .Site.Params "accent") (isset .Site.Params "accent_light") }}
+  {{ if hasPrefix .RelPermalink "/amp/" }}
+  {{ else }}
+  <style amp-custom>
+    :root {
+      --accent-color: {{ .Site.Params.accent }};
+      --accent-color-light: {{ .Site.Params.accent_light }};
+    }
+  </style>
+  {{ end }}
+{{ end }}
+
+{{ if isset .Site.Params "profile" }}
+{{ $profile := resources.Get .Site.Params.profile }}
+{{ $icon := $profile.Fit "48x48" }}
+<link rel="icon" href="{{ $icon.Permalink }}" />
+
+{{ if hasPrefix .RelPermalink "/amp/" }}
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+{{ end }}
+
+{{ range $icon_size := slice "48x48" "72x72" "96x96" "144x144" "192x192" "256x256" "384x384" "512x512" }}
+{{ $icon := $profile.Fit $icon_size }}
+<link
+  rel="apple-touch-icon"
+  sizes="{{ $icon_size }}"
+  href="{{ $icon.Permalink }}"
+/>
+{{ end }}
+{{ end }}
+
+<meta property="og:type" content="website">

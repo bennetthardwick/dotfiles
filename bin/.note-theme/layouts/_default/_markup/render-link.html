@@ -1,0 +1,30 @@
+{{ $path := .Destination }}
+
+{{ if or (hasPrefix $path "./") (not (hasPrefix $path "http")) (hasPrefix $path "../") }}
+  {{ $file := .Page.File.LogicalName }}
+
+  {{ $hash := index (findRE "#(.*)$" $path) 0 }}
+
+  {{ if $hash }}
+    {{ $path = replaceRE (printf "%s$" $hash) "" $path }}
+  {{ else }}
+    {{ $hash = "" }}
+  {{ end }}
+
+  {{ if and (not (or (eq $file "index.md") (eq $file "_index.md"))) (strings.HasSuffix $file ".md") }}
+    {{ $path = path.Join "../" $path }}
+  {{ end }}
+
+  {{ $path = path.Join .Page.RelPermalink $path }}
+  {{ $path = replaceRE "/index.md$" "/" $path }}
+  {{ $path = replaceRE "/_index.md$" "/" $path }}
+  {{ $path = replaceRE ".md$" "/" $path }}
+  {{ $path = path.Join $path "/" }}
+  {{ $path = printf "%s/%s" $path $hash }}
+
+  {{ $tag := hasPrefix .Text "#" }}
+  
+  <a class="ref{{ if $tag }} tag{{end}}" href="{{ $path | safeURL }}">{{ .Text | safeHTML }}</a>
+{{ else }}
+  <a href="{{ .Destination | safeURL }}" target="_blank" rel="noreferrer">{{ .Text | safeHTML }}</a>
+{{ end }}

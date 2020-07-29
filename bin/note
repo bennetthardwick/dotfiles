@@ -1,6 +1,7 @@
 #!/bin/bash
 
-NOTE=$HOME/notes/$(date +%F).md
+DATE=$(date +%F)
+NOTE=$HOME/notes/daily/$DATE.md
 
 SEARCH=""
 TYPE=""
@@ -69,7 +70,10 @@ fi
 
 if [ ! -f $NOTE ]
 then
-  echo "# $(date '+%A, %B %e')" > $NOTE
+  echo "---" > $NOTE
+  echo "date: $DATE" >> $NOTE
+  echo "---" >> $NOTE
+  echo "# $(date '+%A, %B %e')" >> $NOTE
 fi
 
 nvim $NOTE '+norm!Go## '$(date '+%R')

@@ -1,0 +1,24 @@
+{{ define "head" }}
+  {{ if .Parent.Params.noindex }}
+    <meta name="robots" content="noindex">
+  {{ end }}
+{{ end }}
+
+{{ define "title" }}
+  <title>Wiki - {{ if ne .Parent.Title "Wiki" }}{{ .Parent.Title }} - {{ end }}{{ .Title }}</title>
+{{ end }}
+
+{{ define "main" }}
+  {{ if ne .Title "Wiki" }}
+    <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>
+  {{ end }}
+  <h1>{{ .Title }}</h1>
+
+  {{ if .Params.dev }}
+    <blockquote>
+      <p>Note: this section is still under development, who knows if it’ll exist in the future</p>
+    </blockquote>
+  {{ end }}
+  {{ .Content }}
+  {{ partial "backlinks.html" . }}
+{{ end }}

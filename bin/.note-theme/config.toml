@@ -1,0 +1,38 @@
+baseURL = "https://bennetthardwick.com/"
+languageCode = "en"
+title = "Bennett's Rust Journal"
+summaryLength = 40
+canonifyURLs = true
+
+[outputs]
+page = [ "HTML", "AMP" ]
+
+[params]
+
+description = "The personal website and thoughts of me Bennett Hardwick - Software Developer living in Brisbane and working at Clipchamp."
+
+twitter = "bennettbackward"
+
+gtag = " "
+
+json_ld_time_format = "2006-01-02T15:04:05JST"
+
+accent = "#2f76d0"
+accent_light = "#82ade3"
+
+[markup.highlight]
+noClasses = false
+guessSyntax = true
+
+[permalinks]
+projects = "/:section/:slug/"
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Daily"
+  url = "/daily"
+  weight = 2

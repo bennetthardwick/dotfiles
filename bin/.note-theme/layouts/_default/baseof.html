@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+{{ if hasPrefix .RelPermalink "/amp/" }}
+<html ⚡>
+{{ else }}
+<html lang="{{ .Site.LanguageCode }}">
+{{ end }}
+  {{ partial "head.html" . }}
+
+  {{ block "title" . }}
+    <title>{{ .Title }}</title>
+  {{ end }}
+
+  {{ block "stylesheet" . }}
+  {{ $style := resources.Get "sass/main.scss" | resources.ToCSS (dict "outputStyle" "compressed") }}
+
+  <link rel="stylesheet" href="{{ $style.Permalink }}" />
+  {{ end }}
+
+  {{ block "head" . }}
+
+  {{ end }}
+  <body>
+    {{ block "header" . }}
+    <header>
+      <nav>
+      <ul>
+       {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        <li>
+          <a class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
+        </li>
+      {{ end }}
+      </ul>
+      </nav>
+    </header>
+    {{ end }}
+    <main>
+      {{ block "main" . }}
+      {{ end }}
+
+      {{ block "footer" . }}
+        {{ if .File }}
+          <br>
+        {{ end }}
+      {{ end }}
+
+    </main>
+
+    {{ if hasPrefix .RelPermalink "/amp/" }}
+    {{ else }}
+      {{ $prerender := resources.Get "js/main.js" }}
+      {{ $script:= $prerender | resources.Minify }}
+      <script src="{{ $script.Permalink }}"></script>
+    {{ end }}
+  </body>
+</html>
