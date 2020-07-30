@@ -6,6 +6,10 @@ NOTE=$HOME/notes/daily/$DATE.md
 SEARCH=""
 TYPE=""
 
+WIKI=0
+
+BASE=$HOME/notes
+
 # Pushd and popd that don't log!
 
 pushd () {
@@ -20,10 +24,20 @@ popd () {
 
 while (( "$#" )); do
   case "$1" in
+    wiki)
+      shift 1
+      WIKI=1
+      BASE=$HOME/git/website/content/wiki
+      ;;
     serve)
       shift 1
 
-      pushd $HOME/bin/.note-theme/
+      if [ $WIKI ]; then
+        pushd $HOME/git/website/
+      else
+        pushd $HOME/bin/.note-theme/
+      fi
+
       hugo server -D
       popd
 
@@ -32,7 +46,7 @@ while (( "$#" )); do
     open)
       shift 1
 
-      pushd $HOME/notes/
+      pushd $BASE
 
       FILE=$(find ./ -iname "*.md" -type f -printf '%T@ %p\n' | \
         sort -k1 -n | \
@@ -44,13 +58,13 @@ while (( "$#" )); do
         exit 1
       fi
 
-      NOTE=$HOME/notes/$FILE
+      NOTE=$BASE/$FILE
 
       popd
       ;;
     new)
       FILE=$2
-      NOTE="$HOME/notes/${FILE%.md}.md"
+      NOTE="$BASE/${FILE%.md}.md"
 
       if [ ! -f $NOTE ]; then
         echo "---" > $NOTE
@@ -110,13 +124,13 @@ open_files () {
 
 if [ ! -z "$TYPE" ]
 then
-  FILES=$(rg -i "^\s*-?\s?$TYPE:" $HOME/notes --vimgrep | tac)
+  FILES=$(rg -i "^\s*-?\s?$TYPE:" $BASE --vimgrep | tac)
   open_files "$FILES"
 fi
 
 if [ ! -z "$SEARCH" ]
 then
-  FILES=$(rg -i "$SEARCH" $HOME/notes --vimgrep)
+  FILES=$(rg -i "$SEARCH" $BASE --vimgrep)
   open_files "$FILES"
 fi
 
@@ -128,5 +142,5 @@ then
   echo "# $(date '+%A, %B %e')" >> $NOTE
 fi
 
-pushd $HOME/notes/
+pushd $BASE
 nvim $NOTE '+norm!Go## '$(date '+%R')
