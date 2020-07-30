@@ -6,8 +6,60 @@ NOTE=$HOME/notes/daily/$DATE.md
 SEARCH=""
 TYPE=""
 
+# Pushd and popd that don't log!
+
+pushd () {
+    command pushd "$@" > /dev/null
+}
+
+popd () {
+    command popd "$@" > /dev/null
+}
+
+# Argument parsing
+
 while (( "$#" )); do
   case "$1" in
+    serve)
+      shift 1
+
+      pushd $HOME/bin/.note-theme/
+      hugo server -D
+      popd
+
+      exit 0
+      ;;
+    open)
+      shift 1
+
+      pushd $HOME/notes/
+
+      FILE=$(find ./ -iname "*.md" -type f -printf '%T@ %p\n' | \
+        sort -k1 -n | \
+        sed -E "s/^[0-9]+.[0-9]+\s\.\///g" | \
+        fzf --no-sort --preview="bat {} --style=plain --color=always")
+      set +e
+
+      if [ -z "$FILE" ]; then
+        exit 1
+      fi
+
+      NOTE=$HOME/notes/$FILE
+
+      popd
+      ;;
+    new)
+      FILE=$2
+      NOTE="$HOME/notes/${FILE%.md}.md"
+
+      if [ ! -f $NOTE ]; then
+        echo "---" > $NOTE
+        echo "date: $DATE" >> $NOTE
+        echo "---" >> $NOTE
+      fi
+
+      shift 2
+      ;;
     -s|--search)
       SEARCH=$2
       shift 2
@@ -76,4 +128,5 @@ then
   echo "# $(date '+%A, %B %e')" >> $NOTE
 fi
 
+pushd $HOME/notes/
 nvim $NOTE '+norm!Go## '$(date '+%R')

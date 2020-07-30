@@ -5,11 +5,11 @@
 {{ end }}
 
 {{ define "title" }}
-  <title>Wiki - {{ if ne .Parent.Title "Wiki" }}{{ .Parent.Title }} - {{ end }}{{ .Title }}</title>
+<title>{{ if .Parent }}{{ .Parent.Title }} - {{ end }}{{ if .Title }}{{ .Title }}{{ else }}{{ .File.LogicalName }}{{ end }}</title>
 {{ end }}
 
 {{ define "main" }}
-  {{ if ne .Title "Wiki" }}
+  {{ if .Parent }}
     <a href="{{ .Parent.Permalink }}">{{ .Parent.Title }}</a>
   {{ end }}
   <h1>{{ .Title }}</h1>
