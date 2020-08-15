@@ -1,5 +1,6 @@
-python.setShebangInterpreter
 python.setInterpreter
+python.upgradePythonLanguageServer
+python.setShebangInterpreter
 python.runLinting
 rust-analyzer.run
 rust-analyzer.collectGarbage

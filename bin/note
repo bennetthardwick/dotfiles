@@ -32,7 +32,7 @@ while (( "$#" )); do
     serve)
       shift 1
 
-      if [ $WIKI ]; then
+      if [ $WIKI = 1 ]; then
         pushd $HOME/git/website/
       else
         pushd $HOME/bin/.note-theme/
@@ -44,6 +44,14 @@ while (( "$#" )); do
       exit 0
       ;;
     open)
+      if [ $WIKI = 1 ]; then
+        chromium --app=http://localhost:1313/wiki
+      else
+        chromium --app=http://localhost:1313
+      fi
+      exit 0
+      ;;
+    edit)
       shift 1
 
       pushd $BASE

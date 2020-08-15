@@ -1,0 +1,43 @@
+#!/bin/bash
+
+set -e
+
+usage() {
+    echo "Usage: aur {package}"
+    echo "       aur {repo}"
+}
+
+if [ "$#" -ne 1 ]; then
+  usage
+  exit 1
+fi
+
+if [ "$1" == "help" ]; then
+  usage
+  exit 1
+fi
+
+INPUT="$1"
+
+REPO=""
+PACKAGE=""
+
+if [[ $INPUT == https://aur.archlinux.org/*.git ]]; then
+  REPO=$INPUT
+  PACKAGE=$(basename "$INPUT" .git)
+else
+  REPO="https://aur.archlinux.org/$INPUT.git"
+  PACKAGE=$INPUT
+fi
+
+PACKAGE_DIR=$HOME/git/.aur/$PACKAGE
+
+mkdir -p $PACKAGE_DIR
+git clone $REPO $PACKAGE_DIR
+pushd $PACKAGE_DIR
+
+nvim PKGBUILD
+
+makepkg -si
+
+popd

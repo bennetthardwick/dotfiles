@@ -10,10 +10,11 @@
   "typescript.suggest.completeFunctionCalls": false,
   "python.autoComplete.extraPaths": [
     "/opt/google-cloud-sdk/platform/google_appengine/",
-    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/",
-    "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/"
+    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/"
   ],
-  "python.jediEnabled": false,
+  "python.jediEnabled": true,
+  "python.autoUpdateLanguageServer": true,
+  "python.analysis.downloadChannel": "daily",
   "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
     "ccls": {
