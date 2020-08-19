@@ -171,6 +171,7 @@ bindsym $mod+r mode "resize"
 
 # Take a screenshot with maim by pressing <Mod+Shift+s>
 bindsym --release $mod+Shift+s exec "maim -s ~/screenshots/$(date +%s).png"
+bindsym --release $mod+Shift+a exec "screenshot-and-open"
 
 exec xrdb ~/.Xresources &
 
@@ -218,6 +219,7 @@ for_window[class=".*"] border pixel 1
 
 for_window [instance="__scratchpad"] move scratchpad
 for_window [instance="__floating"] floating enable
+for_window [class="__floating"] floating enable
 for_window [title="Steam - News"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [class="Anki"] floating enable

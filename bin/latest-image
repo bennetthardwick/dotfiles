@@ -1,0 +1,3 @@
+#!/bin/bash
+
+feh "/home/bennett/screenshots/$(ls --sort time /home/bennett/screenshots | head -1)" --class __floating

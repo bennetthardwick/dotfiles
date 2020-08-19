@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+
+FILE="$HOME/screenshots/$(date +%s).png"
+
+maim -s $FILE
+feh $FILE --class __floating
