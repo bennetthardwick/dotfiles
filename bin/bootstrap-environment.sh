@@ -70,12 +70,15 @@ fi
 
 echo "\nInstalling Dependencies\n\n"
 
+# For some reason i3 is already installed by this point.
+# This will fail the next step so just use `yes`.
+yes | sudo pacman -S i3-gaps
+
 sudo pacman -S --noconfirm --needed \
   neovim \
   openssh \
   htop \
   sx \
-  i3-gaps \
   rofi \
   the_silver_searcher \
   fzf \
@@ -95,8 +98,10 @@ sudo pacman -S --noconfirm --needed \
   xclip \
   ntp \
   pulseaudio \
-  pavucontrol
+  pavucontrol \
+  bat
 
+# Enable getting the time from the internet
 systemctl enable ntpd
 
 printf "\nOptional Dependencies. Press n to not install.\n\n"

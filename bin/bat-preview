@@ -51,6 +51,11 @@ else
   fi
 fi
 
+if [ ! $(command -v bat) ]; then
+  echo "The command \`bat\` is not installed."
+  exit 0
+fi
+
 FIRST=$(($CENTER-$LINES/3))
 FIRST=$(($FIRST < 1 ? 1 : $FIRST))
 LAST=$((${FIRST}+${LINES}-1))

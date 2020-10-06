@@ -10,6 +10,7 @@
     "coc-rust-analyzer": ">=0.7.14",
     "coc-styled-components": ">=0.3.0",
     "coc-tsserver": ">=1.5.4",
+    "coc-ultisnips": ">=1.2.3",
     "coc-vimtex": ">=1.0.4"
   }
 }
