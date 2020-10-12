@@ -4,17 +4,21 @@
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "python.formatting.provider": "yapf",
-  "tsserver.npm": "/home/bennett/.n/n/versions/node/12.16.3/bin/npm",
   "tsserver.log": "verbose",
   "typescript.suggest.completeFunctionCalls": false,
+  "tsserver.npm": "/home/bennett/.n/n/versions/node/14.8.0/bin/npm",
+
+  "python.formatting.provider": "yapf",
   "python.autoComplete.extraPaths": [
     "/opt/google-cloud-sdk/platform/google_appengine/",
-    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/"
+    "/opt/google-cloud-sdk/platform/google_appengine/lib/webapp2-2.5.2/",
+    "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/",
+    "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/v2/"
   ],
   "python.jediEnabled": true,
   "python.autoUpdateLanguageServer": true,
   "python.analysis.downloadChannel": "daily",
+
   "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
     "ccls": {
