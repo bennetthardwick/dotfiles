@@ -1,4 +1,7 @@
+editor.action.organizeImport
 tsserver.goToProjectConfig
+tsserver.openTsServerLog
+document.renameCurrentWord
 python.setInterpreter
 python.upgradePythonLanguageServer
 python.setShebangInterpreter

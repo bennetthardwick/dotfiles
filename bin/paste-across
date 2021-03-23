@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+xdotool key 'Super+semicolon'
+sleep 0.1
+xdotool key Ctrl+v
+sleep 0.1
+xdotool key Return
+sleep 0.1
+xdotool key 'Super+j'
+sleep 0.1
