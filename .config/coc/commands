@@ -1,6 +1,7 @@
-editor.action.organizeImport
 tsserver.goToProjectConfig
 tsserver.openTsServerLog
+eslint.manageLibraryExecution
+editor.action.organizeImport
 document.renameCurrentWord
 python.setInterpreter
 python.upgradePythonLanguageServer

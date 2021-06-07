@@ -41,19 +41,5 @@ if [ -z "$CENTER" ]; then
   CENTER=0
 fi
 
-if [ -n "$FZF_PREVIEW_LINES" ]; then
-  LINES=$FZF_PREVIEW_LINES
-else
-  if [ -r /dev/tty ]; then
-    LINES=$(stty size < /dev/tty | awk '{print $1}')
-  else
-    LINES=40
-  fi
-fi
-
-FIRST=$(($CENTER-$LINES/3))
-FIRST=$(($FIRST < 1 ? 1 : $FIRST))
-LAST=$((${FIRST}+${LINES}-1))
-
 COLORTERM="truecolor" bat --style="${BAT_STYLE:-numbers}" --color=always --pager=never \
-      --line-range=$FIRST:$LAST --highlight-line=$CENTER "$FILE"
+      --highlight-line=$CENTER "$FILE"
