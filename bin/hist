@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Use `git bh` to open fzf and fuzzy search through your branch checkout history
+commands=$(history)
+
+eval $(echo "$commands" | fzf-tmux -d $(( 2 + $(wc -l <<< "$commands") )) +m)

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-chromium --app=https://roamresearch.com/#/app/bennett_notes

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mpv "/home/bennett/recordings/$(ls --sort time /home/bennett/recordings | head -1)"

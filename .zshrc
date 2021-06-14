@@ -2,6 +2,7 @@ source $HOME/.bashrc
 
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
+export CLOUDSDK_PYTHON=python2
 
 # Start ssh-agent so that I can call ssh-add
 eval $(ssh-agent) > /dev/null
@@ -44,6 +45,7 @@ export PATH="$PATH:/opt/google-cloud-sdk/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:/bin"
 
 export NPM_TOKEN=${NPM_TOKEN:-""}
 

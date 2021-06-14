@@ -37,3 +37,6 @@ let g:coc_snippet_prev = '<c-k>'
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+nnoremap <silent> <leader>l :later 1f<CR>
+nnoremap <silent> <leader>k :earlier 1f<CR>

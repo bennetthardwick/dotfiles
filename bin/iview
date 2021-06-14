@@ -1,0 +1,3 @@
+#!/bin/bash
+
+chromium --app="https://iview.abc.net.au/"
