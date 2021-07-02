@@ -26,8 +26,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export SHELL="zsh"
 
-export FZF_PREVIEW_COMMAND="bat-preview {}"
-
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR

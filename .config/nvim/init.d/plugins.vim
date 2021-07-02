@@ -6,6 +6,7 @@ Plug 'morhetz/gruvbox'
 " Util "
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'SirVer/ultisnips'
 
 Plug 'junegunn/fzf.vim'
 
