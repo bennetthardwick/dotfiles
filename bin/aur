@@ -32,9 +32,16 @@ fi
 
 PACKAGE_DIR=$HOME/git/.aur/$PACKAGE
 
-mkdir -p $PACKAGE_DIR
-git clone $REPO $PACKAGE_DIR
-pushd $PACKAGE_DIR
+
+if [[ -d "$PACKAGE_DIR" ]]; then
+  pushd $PACKAGE_DIR
+  git fetch origin master
+  git reset --hard origin/master
+else
+  mkdir -p $PACKAGE_DIR
+  git clone $REPO $PACKAGE_DIR
+  pushd $PACKAGE_DIR
+fi
 
 nvim PKGBUILD
 

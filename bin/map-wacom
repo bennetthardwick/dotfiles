@@ -1,0 +1,1 @@
+xsetwacom --set $(xsetwacom --list | grep stylus | grep -o "[0-9]*") MapToOutput $1
