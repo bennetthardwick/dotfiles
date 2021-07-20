@@ -15,7 +15,7 @@
     "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/",
     "/home/bennett/clipchamp/clipchamp-stack/backend/modules/v2/v2/"
   ],
-  "python.jediEnabled": true,
+  "python.jediEnabled": false,
   "python.autoUpdateLanguageServer": true,
   "python.analysis.downloadChannel": "daily",
 

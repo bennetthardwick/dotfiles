@@ -1,3 +1,4 @@
+python.startREPL
 tsserver.goToProjectConfig
 tsserver.openTsServerLog
 eslint.manageLibraryExecution

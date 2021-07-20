@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+notify-send "Starting pomodoro for 25 minutes." -u normal
+
+# Sleep for 20 minutes
+sleep 1200
+
+notify-send "5 minutes left..." -u low
+
+# Sleep for 5 more minutes
+sleep 300
+
+notify-send "Pomodoro finished. Have a break for 5 minutes." -u low
+
+# Sleep for 5 more minutes
+sleep 300
+
+notify-send "Finished break complete. " -u low
