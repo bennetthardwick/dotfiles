@@ -1,3 +1,0 @@
-#!/bin/bash
-
-chromium --app="https://notes.bennetthardwick.com/graph/notes"
