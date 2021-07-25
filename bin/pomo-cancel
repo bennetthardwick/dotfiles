@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ -f ~/.config/pomo/pid ]; then
+  kill $(cat ~/.config/pomo/pid)
+  echo "Stopped pomo."
+else
+  echo "No active pomo."
+fi

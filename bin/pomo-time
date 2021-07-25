@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -f ~/.config/pomo/time ]; then
+  printf "Pomo: "
+  cat ~/.config/pomo/time
+  exit
+else
+  echo "No active pomo."
+fi
+

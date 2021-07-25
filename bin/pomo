@@ -1,18 +1,55 @@
 #!/usr/bin/env bash
 
-notify-send "Starting pomodoro for 25 minutes." -u normal
+cleanup() {
+  rm -f ~/.config/pomo/time
+  rm -f ~/.config/pomo/pid
+}
 
-# Sleep for 20 minutes
-sleep 1200
+play() {
+  mpg123 $1 &> /dev/null &
+}
 
-notify-send "5 minutes left..." -u low
+notify() { 
+  echo $1
+  notify-send "Pomodoro timer" "$1" -u ${2-"normal"}
+}
 
-# Sleep for 5 more minutes
-sleep 300
+if [ -f ~/.config/pomo/time ] || [ -f ~/.config/pomo/pid ]; then
+  notify "There's already a pomo in progress." critical
+  exit 1
+fi
 
-notify-send "Pomodoro finished. Have a break for 5 minutes." -u low
+trap cleanup EXIT
 
-# Sleep for 5 more minutes
-sleep 300
+echo $$ > ~/.config/pomo/pid
 
-notify-send "Finished break complete. " -u low
+finish=$(date -d '+30 minutes' '+%H:%M')
+
+notify "Starting a 30 minute session. The session will finish at $finish"
+
+play ~/.config/pomo/pomo-start.mp3
+
+for i in $(seq 1 1 1800); do
+  echo `date -d@"$i" -u +%M:%S` > ~/.config/pomo/time
+
+  # 20 minute mark
+  if [ "$i" -eq "1200" ]; then
+    notify "$summary" "5 minutes left..." -u low
+  fi
+
+  # 25 minute mark
+  if [ "$i" -eq "1500" ]; then
+    notify "Pomodoro finished. Have a break for 5 minutes."
+    play ~/.config/pomo/pomo-end.mp3
+  fi
+
+  # 30 minute mark
+  if [ "$i" -eq "1800" ]; then
+    notify "Break over - time to do another session?"
+  fi
+
+  sleep 1
+done
+
+cleanup
+
