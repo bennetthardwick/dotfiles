@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ $(ps h -C $1 | wc -l) = 0 ]; then
+  echo "Running \"$@\""
+  $@
+else
+  echo "\"$1\" already running"
+fi
