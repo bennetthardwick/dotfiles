@@ -40,7 +40,8 @@ modules-center = title
 modules-right =  pomo battery date
 
 ; Hide the tray
-tray-position = none
+; tray-position = none
+tray-position = right
 
 [module/i3]
 

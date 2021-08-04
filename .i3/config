@@ -237,3 +237,5 @@ exec --no-startup-id dunst &
 exec /home/bennett/.i3/load-terminals &
 
 exec unclutter -idle 0.5 &
+
+exec rescuetime

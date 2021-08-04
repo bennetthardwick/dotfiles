@@ -18,6 +18,8 @@
   "python.jediEnabled": false,
   "python.autoUpdateLanguageServer": true,
   "python.analysis.downloadChannel": "daily",
+  
+  "eslint.trace.server": "verbose",
 
   "rust-analyzer.inlayHints.chainingHints": false,
   "languageserver": {
