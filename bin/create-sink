@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+
+
+pactl load-module module-jack-sink client_name="$1" connect=yes

@@ -1,0 +1,31 @@
+configuration {
+  font: "Fantasque Sans Mono 20";
+}
+
+* {
+  background: argb:EE282828;
+
+  normal-background: argb:00282828;
+  normal-foreground: #458588;
+  alternate-normal-background: argb:00282828;
+  alternate-normal-foreground: #458588;
+
+  selected-normal-background: #458588;
+  selected-normal-foreground: #282828;
+
+  active-background: argb:00282828;
+  active-foreground: #fabd2f;
+  alternate-active-background: argb:00282828;
+  alternate-active-foreground: #fabd2f;
+
+  selected-active-background: argb:00282828;
+  selected-active-foreground: #fabd2f;
+
+  urgent-background: argb:00282828;
+  urgent-foreground: #cc241d;
+  alternate-background: argb:00282828;
+  alternate-foreground: #cc241d;
+  selected-urgent-background: argb:00282828;
+  selected-urgent-foreground: #cc241d;
+
+}
