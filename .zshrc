@@ -26,17 +26,23 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export SHELL="zsh"
 
+safe_source() {
+  if [ -f "$1" ]; then
+   source $1
+  fi
+}
+
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-source $ZSH/oh-my-zsh.sh
+safe_source $ZSH/oh-my-zsh.sh
 
-source /home/bennett/.ghcup/env
+safe_source /home/bennett/.ghcup/env
 
 export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper_lazy.sh
+safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
@@ -61,12 +67,14 @@ if [ -f "$AUTO_SUGGEST" ]
 then
   source $AUTO_SUGGEST
 else
-  source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  safe_source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 fpath+=~/.zfunc
 
-compinit -C
+if type "compinit" > /dev/null; then
+  compinit -C
+fi
 
 export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
