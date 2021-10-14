@@ -2,4 +2,4 @@
 
 echo "Outputing to $1"
 
-ffmpeg -i "/home/bennett/recordings/$(ls --sort time /home/bennett/recordings | head -1)" $1
+ffmpeg -i "/home/bennett/recordings/$(ls --sort time /home/bennett/recordings | head -1)" -c:v libx264 -af dynaudnorm $@

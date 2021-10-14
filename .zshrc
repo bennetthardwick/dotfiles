@@ -76,7 +76,8 @@ if type "compinit" > /dev/null; then
   compinit -C
 fi
 
-export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/.n/";
+export PATH="$N_PREFIX/bin:$PATH"
 
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
@@ -88,11 +89,50 @@ fi
 
 # Anything following this will only be sourced by shells
 
+
+# Aliases
+
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-# Stay in the same folder when exiting ranger
-alias ranger='ranger --choosedir=$HOME/.rangerdir; cd "$(cat $HOME/.rangerdir)"'
 alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
 alias xcp="xclip -o -selection primary"
+alias joplin="joplin --profile ~/.config/joplin-desktop"
+
+
+# alias ls="nnn"
+
+# N^3 Config
+
+export NNN_PLUG='p:preview-tabbed;v:imgview'
+export NNN_FCOLORS=''
+export NNN_FIFO=/tmp/nnn.fifo
+
+custom_nnn() {
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+alias lk="custom_nnn"

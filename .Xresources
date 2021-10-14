@@ -9,12 +9,8 @@
 
 URxvt.scrollBar: false
 URxvt.trasparent: false
-#define fonts xft:Fantasque Sans Mono:size=11,\
-		xft:Pomodoro:style=Regular,\
-		xft:DeJaVuSansMono Nerd Font Mono:style=Regular
 
 font:Fantasque\ Sans\ Mono 11
-*font: fonts
 
 ! hard contrast: *background: #1d2021
 *background: #282828

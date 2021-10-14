@@ -116,7 +116,7 @@ bindsym $mod+minus focus output DP-2, scratchpad show, [instance="__scratchpad"]
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2; exec run-if-not-running chromium --restore-last-session
 bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4; exec run-if-not-running slack
+bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -207,7 +207,7 @@ assign [instance="nvim-visual-workspace"] 1
 # assign [class="Chromium"] 2
 # assign [class="Google-chrome"] 2
 # assign [class="qutebrowser"] 2
-assign [class="Slack"] 4
+# assign [class="Slack"] 4
 assign [class="discord"] 9
 assign [class="Google Play Music Desktop Player"] 10
 assign [class="Anki"] 8

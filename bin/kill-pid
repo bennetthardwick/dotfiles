@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+read -r KILL_PID < $1
+
+if [ -z "$KILL_PID" ]; then
+  echo 'Expected "$KILL_PID" variable not to be empty.'
+  exit 1
+fi
+
+kill $KILL_PID

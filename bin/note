@@ -1,7 +1,16 @@
 #!/bin/bash
 
+START=`pwd`
+
+cleanup() {
+  cd $START
+}
+
+trap cleanup EXIT
+
 DATE=$(date +%F)
-NOTE=$HOME/notes/daily/$DATE.md
+NOTE_DIR=$HOME/notes
+NOTE=$NOTE_DIR/daily/$DATE.md
 
 SEARCH=""
 TYPE=""
@@ -125,6 +134,7 @@ open_files () {
     echo "No files found :)" >&2
     exit 1
   else
+    pushd $BASE
     nvim -q <(echo -e "$FILES") +copen
   fi
   exit 0
