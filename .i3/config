@@ -223,6 +223,7 @@ for_window [class="__floating"] floating enable
 for_window [title="Steam - News"] floating enable
 for_window [title="Friends List"] floating enable
 for_window [class="Anki"] floating enable
+for_window [class="xpad"] floating enable
 
 exec --no-startup-id alacritty --class __scratchpad
 
@@ -239,3 +240,5 @@ exec /home/bennett/.i3/load-terminals &
 exec unclutter -idle 0.5 &
 
 exec rescuetime
+
+exec xpad
