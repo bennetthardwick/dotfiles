@@ -102,7 +102,7 @@ sudo pacman -S --noconfirm --needed \
   bat
 
 # Enable getting the time from the internet
-systemctl enable ntpd
+systemctl enable --now ntpd
 
 printf "\nOptional Dependencies. Press n to not install.\n\n"
 
@@ -117,7 +117,7 @@ sudo pacman -S --needed \
   fcitx-configtool || echo "Not installing optional dependencies"
 
 # Get zsh environment variables
-source $HOME/.zshrc
+source $HOME/.zshrc || echo ""
 
 printf "\nInstalling N (Node version manager) through curl script\n\n"
 if [ ! -x "$(command -v n)" ]
@@ -140,4 +140,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 # Return home so new shells open at home
 cd $HOME
 
-sx
+if [[ $(tty) == /dev/tty* ]]; then
+  sx
+fi

@@ -10,3 +10,4 @@ PS1='[\u@\h \W]\$ '
 
 export VISUAL="nvim"
 
+. "$HOME/.cargo/env"

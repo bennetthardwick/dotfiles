@@ -9,7 +9,6 @@
     "coc-python": ">=1.2.13",
     "coc-rust-analyzer": ">=0.54.0",
     "coc-styled-components": ">=0.5.0",
-    "coc-tsserver": ">=1.8.6",
-    "coc-vimtex": ">=1.0.4"
+    "coc-tsserver": ">=1.8.6"
   }
 }
