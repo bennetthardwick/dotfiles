@@ -101,6 +101,14 @@ sudo pacman -S --noconfirm --needed \
   pavucontrol \
   bat
 
+# Install sway / wayland stuff
+sudo pacman -S --noconfirm --needed \
+  sway \
+  wl-clipboard \
+  waybar \
+  brightnessctl \
+  gammastep
+
 # Enable getting the time from the internet
 systemctl enable --now ntpd
 
