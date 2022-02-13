@@ -200,7 +200,7 @@ bindsym $mod+r mode "resize"
 default_border pixel 1
 
 # Gaps config
-gaps inner 15
+gaps inner 10
 smart_gaps on
 
 # Gruvbox colors
