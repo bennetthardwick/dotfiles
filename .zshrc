@@ -86,8 +86,7 @@ export PATH="$N_PREFIX/bin:$PATH"
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
 if [ "$(tty)" = "/dev/tty1" ]; then
-
-  if type "sway" > dev/null; then
+  if type "sway" > /dev/null; then
     sway
     exit 0
   elif type "sx" > /dev/null; then
