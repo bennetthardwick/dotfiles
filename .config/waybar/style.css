@@ -1,0 +1,38 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+
+}
+
+.modules-right * {
+  padding: 0 6px;
+}
+
+window#waybar {
+  background-color: #090909;
+  color: #acacac;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+#workspaces button.focused {
+  background-color: #191919;
+  color: #ebdbb2;
+  box-shadow: inset 0 -2px #458588;
+}
