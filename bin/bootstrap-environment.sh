@@ -107,7 +107,8 @@ sudo pacman -S --noconfirm --needed \
   wl-clipboard \
   waybar \
   brightnessctl \
-  gammastep
+  gammastep \
+  bemenu-wayland
 
 # Enable getting the time from the internet
 systemctl enable --now ntpd
