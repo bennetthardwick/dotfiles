@@ -44,6 +44,7 @@ fi
 safe_source $ZSH/oh-my-zsh.sh
 
 safe_source /home/bennett/.ghcup/env
+safe_source /home/bennett/.cargo/env
 
 safe_source /home/bennett/.asdf/asdf.sh
 
