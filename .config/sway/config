@@ -18,7 +18,7 @@ set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu bemenu-run --tf '#458588' --hf '#458588' -H 30 | xargs swaymsg exec --
+set $menu bemenu-run --tf '#458588' --hf '#458588' -H 30 -b | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -194,6 +194,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 # Hide titles and make border 1
@@ -225,7 +226,11 @@ input type:touchpad {
     natural_scroll enabled
 }
 
+output DP-1 scale 1.5 
+
 exec gammastep -t 5700:3500 -l 21:149
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%

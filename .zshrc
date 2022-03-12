@@ -48,6 +48,8 @@ safe_source /home/bennett/.ghcup/env
 export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
+export N_PREFIX="$HOME/.n/"
+
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -55,6 +57,7 @@ export PATH="$PATH:/opt/google-cloud-sdk/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$N_PREFIX/bin:$PATH"
 export PATH="$PATH:/bin"
 
 export NPM_TOKEN=${NPM_TOKEN:-""}
@@ -80,13 +83,16 @@ if type "compinit" > /dev/null; then
   compinit -C
 fi
 
-export PATH="$N_PREFIX/bin:$PATH"
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
 
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
 if [ "$(tty)" = "/dev/tty1" ]; then
   if type "sway" > /dev/null; then
+    export XDG_CURRENT_DESKTOP=sway
     sway
     exit 0
   elif type "sx" > /dev/null; then
@@ -109,42 +115,3 @@ alias ....="cd ../../../"
 alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
 alias xcp="xclip -o -selection primary"
 alias joplin="joplin --profile ~/.config/joplin-desktop"
-
-
-# alias ls="nnn"
-
-# N^3 Config
-
-export NNN_PLUG='p:preview-tabbed;v:imgview'
-export NNN_FCOLORS=''
-export NNN_FIFO=/tmp/nnn.fifo
-
-custom_nnn() {
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-alias lk="custom_nnn"
-
-export N_PREFIX="$HOME/.n/"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
