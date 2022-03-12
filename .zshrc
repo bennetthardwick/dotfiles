@@ -45,6 +45,8 @@ safe_source $ZSH/oh-my-zsh.sh
 
 safe_source /home/bennett/.ghcup/env
 
+safe_source /home/bennett/.asdf/asdf.sh
+
 export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
 

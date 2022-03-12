@@ -27,7 +27,7 @@ stow dotfiles
 echo "\nInstalling AUR Dependencies\n\n"
 
 # Everything required to build from the AUR (if you didn't install base-devel)
-sudo pacman -S --noconfirm vim base-devel --needed
+sudo pacman -S --noconfirm neovim vim base-devel --needed
 
 
 # Build all packages (opening the PKGBUILD for each one)
@@ -36,20 +36,8 @@ sudo pacman -S --noconfirm vim base-devel --needed
 # E.g.
 # make -j24
 
-for PACKAGE in polybar oh-my-zsh-git ttf-font-awesome-4
-do
-  if [ ! -d "$HOME/git/$PACKAGE/" ]
-  then
-    printf "\nCloning $PACKAGE\n\n"
-    git clone https://aur.archlinux.org/$PACKAGE.git --depth 1 $HOME/git/$PACKAGE
-  fi
-
-  printf "\nBuilding $PACKAGE\n\n"
-
-  cd $HOME/git/$PACKAGE
-  vim PKGBUILD
-  makepkg -si --noconfirm
-done
+aur oh-my-zsh-git
+aur ttf-font-awesome-4
 
 GRUVBOX_GTK_FOLDER=$HOME/.themes/gruvbox-gtk/
 
@@ -78,24 +66,15 @@ sudo pacman -S --noconfirm --needed \
   neovim \
   openssh \
   htop \
-  sx \
-  rofi \
   the_silver_searcher \
   fzf \
-  maim \
   chromium \
   alacritty \
   zsh \
   zsh-autosuggestions \
   ripgrep \
-  dunst \
-  ranger \
-  picom \
-  hsetroot \
-  redshift \
   ttf-fantasque-sans-mono \
   cantarell-fonts \
-  xclip \
   ntp \
   pulseaudio \
   pavucontrol \
@@ -108,7 +87,10 @@ sudo pacman -S --noconfirm --needed \
   waybar \
   brightnessctl \
   gammastep \
-  bemenu-wayland
+  bemenu-wayland \
+  grim \
+  scrub \
+  swaylock
 
 # Enable getting the time from the internet
 systemctl enable --now ntpd
@@ -132,7 +114,7 @@ printf "\nInstalling N (Node version manager) through curl script\n\n"
 if [ ! -x "$(command -v n)" ]
 then
   sed -i '/^export\ N_PREFIX/d' $HOME/git/dotfiles/.zshrc
-  N_PREFIX=$HOME/.n/ curl -L https://git.io/n-install | bash
+  N_PREFIX=$HOME/.n/ curl -L https://git.io/n-install | bash /dev/stdin -n
   n lts
 fi
 
