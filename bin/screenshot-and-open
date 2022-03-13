@@ -4,5 +4,11 @@ set -e
 
 FILE="$HOME/screenshots/$(date +%s).png"
 
-maim -s $FILE
-feh $FILE --class __floating
+if [ ! -z "$WAYLAND_DISPLAY" ]; then
+  grim -g "$(slurp)" $FILE
+  imv -s none $FILE
+else
+  maim -s $FILE
+  feh $FILE --class __floating
+fi
+
