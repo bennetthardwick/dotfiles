@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "coc-elixir": ">=0.7.0",
     "coc-eslint": ">=1.4.5",
     "coc-git": ">=2.4.3",
     "coc-go": ">=1.0.0",
