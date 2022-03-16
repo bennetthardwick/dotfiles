@@ -1,3 +1,8 @@
 #!/bin/bash
 
-i3lock-fancy-rapid 20 2
+if [ ! -z "$WAYLAND_DISPLAY" ]; then
+  swaylock -c 080808
+else
+  i3lock-fancy-rapid 20 2
+fi
+

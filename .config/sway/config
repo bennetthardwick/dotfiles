@@ -226,11 +226,16 @@ input type:touchpad {
     natural_scroll enabled
 }
 
+for_window [app_id="__floating"] floating enable
+for_window [app_id="imv"] floating enable
+
 output DP-1 scale 1.5 
 
 exec gammastep -t 5700:3500 -l 21:149
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+bindsym $mod+shift+s exec 'grim -g "$(slurp)" ~/screenshots/$(date +%s).png'
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%

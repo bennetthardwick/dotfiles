@@ -152,6 +152,8 @@ then
   open_files "$FILES"
 fi
 
+mkdir -p "$(dirname $NOTE)"
+
 if [ ! -f $NOTE ]
 then
   echo "---" > $NOTE
@@ -159,6 +161,7 @@ then
   echo "---" >> $NOTE
   echo "# $(date '+%A, %B %e')" >> $NOTE
 fi
+
 
 pushd $BASE
 nvim $NOTE '+norm!Go## '$(date '+%R')
