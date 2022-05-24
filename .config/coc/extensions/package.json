@@ -1,15 +1,15 @@
 {
   "dependencies": {
     "coc-elixir": ">=0.7.0",
-    "coc-eslint": ">=1.4.5",
-    "coc-git": ">=2.4.3",
-    "coc-go": ">=1.0.0",
-    "coc-json": ">=1.3.6",
+    "coc-eslint": ">=1.5.8",
+    "coc-git": ">=2.4.10",
+    "coc-go": ">=1.3.0",
+    "coc-json": ">=1.4.2",
     "coc-marketplace": ">=1.8.1",
-    "coc-prettier": ">=1.1.24",
+    "coc-prettier": ">=9.3.0",
     "coc-python": ">=1.2.13",
-    "coc-rust-analyzer": ">=0.56.0",
+    "coc-rust-analyzer": ">=0.62.1",
     "coc-styled-components": ">=0.5.0",
-    "coc-tsserver": ">=1.8.6"
+    "coc-tsserver": ">=1.10.4"
   }
 }
