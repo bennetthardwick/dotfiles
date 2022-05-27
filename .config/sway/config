@@ -229,9 +229,12 @@ input type:touchpad {
 for_window [app_id="__floating"] floating enable
 for_window [app_id="imv"] floating enable
 
-output DP-1 scale 1.5 
+assign [app_id="hidden-display-share"] workspace hidden
 
-exec gammastep -t 5700:3500 -l 21:149
+output DP-1 scale 1.5 
+output DP-1 pos 0 0
+
+exec gammastep -t 5700:3500 -l -21:149
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 

@@ -22,6 +22,9 @@
   "eslint.trace.server": "verbose",
 
   "rust-analyzer.inlayHints.chainingHints": false,
+  "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.cargo.runBuildScripts": true,
+
   "languageserver": {
     "ccls": {
       "command": "ccls",
