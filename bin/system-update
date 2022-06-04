@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+
+source ~/.zshrc
+
+# Update dotfiles
+udf
+
+sudo pacman -Syu

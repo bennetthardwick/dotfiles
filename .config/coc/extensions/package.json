@@ -9,6 +9,7 @@
     "coc-prettier": ">=9.3.0",
     "coc-python": ">=1.2.13",
     "coc-rust-analyzer": ">=0.62.1",
+    "coc-solargraph": ">=1.2.4",
     "coc-styled-components": ">=0.5.0",
     "coc-tsserver": ">=1.10.4"
   }
