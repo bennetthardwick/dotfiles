@@ -227,9 +227,14 @@ input type:touchpad {
 }
 
 for_window [app_id="__floating"] floating enable
+for_window [class="__floating"] floating enable
 for_window [app_id="imv"] floating enable
 
-assign [app_id="hidden-display-share"] workspace hidden
+for_window [class="REAPER" title="FX:.*"] floating enable
+for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
+
+# Hide the "cast-to-x" window a secret workspace
+assign [class="cast-to-x"] workspace hidden
 
 output DP-1 scale 1.5 
 output DP-1 pos 0 0
