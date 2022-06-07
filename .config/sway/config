@@ -230,8 +230,12 @@ for_window [app_id="__floating"] floating enable
 for_window [class="__floating"] floating enable
 for_window [app_id="imv"] floating enable
 
+# Specific windows that Reaper doesn't float by default
 for_window [class="REAPER" title="FX:.*"] floating enable
+for_window [class="REAPER" title="Add FX.*"] floating enable, resize set height 800
 for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
+
+for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
 
 # Hide the "cast-to-x" window a secret workspace
 assign [class="cast-to-x"] workspace hidden
