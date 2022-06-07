@@ -89,7 +89,7 @@ sudo pacman -S --noconfirm --needed \
   gammastep \
   bemenu-wayland \
   grim \
-  scrub \
+  slurp \
   swaylock
 
 # Enable getting the time from the internet
