@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term alacritty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -203,6 +203,7 @@ default_border pixel 1
 # Gaps config
 gaps inner 10
 smart_gaps on
+smart_borders on
 
 # Gruvbox colors
 client.focused		#458588 #458588 #191919 #b16286 #458588
@@ -230,12 +231,24 @@ for_window [app_id="__floating"] floating enable
 for_window [class="__floating"] floating enable
 for_window [app_id="imv"] floating enable
 
+## Music Stuff
+
+for_window [title="Catia"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [class="qpwgraph"] floating enable, resize set height 800
+
+bindsym $mod+p exec "patchbay"
+
 # Specific windows that Reaper doesn't float by default
 for_window [class="REAPER" title="FX:.*"] floating enable
 for_window [class="REAPER" title="Add FX.*"] floating enable, resize set height 800
 for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
-
 for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
+
+# Specific windows that Steam doesn't float by default
+for_window [class="Steam" title="Steam - News.*"] floating enable
+for_window [class="Steam" title="Create or select new Steam library folder:"] floating enable
+for_window [class="steam_app_.*" title="Origin"] floating enable
 
 # Hide the "cast-to-x" window a secret workspace
 assign [class="cast-to-x"] workspace hidden
@@ -247,7 +260,10 @@ exec gammastep -t 5700:3500 -l -21:149
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
+exec steam -silent
+
 bindsym $mod+shift+s exec screenshot
+bindsym $mod+shift+a exec screenshot-and-open
 
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
