@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rclone sync "/home/bennett/screenshots/" "drive:/MyBackupFolder/<destination>" -v

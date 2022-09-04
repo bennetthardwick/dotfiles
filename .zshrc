@@ -67,6 +67,13 @@ export PATH="$PATH:/bin"
 
 safe_source /home/bennett/.asdf/asdf.sh
 
+# if type "asdf" > /dev/null; then
+#   # Fix cargo install path if using asdf
+#   if asdf which cargo 2> /dev/null > /dev/null; then
+#     export PATH="$PATH:$(dirname $(asdf which cargo))"
+#   fi
+# fi
+
 export NPM_TOKEN=${NPM_TOKEN:-""}
 
 stty -ixon
@@ -93,7 +100,7 @@ fi
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-# export PIPEWIRE_LATENCY="256/96000"
+export PIPEWIRE_LATENCY="256/96000"
 
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
@@ -101,7 +108,9 @@ export XMODIFIERS=@im=fcitx
 if [ "$(tty)" = "/dev/tty1" ]; then
   if type "sway" > /dev/null; then
     export XDG_CURRENT_DESKTOP=sway
-    sway
+    export MOZ_ENABLE_WAYLAND=1
+
+    sway -d 2> /tmp/sway.log
     exit 0
   elif type "sx" > /dev/null; then
     sx
@@ -123,3 +132,8 @@ alias ....="cd ../../../"
 alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
 alias xcp="xclip -o -selection primary"
 alias joplin="joplin --profile ~/.config/joplin-desktop"
+
+# pnpm
+export PNPM_HOME="/home/bennett/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

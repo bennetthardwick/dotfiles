@@ -15,8 +15,10 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-fugitive'
 
+Plug 'neovim/nvim-lspconfig'
+
 " Language Server "
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 
 call plug#end()
 

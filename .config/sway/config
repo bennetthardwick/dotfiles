@@ -112,7 +112,7 @@ output * bg #242424 solid_color
 #
     # Switch to workspace
     bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2; exec run-if-not-running chromium --restore-last-session
+    bindsym $mod+2 workspace number 2; exec run-if-not-running firefox --restore-last-session
     bindsym $mod+3 workspace number 3
     bindsym $mod+4 workspace number 4
     bindsym $mod+5 workspace number 5
@@ -256,11 +256,15 @@ assign [class="cast-to-x"] workspace hidden
 output DP-1 scale 1.5 
 output DP-1 pos 0 0
 
+output DP-5 scale 1.5 
+output DP-5 pos 0 0
+
 exec gammastep -t 5700:3500 -l -21:149
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
 exec steam -silent
+exec_always fcitx5 -d --replace
 
 bindsym $mod+shift+s exec screenshot
 bindsym $mod+shift+a exec screenshot-and-open

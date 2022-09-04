@@ -35,8 +35,9 @@ PACKAGE_DIR=$HOME/git/.aur/$PACKAGE
 
 if [[ -d "$PACKAGE_DIR" ]]; then
   pushd $PACKAGE_DIR
-  git fetch origin master
-  git reset --hard origin/master
+  BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+  git fetch origin $BRANCH
+  git reset --hard origin/$BRANCH
 else
   mkdir -p $PACKAGE_DIR
   git clone $REPO $PACKAGE_DIR
