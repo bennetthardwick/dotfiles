@@ -241,9 +241,11 @@ bindsym $mod+p exec "patchbay"
 
 # Specific windows that Reaper doesn't float by default
 for_window [class="REAPER" title="FX:.*"] floating enable
+for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
+
 for_window [class="REAPER" title="Add FX.*"] floating enable, resize set height 800
 for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
-for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
+for_window [class="REAPER" title="Media Item Properties:.*"] floating enable, resize set width 600
 
 # Specific windows that Steam doesn't float by default
 for_window [class="Steam" title="Steam - News.*"] floating enable

@@ -1,0 +1,13 @@
+font=Noto Sans 11
+border-radius=2
+padding=12
+width=400
+background-color=#282828EE
+text-color=#ebdbb2
+border-color=#83a598
+
+[urgency=low]
+border-color=#689d6a
+
+[urgency=high]
+border-color=#fb4934

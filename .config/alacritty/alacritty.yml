@@ -11,7 +11,7 @@ font:
   bold:
     family: Fantasque Sans Mono
   italic:
-    family: Fanasque Sans Mono
+    family: Fantasque Sans Mono
   size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of

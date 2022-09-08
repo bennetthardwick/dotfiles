@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo_err() {
+  echo "$@" >&2;
+}
+
+if type "$1" 2> /dev/null; then
+  $@
+else
+  PACKAGE=$(pacman -F "/usr/bin/$1" --quiet)
+  echo_err "Install package '$PACKAGE'?"
+  sudo pacman -S $PACKAGE
+  $@
+fi
