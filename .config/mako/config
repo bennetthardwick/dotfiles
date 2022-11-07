@@ -1,10 +1,12 @@
-font=Noto Sans 11
+font=Noto Sans 9
 border-radius=2
-padding=12
+padding=10
 width=400
-background-color=#282828EE
+background-color=#181818DD
 text-color=#ebdbb2
 border-color=#83a598
+border-size=1
+margin=5
 
 [urgency=low]
 border-color=#689d6a

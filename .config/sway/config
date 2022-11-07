@@ -230,6 +230,7 @@ input type:touchpad {
 for_window [app_id="__floating"] floating enable
 for_window [class="__floating"] floating enable
 for_window [app_id="imv"] floating enable
+for_window [app_id="__scratchpad"] move scratchpad
 
 ## Music Stuff
 
@@ -246,6 +247,7 @@ for_window [class="REAPER" title="(LV2i?|VST3?i?|JS):.*"] floating enable
 for_window [class="REAPER" title="Add FX.*"] floating enable, resize set height 800
 for_window [class="REAPER" title="Insert Virtual Instrument on New Track.*"] floating enable, resize set height 800
 for_window [class="REAPER" title="Media Item Properties:.*"] floating enable, resize set width 600
+for_window [class="REAPER" title="MIDI take:.*"] floating enable
 
 # Specific windows that Steam doesn't float by default
 for_window [class="Steam" title="Steam - News.*"] floating enable
@@ -258,6 +260,9 @@ assign [class="cast-to-x"] workspace hidden
 output DP-1 scale 1.5 
 output DP-1 pos 0 0
 
+output DP-3 scale 1.5 
+output DP-3 pos 0 0
+
 output DP-5 scale 1.5 
 output DP-5 pos 0 0
 
@@ -265,7 +270,9 @@ exec gammastep -t 5700:3500 -l -21:149
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
+exec scratchpad
 exec steam -silent
+exec mako
 exec_always fcitx5 -d --replace
 
 bindsym $mod+shift+s exec screenshot

@@ -4,6 +4,6 @@ set -e
 
 # Use `git bh` to open fzf and fuzzy search through your branch checkout history
 
-branches=$(git reflog | grep -o "moving from\ [^\ ]*" |  grep -o "[^\ ]*$" -m30)
+branches=$(git reflog | grep -o "moving from [^\ ]*" |  grep -o "[^ ]*$" -m30)
 branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m)
 git checkout $branch

@@ -82,6 +82,8 @@ export CHROME_BIN=chromium
 
 export NODE_OPTIONS=--max_old_space_size=16384
 
+ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
+
 AUTO_SUGGEST=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [ -f "$AUTO_SUGGEST" ]
