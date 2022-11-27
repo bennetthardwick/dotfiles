@@ -4,7 +4,9 @@
   "git.removedSign.hlGroup": "GitGutterDelete",
   "git.topRemovedSign.hlGroup": "GitGutterDelete",
   "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+
   "tsserver.log": "verbose",
+  "typescript.autoClosingTags": false,
 
   "python.formatting.provider": "yapf",
   "python.autoComplete.extraPaths": [
