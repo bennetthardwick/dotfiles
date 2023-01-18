@@ -139,3 +139,7 @@ alias joplin="joplin --profile ~/.config/joplin-desktop"
 export PNPM_HOME="/home/bennett/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+uzip() {
+  unzip $1 -d ${1%.zip}
+}

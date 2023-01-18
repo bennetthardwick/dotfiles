@@ -23,6 +23,8 @@ nnoremap <silent> <leader>i :Format<CR>
 
 nnoremap <silent> <leader>e :Explore<CR>
 
+nnoremap <silent> <leader>p :w<CR>:Format<CR>
+
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
 
