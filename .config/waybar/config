@@ -1,9 +1,9 @@
 {
     "height": 30, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "mpris", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
+    "modules-right": ["custom/pomo", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -33,6 +33,8 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    "sway/window": {
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -46,22 +48,18 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "  {:%a %d %b, %I:%M %p}"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "  {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "  {used} GIB"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
+        "format": "{icon}  {temperatureC}°C",
         "format-icons": ["", "", ""]
     },
     "backlight": {
@@ -88,7 +86,7 @@
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -102,4 +100,23 @@
         },
         "on-click": "pavucontrol"
     },
+
+    "mpris": {
+	"format": "{player_icon}  {artist} - {title}",
+	"format-paused": "{status_icon}  {artist} - {title}",
+	"player-icons": {
+                "default": "",
+                "spotifyd": "",
+                "spotify": ""
+	},
+	"status-icons": {
+                "paused": ""
+	},
+	"ignored-players": ["firefox"]
+    },
+
+    "custom/pomo": {
+      "exec": "pomo-time",
+      "interval": 1
+    }
 }

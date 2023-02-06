@@ -1,0 +1,10 @@
+#!/bin/bash
+
+try() {
+  if type "$1" 2>&1> /dev/null; then
+    exit $($@)
+  fi
+}
+
+try nemo --name __floating
+try nautlius --name __floating

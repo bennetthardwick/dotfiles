@@ -4,7 +4,6 @@ export GPG_TTY=$(tty)
 
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
-export CLOUDSDK_PYTHON=python2
 export GPG_TTY=$(tty)
 
 # Start ssh-agent so that I can call ssh-add

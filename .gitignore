@@ -12,3 +12,5 @@ package-lock.json
 
 .config/pomo/time
 .config/pomo/pid
+
+.config/nvim/plugin/
