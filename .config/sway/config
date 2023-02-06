@@ -207,8 +207,8 @@ smart_borders on
 
 # Gruvbox colors
 client.focused		#458588 #458588 #191919 #b16286 #458588
-client.unfocused	#090909 #090909 #797979 #191919 #242424
-client.focused_inactive #2c3c3d #2c3c3d #191919 #533944 #2c3c3d
+client.unfocused	#191919 #191919 #458588 #191919 #242424
+client.focused_inactive #2c3c3d #458588 #191919 #533944 #2c3c3d
 client.placeholder	#191919 #282828 #458588 #191919 #282828
 client.urgent		#cc241d #cc241d #191919 #cc241d #cc241d
 
