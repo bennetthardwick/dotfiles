@@ -117,6 +117,7 @@
 
     "custom/pomo": {
       "exec": "pomo-time",
-      "interval": 1
+      "interval": 1,
+      "on-click": "pomo"
     }
 }
