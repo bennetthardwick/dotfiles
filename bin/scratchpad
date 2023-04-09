@@ -4,4 +4,4 @@
 # Open Alacritty with the scratchpad class. Due to my picom and i3 configuration
 # this will be semi transparent and can be activated by pressing <Mod+->
 
-alacritty --class __scratchpad $* &
+alacritty --class __scratchpad $*

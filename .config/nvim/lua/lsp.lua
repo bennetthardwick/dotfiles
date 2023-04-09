@@ -91,6 +91,12 @@ require('lspconfig')['rust_analyzer'].setup {
     }
 }
 
+require('lspconfig')['marksman'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities
+}
+
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "c", "lua", "vim", "help", "rust", "javascript", "typescript", "tsx", "query", "org" },
   auto_install = true,
@@ -106,7 +112,11 @@ require('nvim-treesitter.configs').setup {
 }
 
 require('gruvbox').setup {
-  italic = false
+  italic = {
+    strings = false,
+    operators = false,
+    comments = false
+  }
 }
 
 require('telescope').setup {
@@ -117,6 +127,7 @@ require('telescope').setup {
   },
 }
 
+
 local telescope = require("telescope.builtin")
 
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
@@ -126,6 +137,22 @@ vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
 
 vim.api.nvim_create_user_command('Rg', function() print('To search use "<leader>fg" in normal mode') end, {})
+
+local org = require('orgmode')
+
+org.setup_ts_grammar()
+
+org.setup {
+  org_agenda_files = { '~/notes/**/*' },
+  org_default_notes_file = '~/notes/refile.org',
+  org_capture_templates = {
+    t = { description = 'Task', template = '\n* TODO %?\n  %u', target = '~/notes/refile.org' },
+    j = { description = 'Journal', template = '\n* %U\n\n  %?', target = '~/notes/refile.org' },
+    m = { description = 'Thought', template = '\n* %? :thought:', target = '~/notes/refile.org' }
+  },
+  org_hide_leading_stars = true,
+  org_hide_emphasis_markers = true,
+} 
 
 local cmp = require('cmp')
 

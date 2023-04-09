@@ -24,6 +24,7 @@ set $menu bemenu-run --tf '#458588' --hf '#458588' -H 30 -b | xargs swaymsg exec
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg #242424 solid_color
+
 #
 # Example configuration:
 #
@@ -288,5 +289,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 # bindsym XF86AudioNext exec playerctl next
 # bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86Search exec $menu
+
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 include /etc/sway/config.d/*

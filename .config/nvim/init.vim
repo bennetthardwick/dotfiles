@@ -31,6 +31,7 @@ set number relativenumber
 " Set a default shiftwidth of 2, this will typically automatically be set by
 " the filetype / linter, 2 is a good default.
 set shiftwidth=2
+set tabstop=2
 " Make Vim work with the mouse (clicking, scrolling, etc.)
 set mouse=a
 " Use spaces instead of tabs when the tab key is pressed
@@ -72,6 +73,8 @@ if has('nvim')
   " Make sure the terminal buffer has no numbers and no sign column
   autocmd TermOpen * :setlocal signcolumn=no nonumber norelativenumber
 
+  set termguicolors
+
   lua require('init')
 
   colorscheme gruvbox
@@ -80,9 +83,14 @@ if has('nvim')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   let &t_Co=256
+
+  nnoremap <silent> <leader>sv :source ~/.config/nvim/init.vim<CR>
+  nnoremap <silent> <leader>r :e ~/notes/refile.org<CR>
   
   let g:gruvbox_contrast_dark = "medium"
-  set termguicolors
+
+  " set conceallevel=2
+  " set concealcursor=nc
 
   augroup packer_user_config
     autocmd!

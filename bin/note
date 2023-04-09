@@ -10,7 +10,7 @@ trap cleanup EXIT
 
 DATE=$(date +%F)
 NOTE_DIR=$HOME/notes
-NOTE=$NOTE_DIR/daily/$DATE.md
+NOTE=$NOTE_DIR/daily/$DATE.org
 
 SEARCH=""
 TYPE=""
@@ -65,7 +65,7 @@ while (( "$#" )); do
 
       pushd $BASE
 
-      FILE=$(find ./ -iname "*.md" -type f -printf '%T@ %p\n' | \
+      FILE=$(find ./ -iname "*.org" -type f -printf '%T@ %p\n' | \
         sort -k1 -n | \
         sed -E "s/^[0-9]+.[0-9]+\s\.\///g" | \
         fzf --no-sort --preview="bat {} --style=plain --color=always")
@@ -81,7 +81,7 @@ while (( "$#" )); do
       ;;
     new)
       FILE=$2
-      NOTE="$BASE/${FILE%.md}.md"
+      NOTE="$BASE/${FILE%.org}.org"
 
       if [ ! -f $NOTE ]; then
         echo "---" > $NOTE
@@ -156,12 +156,10 @@ mkdir -p "$(dirname $NOTE)"
 
 if [ ! -f $NOTE ]
 then
-  echo "---" > $NOTE
-  echo "date: $DATE" >> $NOTE
-  echo "---" >> $NOTE
-  echo "# $(date '+%A, %B %e')" >> $NOTE
+  echo "#+title: $(date '+%A, %B %e')" > $NOTE
+  echo "#+filetags: :daily:" >> $NOTE
 fi
 
 
 pushd $BASE
-nvim $NOTE '+norm!Go## '$(date '+%R')
+nvim $NOTE '+norm!G\oih* '$(date '+%R')

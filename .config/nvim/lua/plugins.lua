@@ -45,20 +45,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
 
-  use {'nvim-orgmode/orgmode', config = function() 
-      local org = require('orgmode')
+  use 'nvim-orgmode/orgmode'
 
-      org.setup {
-        org_agenda_files = { '~/notes' },
-        org_default_notes_file = '~/notes/refile.org',
-        org_capture_templates = {
-          t = { description = 'Task', template = '* TODO %?\n  %u' },
-          j = { description = 'Journal', template = '\n*** %<%Y-%m-%d> %<%A>\n**** %U\n\n%?', target = '~/notes/journal.org' }
-        },
-      } 
-
-      org.setup_ts_grammar()
-    end 
-  }
-
+  use 'norcalli/nvim-colorizer.lua'
 end)

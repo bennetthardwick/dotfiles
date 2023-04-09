@@ -30,7 +30,7 @@ plugins=(git)
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export SHELL="zsh"
+export SHELL="/usr/bin/zsh"
 
 safe_source() {
   if [ -f "$1" ]; then
@@ -47,6 +47,8 @@ safe_source $ZSH/oh-my-zsh.sh
 
 safe_source /home/bennett/.ghcup/env
 safe_source /home/bennett/.cargo/env
+
+safe_source /opt/miniconda3/etc/profile.d/conda.sh
 
 
 export WORKON_HOME=~/.virtualenvs
@@ -102,6 +104,8 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export PIPEWIRE_LATENCY="256/96000"
+
+# export GTK_THEME="Gruvbox"
 
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3
