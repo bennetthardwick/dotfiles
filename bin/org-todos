@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+COUNT=$(rg -i "\*\s*?TODO" -t org $HOME/notes/ | wc -l)
+
+echo "  $COUNT"

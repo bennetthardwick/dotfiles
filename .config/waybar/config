@@ -3,7 +3,7 @@
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["custom/pomo", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
+    "modules-right": ["custom/todos", "custom/pomo", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -119,5 +119,10 @@
       "exec": "pomo-time",
       "interval": 1,
       "on-click": "pomo"
+    },
+
+    "custom/todos": {
+      "exec": "org-todos",
+      "interval": 1,
     }
 }

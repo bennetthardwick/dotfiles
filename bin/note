@@ -33,33 +33,6 @@ popd () {
 
 while (( "$#" )); do
   case "$1" in
-    wiki)
-      shift 1
-      WIKI=1
-      BASE=$HOME/git/website/content/wiki
-      ;;
-    serve)
-      shift 1
-
-      if [ $WIKI = 1 ]; then
-        pushd $HOME/git/website/
-      else
-        pushd $HOME/bin/.note-theme/
-      fi
-
-      hugo server -D
-      popd
-
-      exit 0
-      ;;
-    open)
-      if [ $WIKI = 1 ]; then
-        chromium --app=http://localhost:1313/wiki
-      else
-        chromium --app=http://localhost:1313
-      fi
-      exit 0
-      ;;
     edit)
       shift 1
 
@@ -158,8 +131,14 @@ if [ ! -f $NOTE ]
 then
   echo "#+title: $(date '+%A, %B %e')" > $NOTE
   echo "#+filetags: :daily:" >> $NOTE
+  echo "" >> $NOTE
+  echo "* Today's Goals :goals:" >> $NOTE
+  echo "" >> $NOTE
+  echo "  -" >> $NOTE
 fi
 
+echo "" >> $NOTE
+echo "* $(date '+%R')" >> $NOTE
 
 pushd $BASE
-nvim $NOTE '+norm!G\oih* '$(date '+%R')
+nvim $NOTE '+norm!Gw'

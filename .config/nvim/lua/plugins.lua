@@ -34,7 +34,6 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   use 'dcampos/nvim-snippy'
@@ -44,6 +43,10 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/nvim-cmp'
+
+  use 'nvim-lua/plenary.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
 
   use 'nvim-orgmode/orgmode'
 
