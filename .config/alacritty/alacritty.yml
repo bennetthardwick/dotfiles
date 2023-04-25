@@ -7,11 +7,11 @@ window:
 
 font:
   normal:
-    family: Fantasque Sans Mono
+    family: FantasqueSansMono Nerd Font
   bold:
-    family: Fantasque Sans Mono
+    family: FantasqueSansMono Nerd Font
   italic:
-    family: Fantasque Sans Mono
+    family: FantasqueSansMono Nerd Font
   size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of

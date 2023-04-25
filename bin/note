@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 START=`pwd`
 
 cleanup() {
@@ -64,6 +66,23 @@ while (( "$#" )); do
 
       shift 2
       ;;
+    save-link)
+      LINK=`wl-paste`
+      NOTE="$BASE/links.org"
+      TMP=mktemp
+
+      OUTPUT=$(curl -L -f "$LINK")
+
+      TITLE=$(echo $OUTPUT | grep -o '<title[^<]*>[^<]*</title>' | sed -e 's/<title[^<]*>//g' -e 's/<\/title>//g' | recode html)
+
+      echo | awk -v link="$LINK" -v title="$TITLE" -v date="<$(date +%F)>" '/org-start-links/ {print; print ""; printf "* [[%s][%s]]", link, title; print ""; printf "  CREATED: %s", date; print ""; next}1' $NOTE > $TMP
+
+      mv $TMP $NOTE
+
+      notify-send "Link '$TITLE' added successfully"
+
+      exit 0
+      ;;
     -s|--search)
       SEARCH=$2
       shift 2
@@ -95,6 +114,10 @@ while (( "$#" )); do
       ;;
     -*|--*=) # unsupported flags
       echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *)
+      echo "Error: Unsupported argument '$1'"
       exit 1
       ;;
   esac

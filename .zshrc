@@ -1,5 +1,4 @@
 source $HOME/.bashrc
-
 export GPG_TTY=$(tty)
 
 export LANG=en_AU.UTF-8
@@ -103,7 +102,7 @@ fi
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-export PIPEWIRE_LATENCY="256/96000"
+export PIPEWIRE_LATENCY="256/48000"
 
 export GTK_THEME="Gruvbox"
 

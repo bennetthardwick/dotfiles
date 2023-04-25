@@ -4,17 +4,8 @@ return require('packer').startup(function(use)
   -- Visuals
   use 'ellisonleao/gruvbox.nvim'
 
-  -- " Util "
-  -- Plug 'leafgarland/typescript-vim'
-  -- Plug 'peitalin/vim-jsx-typescript'
-  -- " Plug 'SirVer/ultisnips'
-  -- Plug 'elixir-editors/vim-elixir'
-
-  -- Plug 'junegunn/fzf.vim'
-  
   use 'airblade/vim-gitgutter'
 
-  -- Plug 'tpope/vim-sleuth'
   use 'tpope/vim-fugitive'
   
   use 'neovim/nvim-lspconfig'
@@ -49,6 +40,14 @@ return require('packer').startup(function(use)
   use 'MunifTanjim/prettier.nvim'
 
   use 'nvim-orgmode/orgmode'
+
+  use {'akinsho/org-bullets.nvim', config = function()
+    require('org-bullets').setup {
+      symbols = {
+        headlines = { "●", "●", "●", "●" }
+      }
+    }
+  end}
 
   use 'norcalli/nvim-colorizer.lua'
 end)

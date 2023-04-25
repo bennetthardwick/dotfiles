@@ -255,6 +255,10 @@ for_window [class="Steam" title="Steam - News.*"] floating enable
 for_window [class="Steam" title="Create or select new Steam library folder:"] floating enable
 for_window [class="steam_app_.*" title="Origin"] floating enable
 
+# Hide the firefox sharing indicator
+for_window [app_id="firefox" title="Firefox \- Sharing Indicator"] floating enable
+assign [app_id="firefox" title="Firefox \- Sharing Indicator"] workspace hidden
+
 # Hide the "cast-to-x" window a secret workspace
 assign [class="cast-to-x"] workspace hidden
 

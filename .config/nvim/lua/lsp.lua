@@ -46,13 +46,14 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
+
   vim.keymap.set('n', '<leader>p', function()
     vim.lsp.buf.format { async = false }
     vim.api.nvim_command('write')
   end, bufopts)
 end
 
-vim.api.nvim_create_user_command('Format', function() print('To format the file use "<space>f" in normal mode in a file with a language server') end, {})
+vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format { async = true } end, {})
 
 local lsp_flags = {}
 
