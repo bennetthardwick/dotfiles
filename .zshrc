@@ -110,7 +110,13 @@ export GTK_THEME="Gruvbox"
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
 if [ "$(tty)" = "/dev/tty1" ]; then
-  if type "sway" > /dev/null; then
+  if type "Hyprland" > /dev/null; then
+    export XDG_CURRENT_DESKTOP=hyprland
+    export MOZ_ENABLE_WAYLAND=1
+
+    Hyprland 2> /tmp/hyprland.log
+    exit 0
+  elif type "sway" > /dev/null; then
     export XDG_CURRENT_DESKTOP=sway
     export MOZ_ENABLE_WAYLAND=1
 

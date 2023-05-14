@@ -76,6 +76,9 @@ require('lspconfig')['rust_analyzer'].setup {
     -- Server-specific settings...
     settings = {
       ["rust-analyzer"] = {
+        procMacro = {
+          enable = true
+        },
         cargo = {
           buildScripts = {
             enable = true
