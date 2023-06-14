@@ -261,3 +261,9 @@ prettier.setup {
     "yaml",
   },
 }
+
+local obsidian = require("obsidian")
+
+obsidian.setup {
+  dir = "/home/bennett/Documents/new-notes"
+}

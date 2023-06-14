@@ -23,16 +23,16 @@
        :space-evenly true
        :halign "start"
        :spacing 2
-    (button :onclick "wmctrl -s 0" "")
-    (button :onclick "wmctrl -s 1" "")
-    (button :onclick "wmctrl -s 2" "")
-    (button :onclick "wmctrl -s 3" "")
-    (button :onclick "wmctrl -s 4" "")
-    (button :onclick "wmctrl -s 5" "")
-    (button :onclick "wmctrl -s 6" "")
-    (button :onclick "wmctrl -s 7" "")
-    (button :onclick "wmctrl -s 8" "")
-    (button :onclick "wmctrl -s 9" "")))
+    (button :onclick "hyprctl dispatch workspace 1" "")
+    (button :onclick "hyprctl dispatch workspace 2" "")
+    (button :onclick "hyprctl dispatch workspace 3" "")
+    (button :onclick "hyprctl dispatch workspace 4" "")
+    (button :onclick "hyprctl dispatch workspace 5" "")
+    (button :onclick "hyprctl dispatch workspace 6" "")
+    (button :onclick "hyprctl dispatch workspace 7" "")
+    (button :onclick "hyprctl dispatch workspace 8" "")
+    (button :onclick "hyprctl dispatch workspace 9" "")
+    (button :onclick "hyprctl dispatch workspace 10" "")))
 
 (defwidget music []
   (box :class "music"

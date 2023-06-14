@@ -50,4 +50,8 @@ return require('packer').startup(function(use)
   end}
 
   use 'norcalli/nvim-colorizer.lua'
+
+  use 'norcalli/nvim-colorizer.lua'
+
+  use 'epwalsh/obsidian.nvim'
 end)

@@ -1,9 +1,10 @@
 {
     "height": 30, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": ["sway/window"],
-    "modules-right": ["custom/todos", "custom/pomo", "pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
+    "modules-left": ["wlr/workspaces", "mpris", "sway/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
+    "layer": "top",
     // Modules configuration
     "sway/workspaces": {
         "disable-scroll": true,
@@ -14,6 +15,7 @@
             "2": "",
             "3": "",
             "4": "",
+            "8": "",
             "9": "",
             "10": "",
             "urgent": "",
@@ -21,6 +23,32 @@
             "default": ""
         }
     },
+
+    "wlr/workspaces": {
+      "format": "{icon}",
+      "on-click": "activate",
+      "sort-by-number": true,
+      "sort-by-name": false,
+      "all-outputs": true,
+      "format-icons": {
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "8": "",
+          "9": "",
+          "10": "",
+          "urgent": "",
+          "focused": "",
+          "default": ""
+      }
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true
+    },
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,

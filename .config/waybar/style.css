@@ -68,7 +68,7 @@ window#waybar.empty #window {
   border: solid 2px #191919;
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #workspaces button.active {
   background-color: #191919;
   color: #fff;
   border: solid 2px #458588;

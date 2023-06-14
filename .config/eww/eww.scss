@@ -61,3 +61,7 @@
 .workspaces button:hover {
   border: solid 2px #458588;
 }
+
+.workspaces button.focused {
+  background: red;
+}

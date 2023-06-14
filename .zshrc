@@ -55,11 +55,13 @@ safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
 export N_PREFIX="$HOME/.n/"
 
+# This should override all other bin folders
+export PATH="$HOME/bin:$PATH"
+
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:/opt/google-cloud-sdk/bin"
-export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$N_PREFIX/bin:$PATH"
