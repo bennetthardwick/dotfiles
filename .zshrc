@@ -38,14 +38,12 @@ safe_source() {
 }
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir -p $ZSH_CACHE_DIR
 fi
 
 safe_source $ZSH/oh-my-zsh.sh
-
-safe_source /home/bennett/.ghcup/env
-safe_source /home/bennett/.cargo/env
 
 safe_source /opt/miniconda3/etc/profile.d/conda.sh
 
@@ -53,21 +51,24 @@ safe_source /opt/miniconda3/etc/profile.d/conda.sh
 export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
+export PATH="/usr/lib:/usr/bin:/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+
+safe_source /home/bennett/.ghcup/env
+
+export PNPM_HOME="/home/bennett/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 export N_PREFIX="$HOME/.n/"
-
-# This should override all other bin folders
-export PATH="$HOME/bin:$PATH"
-
-export PATH="$PATH:$HOME/.cabal/bin"
-export PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:/opt/google-cloud-sdk/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$N_PREFIX/bin:$PATH"
-export PATH="$PATH:/bin"
+
+safe_source /home/bennett/.cargo/env
 
 safe_source /home/bennett/.asdf/asdf.sh
+
+export PATH="$HOME/bin:$PATH"
+
 
 # if type "asdf" > /dev/null; then
 #   # Fix cargo install path if using asdf
@@ -145,10 +146,6 @@ alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
 alias xcp="xclip -o -selection primary"
 alias joplin="joplin --profile ~/.config/joplin-desktop"
 
-# pnpm
-export PNPM_HOME="/home/bennett/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 
 uzip() {
   unzip $1 -d ${1%.zip}

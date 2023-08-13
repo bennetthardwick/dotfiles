@@ -1,1 +1,1 @@
-source ~/.config/nvim/init.d/default.vim
+source ~/.config/nvim/init.vim

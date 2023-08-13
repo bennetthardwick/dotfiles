@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -ex
+
+examples=$(cargo run --example 2>&1 | sed -n "s/^\s*\([a-z_0-9]*\)$/\1/p")
+example=$(echo "$examples" | fzf-tmux -d $(( 2 + $(wc -l <<< "$examples") )) +m)
+
+cargo run ${@:2} --example "$example"
