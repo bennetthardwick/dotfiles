@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+
+LINK=`wl-paste`
+
+OUTPUT=$(curl -L -f "$LINK")
+
+TITLE=$(echo $OUTPUT | \
+  grep -o '<title[^<]*>[^<]*</title>' | \
+  sed -e "s/’/'/g" | \
+  sed -e 's/<title[^<]*>//g' -e 's/<\/title>//g' | \
+  recode html | \
+  sed -e 's/|/-/g' | \
+  sed -e "s/\//-/g" | \
+  sed -e "s/:/ -/g")
+
+NOTE="$HOME/notes/0. Inbox/Read Later/$TITLE.md"
+
+touch "$NOTE"
+
+echo "---" > "$NOTE"
+
+if [[ "$LINK" == *"youtube.com"* ]]; then
+  echo "tags: later,website,youtube" >> "$NOTE"
+else
+  echo "tags: later,website" >> "$NOTE"
+fi
+
+echo "link: $LINK" >> "$NOTE"
+echo "---" >> "$NOTE"
+
+notify-send "Link '$TITLE' added successfully"
+
+exit 0
