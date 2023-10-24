@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+xdg-open "obsidian://open?vault=notes"

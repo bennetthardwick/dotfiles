@@ -32,18 +32,23 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, bufopts)
+
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
 
@@ -51,6 +56,10 @@ local on_attach = function(client, bufnr)
     vim.lsp.buf.format { async = false }
     vim.api.nvim_command('write')
   end, bufopts)
+
+  -- if client.server_capabilities.inlayHintProvider then
+  --   vim.lsp.buf.inlay_hint(bufnr, true)
+  -- end
 end
 
 vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format { async = true } end, {})
@@ -102,7 +111,20 @@ require('lspconfig')['marksman'].setup {
 }
 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua", "vim", "help", "rust", "javascript", "typescript", "tsx", "query", "org" },
+  ensure_installed = {
+    "c",
+    "lua",
+    "vim",
+    "help",
+    "rust",
+    "javascript",
+    "typescript",
+    "tsx",
+    "query",
+    "make",
+    "markdown"
+  },
+
   auto_install = true,
 
   highlight = {
@@ -141,22 +163,6 @@ vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
 
 vim.api.nvim_create_user_command('Rg', function() print('To search use "<leader>fg" in normal mode') end, {})
-
-local org = require('orgmode')
-
-org.setup_ts_grammar()
-
-org.setup {
-  org_agenda_files = { '~/notes/**/*' },
-  org_default_notes_file = '~/notes/refile.org',
-  org_capture_templates = {
-    t = { description = 'Task', template = '\n* TODO %?\n  %u', target = '~/notes/refile.org' },
-    j = { description = 'Journal', template = '\n* %U\n\n  %?', target = '~/notes/refile.org' },
-    m = { description = 'Thought', template = '\n* %? :thought:', target = '~/notes/refile.org' }
-  },
-  org_hide_leading_stars = true,
-  org_hide_emphasis_markers = true,
-} 
 
 local cmp = require('cmp')
 
@@ -198,7 +204,6 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp_signature_help' },
     { name = 'nvim_lsp' },
-    { name = 'orgmode' },
     { name = 'path' },
     { name = 'buffer' },
   }

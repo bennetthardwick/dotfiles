@@ -52,7 +52,7 @@ export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
 export PATH="/usr/lib:/usr/bin:/bin"
-export PATH="$HOME/.local/bin:$PATH"
+
 export PATH="$HOME/.yarn/bin:$PATH"
 
 safe_source /home/bennett/.ghcup/env
@@ -68,6 +68,7 @@ safe_source /home/bennett/.cargo/env
 safe_source /home/bennett/.asdf/asdf.sh
 
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 # if type "asdf" > /dev/null; then

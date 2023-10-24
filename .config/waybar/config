@@ -1,7 +1,7 @@
 {
     "height": 30, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
-    "modules-left": ["wlr/workspaces", "mpris", "sway/mode"],
+    "modules-left": ["hyprland/workspaces", "mpris"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["pulseaudio", "memory", "cpu", "temperature", "battery", "clock", "tray"],
     "layer": "top",
@@ -25,7 +25,7 @@
         }
     },
 
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
       "format": "{icon}",
       "on-click": "activate",
       "sort-by-number": true,
