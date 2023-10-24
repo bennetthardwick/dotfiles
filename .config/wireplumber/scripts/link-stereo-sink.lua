@@ -105,7 +105,6 @@ function link_ports()
     ["link.output.node"] = stereo.properties["object.id"],
     ["link.output.port"] = stereo_l.properties["object.id"],
     
-    ["object.linger"] = true,
     ["object.id"] = nil,
 
     ["node.description"] = link_desc
@@ -118,7 +117,6 @@ function link_ports()
     ["link.output.node"] = stereo.properties["object.id"],
     ["link.output.port"] = stereo_r.properties["object.id"],
     
-    ["object.linger"] = true,
     ["object.id"] = nil,
 
     ["node.description"] = link_desc
