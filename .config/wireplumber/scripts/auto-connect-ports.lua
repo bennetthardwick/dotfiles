@@ -1,3 +1,9 @@
+-- As explained on: https://bennett.dev/auto-link-pipewire-ports-wireplumber/
+--
+-- This script keeps my stereo-null-sink connected to whatever output I'm currently using.
+-- I do this so Pulseaudio (and Wine) always sees a stereo output plus I can swap the output
+-- without needing to reconnect everything.
+
 -- Link two ports together
 function link_port(output_port, input_port)
   if not input_port or not output_port then
