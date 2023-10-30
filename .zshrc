@@ -60,7 +60,6 @@ safe_source /home/bennett/.ghcup/env
 export PNPM_HOME="/home/bennett/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-export N_PREFIX="$HOME/.n/"
 export PATH="$N_PREFIX/bin:$PATH"
 
 safe_source /home/bennett/.cargo/env

@@ -113,3 +113,13 @@ auto_connect_ports {
     ["FR"] = "FR"
   }
 }
+
+-- Auto connect the stereo null sink to the jack_sink for when the jack server gets started
+auto_connect_ports {
+  output = Constraint { "object.path", "matches", "stereo-null-sink:*" },
+  input = Constraint { "object.path", "matches", "alsa:pcm:*" },
+  connect = {
+    ["FL"] = "FL",
+    ["FR"] = "FR"
+  }
+}

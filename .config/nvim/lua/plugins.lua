@@ -1,42 +1,52 @@
-return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup {
   -- Visuals
-  use 'ellisonleao/gruvbox.nvim'
+  'ellisonleao/gruvbox.nvim',
 
-  use 'airblade/vim-gitgutter'
+  'airblade/vim-gitgutter',
 
-  use 'tpope/vim-fugitive'
+  'tpope/vim-fugitive',
   
-  use 'neovim/nvim-lspconfig'
+  'neovim/nvim-lspconfig',
 
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
-        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-        ts_update()
-    end,
-  }
+    build = ":TSUpdate"
+  },
 
-  use 'nvim-treesitter/playground'
+  'nvim-treesitter/playground',
 
-  use 'nvim-lua/lsp-status.nvim'
+  'nvim-lua/lsp-status.nvim',
 
-  use 'nvim-telescope/telescope.nvim'
+  'nvim-telescope/telescope.nvim',
 
-  use 'dcampos/nvim-snippy'
+  'dcampos/nvim-snippy',
 
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-path',
+  'hrsh7th/cmp-cmdline',
+  'hrsh7th/nvim-cmp',
 
-  use 'nvim-lua/plenary.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'MunifTanjim/prettier.nvim'
+  'nvim-lua/plenary.nvim',
+  'jose-elias-alvarez/null-ls.nvim',
+  'MunifTanjim/prettier.nvim',
 
-  use 'norcalli/nvim-colorizer.lua'
+  'norcalli/nvim-colorizer.lua',
 
-  use 'epwalsh/obsidian.nvim'
-end)
+  'epwalsh/obsidian.nvim',
+}
