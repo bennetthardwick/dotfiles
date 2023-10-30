@@ -7,7 +7,7 @@
 -- Link two ports together
 function link_port(output_port, input_port)
   if not input_port or not output_port then
-    return
+    return false
   end
 
   local link_args = {
@@ -28,6 +28,43 @@ function link_port(output_port, input_port)
 
   local link = Link("link-factory", link_args)
   link:activate(1)
+
+  return true
+end
+
+function delete_link(link_om, output_port, input_port)
+  print("Trying to delete")
+
+  if not input_port or not output_port then
+    print("No ports")
+    return false
+  end
+
+  local link = link_om:lookup {
+    Constraint {
+      "link.input.node", "equals", input_port.properties["node.id"]
+    },
+    Constraint {
+      "link.input.port", "equals", input_port.properties["object.id"],
+    },
+    Constraint {
+      "link.output.node", "equals", output_port.properties["node.id"],
+    },
+    Constraint {
+      "link.output.port", "equals", output_port.properties["object.id"],
+    }
+  }
+
+  if not link then
+
+    print("No link!")
+
+    return
+  end
+
+  print("Deleting link!")
+
+  link:request_destroy()
 end
 
 -- Automatically link ports together by their specific audio channels.
@@ -78,20 +115,55 @@ function auto_connect_ports(args)
     }
   }
 
+  local all_links = ObjectManager {
+    Interest {
+      type = "link",
+    }
+  }
+
+  local unless = nil
+
+  if args["unless"] then
+    unless = ObjectManager {
+      Interest {
+        type = "port",
+        args["unless"],
+        Constraint { "port.direction", "equals", "in" }
+      }
+    }
+
+  end
+
   function _connect()
+    local delete_links = unless and unless:get_n_objects() > 0
+
+    print("Delete links", delete_links)
+
     for output_name, input_name in pairs(args.connect) do
       local output = output_om:lookup { Constraint { "audio.channel", "equals", output_name } }
       local input =  input_om:lookup { Constraint { "audio.channel", "equals", input_name } }
 
-      link_port(output, input)
+      if delete_links then
+        delete_link(all_links, output, input)
+      else
+        link_port(output, input)
+      end
     end
   end
 
   output_om:connect("object-added", _connect)
   input_om:connect("object-added", _connect)
+  all_links:connect("object-added", _connect)
 
   output_om:activate()
   input_om:activate()
+  all_links:activate()
+
+  if unless then
+    unless:connect("object-added", _connect)
+    unless:connect("object-removed", _connect)
+    unless:activate()
+  end
 end
 
 -- Auto connect the stereo null sink to the first two channels of the EVO16
@@ -118,6 +190,19 @@ auto_connect_ports {
 auto_connect_ports {
   output = Constraint { "object.path", "matches", "stereo-null-sink:*" },
   input = Constraint { "object.path", "matches", "alsa:pcm:*" },
+  connect = {
+    ["FL"] = "FL",
+    ["FR"] = "FR"
+  },
+
+  -- Don't connect to speakers if there are bluetooth headphones plugged in
+  unless = Constraint { "object.path", "matches", "bluez_output.*" }
+}
+
+-- Auto connect the stereo null sink to bluetooth headphones
+auto_connect_ports {
+  output = Constraint { "object.path", "matches", "stereo-null-sink:*" },
+  input = Constraint { "object.path", "matches", "bluez_output.*" },
   connect = {
     ["FL"] = "FL",
     ["FR"] = "FR"
