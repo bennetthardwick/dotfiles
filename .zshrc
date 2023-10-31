@@ -151,4 +151,3 @@ alias joplin="joplin --profile ~/.config/joplin-desktop"
 uzip() {
   unzip $1 -d ${1%.zip}
 }
-

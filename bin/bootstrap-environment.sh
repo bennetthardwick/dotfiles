@@ -29,7 +29,6 @@ echo "\nInstalling AUR Dependencies\n\n"
 # Everything required to build from the AUR (if you didn't install base-devel)
 sudo pacman -S --noconfirm neovim vim base-devel --needed
 
-
 # Build all packages (opening the PKGBUILD for each one)
 # To get peak performance from building AUR packages set the "jobs" flag on
 # the build software to be around the number of threads you have.
@@ -39,50 +38,44 @@ sudo pacman -S --noconfirm neovim vim base-devel --needed
 aur oh-my-zsh-git
 aur ttf-font-awesome-4
 
-GRUVBOX_GTK_FOLDER=$HOME/.themes/gruvbox-gtk/
+GRUVBOX_GTK_FOLDER=$HOME/.themes/Gruvbox/
+GRUVBOX_GTK_ICON_FOLDER=$HOME/.icons/Gruvbox/
 
 if [ ! -d "$GRUVBOX_GTK_FOLDER" ]
 then
   git clone https://github.com/bennetthardwick/gruvbox-gtk.git --depth 1 $GRUVBOX_GTK_FOLDER
 fi
 
-
-if [ ! -d "$HOME/git/gruvbox-arc-icon-theme/" ]
+if [ ! -d "$GRUVBOX_GTK_ICON_FOLDER" ]
 then
-  cd $HOME/git/
-  git clone https://github.com/bennetthardwick/gruvbox-arc-icon-theme --depth 1 gruvbox-arc-icon-theme
-  cd gruvbox-arc-icon-theme
-  ./autogen.sh --prefix=/usr
-  sudo make install
+  git clone https://github.com/bennetthardwick/gruvbox-icons-gtk.git --depth 1 $GRUVBOX_GTK_ICON_FOLDER
 fi
 
 echo "\nInstalling Dependencies\n\n"
 
-# For some reason i3 is already installed by this point.
-# This will fail the next step so just use `yes`.
-yes | sudo pacman -S i3-gaps
-
 sudo pacman -S --noconfirm --needed \
-  neovim \
   openssh \
   htop \
-  the_silver_searcher \
   fzf \
-  chromium \
+  firefox \
   alacritty \
   zsh \
   zsh-autosuggestions \
   ripgrep \
   ttf-fantasque-sans-mono \
+  ttf-fantasque-nerd \
   cantarell-fonts \
   ntp \
-  pulseaudio \
+  pipewire \
+  pipewire-audio \
+  pipewire-alsa \
+  pipewire-jack-client \
+  pipewire-pulse \
+  wireplumber \
   pavucontrol \
-  bat
-
-# Install sway / wayland stuff
-sudo pacman -S --noconfirm --needed \
-  sway \
+  bat \
+  hyprland \
+  xdg-desktop-portal-hyprland \
   wl-clipboard \
   waybar \
   brightnessctl \
@@ -125,12 +118,9 @@ then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # Return home so new shells open at home
 cd $HOME
 
-if [[ $(tty) == /dev/tty* ]]; then
-  sx
-fi
+echo "Install complete. Exit the shell and log back in to start the desktop environment."
+echo ""
+echo "Have fun! :)"
