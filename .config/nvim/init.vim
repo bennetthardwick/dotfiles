@@ -1,19 +1,4 @@
-" source ~/.config/nvim/init.d/default.vim
-" source ~/.config/nvim/init.d/visuals.vim
-" " 
-" source ~/.config/nvim/init.d/plugins.vim
-" " 
-" " source ~/.config/nvim/init.d/mappings.vim
-" " 
-" " " LSP and treesitter stuff
-" " " I'll get around to it one day
-" " " source ~/.config/nvim/init.d/languages.vim
-" " 
-" " " CoC config
-" " source ~/.config/nvim/languages.vim
-" "
-
-" -- Benny's Default Vim Config -- "
+" -- Benny's Default Vim Config --
 " You can find out what different things do by opening this file in Vim /
 " Neovim and pressing <Shift-K> when your cursor is on a word. This will take
 " you to the man pages. If you're lazy, you can read my comments.
@@ -85,7 +70,6 @@ if has('nvim')
   let &t_Co=256
 
   nnoremap <silent> <leader>sv :source ~/.config/nvim/init.vim<CR>
-  nnoremap <silent> <leader>r :e ~/notes/refile.org<CR>
   
   let g:gruvbox_contrast_dark = "medium"
 
