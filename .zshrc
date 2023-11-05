@@ -103,7 +103,7 @@ if type "compinit" > /dev/null; then
   compinit -C
 fi
 
-export GTK_IM_MODULE=fcitx
+# export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export PIPEWIRE_LATENCY="256/48000"
