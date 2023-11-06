@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ZERO_SCALING="$(hyprctl getoption xwayland:force_zero_scaling -j | jq .int)"
+
+if [[ "$ZERO_SCALING" -eq "1" ]]; then
+  hyprctl keyword xwayland:force_zero_scaling false
+else
+  hyprctl keyword xwayland:force_zero_scaling true
+fi
+
+hyprctl dispatch forcerendererreload

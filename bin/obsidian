@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-OBSIDIAN_USE_WAYLAND=1 /usr/bin/obsidian -enable-features=UseOzonePlatform -ozone-platform=wayland $@

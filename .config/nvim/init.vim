@@ -76,11 +76,6 @@ if has('nvim')
   " set conceallevel=2
   " set concealcursor=nc
 
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-
   " Statusline
   function! LspStatus() abort
     if luaeval('#vim.lsp.buf_get_clients() > 0')
