@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e
+
+FILE="$HOME/screenshots/tmp/$(date +%s).png"
+
+if [ ! -z "$WAYLAND_DISPLAY" ]; then
+  grim -g "$(slurp)" $FILE
+  wl-copy < $FILE
+else
+  maim -s $FILE
+fi
