@@ -50,11 +50,12 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function()
     vim.cmd("Prettier")
-    vim.lsp.buf.format { async = true } 
+    vim.lsp.buf.format { async = false } 
   end, bufopts)
 
 
   vim.keymap.set('n', '<leader>p', function()
+    vim.cmd("Prettier")
     vim.lsp.buf.format { async = false }
     vim.api.nvim_command('write')
   end, bufopts)
