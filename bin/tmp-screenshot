@@ -2,7 +2,9 @@
 
 set -e
 
-FILE="$HOME/screenshots/tmp/$(date +%s).png"
+mkdir -p "/tmp/screenshots"
+
+FILE="/tmp/screenshots/$(date +%s).png"
 
 if [ ! -z "$WAYLAND_DISPLAY" ]; then
   grim -g "$(slurp)" $FILE

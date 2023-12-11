@@ -81,31 +81,39 @@ require('lspconfig')['tsserver'].setup {
 --     capabilities = capabilities,
 -- }
 
-require('lspconfig')['rust_analyzer'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {
-        procMacro = {
-          enable = true
-        },
-        cargo = {
-          buildScripts = {
-            enable = true
-          },
-          features = "all",
-          checkOnSave = {
-            allTargets = true
-          },
-          procMacro = {
-            enable = true
-          }
-        }
-      }
-    }
+require("rust-tools").setup {
+  server = {
+    on_attach = on_attach
+  }
 }
+
+vim.api.nvim_create_user_command('ExpandRustMacro', function() require("rust-tools").expand_macro.expand_macro() end, {})
+
+-- require('lspconfig')['rust_analyzer'].setup {
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+--     -- Server-specific settings...
+--     settings = {
+--       ["rust-analyzer"] = {
+--         procMacro = {
+--           enable = true
+--         },
+--         cargo = {
+--           buildScripts = {
+--             enable = true
+--           },
+--           features = "all",
+--           checkOnSave = {
+--             allTargets = true
+--           },
+--           procMacro = {
+--             enable = true
+--           }
+--         }
+--       }
+--     }
+-- }
 
 require('lspconfig')['marksman'].setup {
   on_attach = on_attach,
