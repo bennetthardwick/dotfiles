@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+output=$(zenity --entry --text="What are you thinking about?" --title="Capture Thought")
+output="\n### $(date +%R)\n$output"
+encoded=$(echo -e "$output" | jq "@uri" -sRr)
+
+xdg-open "obsidian://advanced-uri?vault=notes&daily=true&heading=Notes&data=$encoded&mode=append"

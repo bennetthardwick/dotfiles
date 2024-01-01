@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+jack_control start
+sleep 1
+# Run a second time because pipewire is weird!
+jack_control start
+sleep 1
+a2j_control --ehw
+a2j_control --start
+
