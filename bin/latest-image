@@ -2,9 +2,4 @@
 
 FILE="/home/bennett/screenshots/$(ls --sort time /home/bennett/screenshots | head -1)" 
 
-if [ ! -z "$WAYLAND_DISPLAY" ]; then
-  imv $FILE -s none
-else
-  feh $FILE --class __floating
-fi
-
+open-image "$FILE"

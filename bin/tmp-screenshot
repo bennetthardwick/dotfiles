@@ -6,9 +6,4 @@ mkdir -p "/tmp/screenshots"
 
 FILE="/tmp/screenshots/$(date +%s).png"
 
-if [ ! -z "$WAYLAND_DISPLAY" ]; then
-  grim -g "$(slurp)" $FILE
-  wl-copy < $FILE
-else
-  maim -s $FILE
-fi
+screenshot "$FILE"

@@ -1,14 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
-FILE="$HOME/screenshots/$(date +%s).png"
-
-if [ ! -z "$WAYLAND_DISPLAY" ]; then
-  grim -g "$(slurp)" $FILE
-  imv -s full $FILE -w __floating
-else
-  maim -s $FILE
-  feh $FILE --class __floating
-fi
-
+file="$(screenshot "$@")"
+open-image "$file"

@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+file="$@"
+mime_type=`file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p'`
+
+
+case $mime_type in
+  image/*)
+
+    open-image "$file"
+
+    ;;
+
+  video/*)
+
+    mpv "$file"
+
+    ;;
+
+  inode/directory)
+    (
+      set -e
+      cd $file
+      open "$(fzf)"
+    )
+
+    ;;
+
+  *)
+
+    echo $mime_type
+
+    bat "$file"
+
+    ;;
+
+esac
+
+
+
+# if [ ! -z "$WAYLAND_DISPLAY" ]; then
+#   imv -s full $FILE -w __floating
+# else
+#   feh $FILE --class __floating
+# fi

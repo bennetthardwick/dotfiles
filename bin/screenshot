@@ -2,7 +2,8 @@
 
 set -e
 
-FILE="$HOME/screenshots/$(date +%s).png"
+INPUT=${@:-"$HOME/screenshots/$(date +%s).png"}
+FILE="${INPUT%.png}.png"
 
 if [ ! -z "$WAYLAND_DISPLAY" ]; then
   grim -g "$(slurp)" $FILE
@@ -11,3 +12,6 @@ else
   maim -s $FILE
 fi
 
+notify-send "Saved screenshot to \"$FILE\"" -t 5000
+
+echo $FILE

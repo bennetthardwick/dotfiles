@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+set -e
+
+rsync -ah --partial --info=progress2 "$@" "rsync://tower-arch.local/files/Inbox"

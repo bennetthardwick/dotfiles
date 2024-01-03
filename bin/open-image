@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ ! -z "$WAYLAND_DISPLAY" ]; then
+  imv -s full "$@" -w __floating
+else
+  feh "$@" --class __floating
+fi

@@ -16,6 +16,7 @@ USER="bennett"
 DEFAULT_USER=`whoami`
 
 ZSH_CUSTOM="$HOME/.config/zsh-custom"
+
 if [ -d "$HOME/.oh-my-zsh" ]; then
   ZSH=$HOME/.oh-my-zsh
 else
@@ -24,8 +25,6 @@ fi
 
 ZSH_THEME="gitster"
 DISABLE_AUTO_UPDATE="true"
-
-plugins=(git)
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -70,14 +69,6 @@ safe_source /home/bennett/.asdf/asdf.sh
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-
-# if type "asdf" > /dev/null; then
-#   # Fix cargo install path if using asdf
-#   if asdf which cargo 2> /dev/null > /dev/null; then
-#     export PATH="$PATH:$(dirname $(asdf which cargo))"
-#   fi
-# fi
-
 export NPM_TOKEN=${NPM_TOKEN:-""}
 
 stty -ixon
@@ -117,12 +108,14 @@ if [ "$(tty)" = "/dev/tty1" ]; then
   if type "Hyprland" > /dev/null; then
     export XDG_CURRENT_DESKTOP=hyprland
     export MOZ_ENABLE_WAYLAND=1
+    export ANKI_WAYLAND=1
 
     Hyprland 2> /tmp/hyprland.log
     exit 0
   elif type "sway" > /dev/null; then
     export XDG_CURRENT_DESKTOP=sway
     export MOZ_ENABLE_WAYLAND=1
+    export ANKI_WAYLAND=1
 
     sway -d 2> /tmp/sway.log
     exit 0
@@ -143,11 +136,19 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
-alias udf="pushd ~/git/dotfiles && git pull --no-rebase && popd"
-alias xcp="xclip -o -selection primary"
-alias joplin="joplin --profile ~/.config/joplin-desktop"
-
-
 uzip() {
   unzip $1 -d ${1%.zip}
+}
+
+gp() {
+  (
+    set -e
+    message="${@}"
+
+    git add .
+
+    git commit -m "${message:-WIP}"
+
+    git push
+  )
 }
