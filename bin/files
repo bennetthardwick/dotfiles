@@ -6,5 +6,5 @@ try() {
   fi
 }
 
-try nemo --name __floating
-try nautlius --name __floating
+try nemo --name __float_front
+try nautlius --name __float_front
