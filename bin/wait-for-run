@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git_root_dir="$(git rev-parse --show-toplevel)"
+commit="$(git rev-parse HEAD)"
+workflows="$git_root_dir/.github/workflows"
+
+workflow=$(ls $workflows | fzf)
+
+echo "Waiting for run of \"$workflow\" to finish..."
+
+while [ true ]; do
+  output="$(gh run list -c "$commit" -w "$workflow" -L 1 --json status -q .[0].status)"
+
+  if [ -z "$output" ]; then
+    echo "No runs found"
+    exit 1
+  fi
+
+  case "$output" in
+    in_progress | queued)
+
+      sleep 5
+
+      ;;
+
+    completed)
+      conclusion="$(gh run list -c "$commit" -w "$workflow" -L 1 --json conclusion -q .[0].conclusion)"
+
+      notify-send "Run of \"$workflow\" completed with \"$conclusion\""
+
+      exit 0
+
+      ;;
+
+    *)
+
+      notify-send -u critical "Run of \"$workflow\" returned unknown status \"$output\""
+
+      exit 1
+
+      ;;
+  esac
+done

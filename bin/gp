@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+message="${@}"
+
+git add .
+
+git commit -m "${message:-WIP}"
+
+git push

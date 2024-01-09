@@ -139,16 +139,3 @@ alias ....="cd ../../../"
 uzip() {
   unzip $1 -d ${1%.zip}
 }
-
-gp() {
-  (
-    set -e
-    message="${@}"
-
-    git add .
-
-    git commit -m "${message:-WIP}"
-
-    git push
-  )
-}
