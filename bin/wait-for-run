@@ -29,6 +29,7 @@ while [ true ]; do
       conclusion="$(gh run list -c "$commit" -w "$workflow" -L 1 --json conclusion -q .[0].conclusion)"
 
       notify-send "Run of \"$workflow\" completed with \"$conclusion\""
+      paplay /usr/share/sounds/freedesktop/stereo/message.oga
 
       exit 0
 
@@ -37,6 +38,7 @@ while [ true ]; do
     *)
 
       notify-send -u critical "Run of \"$workflow\" returned unknown status \"$output\""
+      paplay /usr/share/sounds/freedesktop/stereo/message.oga
 
       exit 1
 

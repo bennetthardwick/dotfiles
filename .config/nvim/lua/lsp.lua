@@ -128,6 +128,8 @@ require('nvim-treesitter.configs').setup {
     "vim",
     "vimdoc",
     "rust",
+    "terraform",
+    "hcl",
     "javascript",
     "typescript",
     "tsx",
@@ -140,7 +142,9 @@ require('nvim-treesitter.configs').setup {
 
   highlight = {
     -- set to enable = true to use treesitter for highlighting
-    enable = false,
+    enable = true,
+
+    disable = { "rust", "lua" }
   },
 
   playground = {

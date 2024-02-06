@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$(tty)" = "/dev/tty"* ]]; then
+  # killall -u $USER steam
+
+  gamescope -W 1920 -H 1080 -r 60 -O DP-3 -e -f -- steam
+else
+  echo "start-gamescope must be called from outside a compositor"
+fi

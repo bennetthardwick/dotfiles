@@ -6,7 +6,7 @@ background-color=#181818DD
 text-color=#ebdbb2
 border-color=#83a598
 border-size=1
-margin=5
+margin=3
 
 [urgency=low]
 border-color=#689d6a

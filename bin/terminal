@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+try() {
+  if type "$1" 2>&1> /dev/null; then
+    exit $($@)
+  fi
+}
+
+try foot $@
+try alacritty $@
