@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-  # killall -u $USER steam
+  while true
+  do
+    if [[ "$(killall -u $USER steam 2>&1)" == 'steam: no process found' ]]; then
+      break
+    fi
 
-  gamescope -W 1920 -H 1080 -r 60 -O DP-3 -e -f -- steam
+    sleep 0.2
+  done
+
+  gamescope -w 2560 -h 1440 -W 3840 -H 2160 -r 60 -F fsr -O DP-3 -e -- steam -gamepadui
 else
   echo "start-gamescope must be called from outside a compositor"
 fi

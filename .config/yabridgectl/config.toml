@@ -1,0 +1,13 @@
+plugin_dirs = [
+    '/home/bennett/.wine/drive_c/Program Files/Common Files/VST3',
+    '/home/bennett/.wine/drive_c/Program Files/Native Instruments/VSTPlugins 64 bit',
+    '/home/bennett/.wine/drive_c/Program Files/VstPlugIns/',
+    '/home/bennett/.wine/drive_c/Program Files (x86)/VstPlugIns/',
+]
+vst2_location = 'centralized'
+no_verify = false
+blacklist = []
+
+[last_known_config]
+wine_version = 'wine-9.2'
+yabridge_host_hash = -3455544459850266564

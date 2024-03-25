@@ -81,39 +81,39 @@ require('lspconfig')['tsserver'].setup {
 --     capabilities = capabilities,
 -- }
 
-require("rust-tools").setup {
-  server = {
-    on_attach = on_attach
-  }
-}
-
-vim.api.nvim_create_user_command('ExpandRustMacro', function() require("rust-tools").expand_macro.expand_macro() end, {})
-
--- require('lspconfig')['rust_analyzer'].setup {
---     on_attach = on_attach,
---     flags = lsp_flags,
---     capabilities = capabilities,
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {
---         procMacro = {
---           enable = true
---         },
---         cargo = {
---           buildScripts = {
---             enable = true
---           },
---           features = "all",
---           checkOnSave = {
---             allTargets = true
---           },
---           procMacro = {
---             enable = true
---           }
---         }
---       }
---     }
+-- require("rust-tools").setup {
+--   server = {
+--     on_attach = on_attach
+--   }
 -- }
+-- 
+-- vim.api.nvim_create_user_command('ExpandRustMacro', function() require("rust-tools").expand_macro.expand_macro() end, {})
+
+require('lspconfig')['rust_analyzer'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    -- Server-specific settings...
+    settings = {
+      ["rust-analyzer"] = {
+        procMacro = {
+          enable = true
+        },
+        cargo = {
+          buildScripts = {
+            enable = true
+          },
+          features = "all",
+          checkOnSave = {
+            allTargets = true
+          },
+          procMacro = {
+            enable = true
+          }
+        }
+      }
+    }
+}
 
 require('lspconfig')['marksman'].setup {
   on_attach = on_attach,
@@ -143,8 +143,6 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     -- set to enable = true to use treesitter for highlighting
     enable = true,
-
-    disable = { "rust", "lua" }
   },
 
   playground = {
@@ -157,6 +155,12 @@ require('gruvbox').setup {
     strings = false,
     operators = false,
     comments = false
+  },
+
+  overrides = {
+    ["@function.builtin"] = { fg = GruvboxFg1 },
+    ["@function.builtin"] = { fg = GruvboxFg1 },
+    ["@function.call"] = { fg = GruvboxFg1 }
   }
 }
 
@@ -244,19 +248,4 @@ prettier.setup {
     "typescriptreact",
     "yaml",
   },
-}
-
-local obsidian = require("obsidian")
-
-obsidian.setup {
-  dir = "/home/bennett/notes",
-
-  daily_notes = {
-    folder = "Daily Notes",
-    template = "daily.md"
-  },
-
-  templates = {
-    subdir = "templates"
-  }
 }

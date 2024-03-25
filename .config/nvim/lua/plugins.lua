@@ -47,7 +47,5 @@ require("lazy").setup {
 
   'norcalli/nvim-colorizer.lua',
 
-  'epwalsh/obsidian.nvim',
-
   'simrat39/rust-tools.nvim'
 }
