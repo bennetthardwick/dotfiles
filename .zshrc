@@ -94,6 +94,10 @@ if type "compinit" > /dev/null; then
   compinit -C
 fi
 
+if type "zoxide" > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -105,7 +109,9 @@ export GTK_THEME="Gruvbox"
 # a greeter. This should be the last thing to load so programs launched from i3
 # have the correct PATH / environment variables set.
 if [ "$(tty)" = "/dev/tty1" ]; then
-  if type "Hyprland" > /dev/null; then
+  if false; then
+    exit 1
+  elif type "Hyprland" > /dev/null; then
     export XDG_CURRENT_DESKTOP=hyprland
     export MOZ_ENABLE_WAYLAND=1
     export ANKI_WAYLAND=1
