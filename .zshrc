@@ -104,6 +104,7 @@ export XMODIFIERS=@im=fcitx
 export PIPEWIRE_LATENCY="256/48000"
 
 export GTK_THEME="Gruvbox"
+export BROWSER="open-link"
 
 # If this is started from tty1 then start X. This is a way to get around having
 # a greeter. This should be the last thing to load so programs launched from i3

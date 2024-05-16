@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -eu pipefail
 
 LINK=`wl-paste`
 
@@ -13,9 +13,13 @@ TITLE=$(echo $OUTPUT | \
   recode html | \
   sed -e 's/|/-/g' | \
   sed -e "s/\//-/g" | \
-  sed -e "s/:/ -/g")
+  # sed -e 's/\(.*\)/\L\1/') | \
+  # sed -e "s/\s/-/g" | \
+  # sed -e "s/,//g" | \
+  # sed -e "s/'//g" | \
+  sed -e "s/:/-/g")
 
-NOTE="$HOME/notes/0. Inbox/Read Later/$TITLE.md"
+NOTE="$HOME/notes/00 Inbox/Read Later/$TITLE.md"
 
 touch "$NOTE"
 
