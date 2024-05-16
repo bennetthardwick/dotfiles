@@ -1,0 +1,65 @@
+#main-window #titlebar {
+  overflow: hidden;
+  transition: height 0.3s 0.3s !important;
+}
+/* Default state: Set initial height to enable animation */
+// #main-window #titlebar { height: 3em !important; }
+// #main-window #titlebar { height: 2.5em !important; }
+
+#main-window[uidensity="touch"] #titlebar { height: 3.35em !important; }
+#main-window[uidensity="compact"] #titlebar { height: 2.7em !important; }
+/* Hidden state: Hide native tabs strip */
+#main-window[titlepreface*="​"] #titlebar { height: 0 !important; }
+/* Hidden state: Fix z-index of active pinned tabs */
+#main-window[titlepreface*="​"] #tabbrowser-tabs { z-index: 0 !important; }
+
+/*** Proton Tabs Tweaks ***/
+
+/* Adjust tab corner shape, optionally remove space below tabs */
+
+#tabbrowser-tabs {
+    --user-tab-rounding: 6px;
+}
+
+.tab-background {
+    border-radius: var(--user-tab-rounding) !important;
+}
+
+/* 1/16/2022 Tone down the Fx96 tab border with add-on themes in certain fallback situations */
+.tab-background:is([selected], [multiselected]):-moz-lwtheme {
+    --lwt-tabs-border-color: rgba(0, 0, 0, 0.5) !important;
+}
+[brighttext="true"] .tab-background:is([selected], [multiselected]):-moz-lwtheme {
+    --lwt-tabs-border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Override Normal Density height to Compact Density height only for tabs */
+
+#TabsToolbar, #tabbrowser-tabs {
+    --tab-min-height: 29px !important;
+}
+    /* Tweak for covering a line at the bottom of the active tab on some themes 8/11/2021 */
+#main-window[sizemode="normal"] #toolbar-menubar[autohide="true"] + #TabsToolbar, 
+#main-window[sizemode="normal"] #toolbar-menubar[autohide="true"] + #TabsToolbar #tabbrowser-tabs {
+    --tab-min-height: 30px !important;
+}
+#scrollbutton-up,
+#scrollbutton-down {
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+}
+
+    /* Make sure tab attention dot isn't too high - 10 Dec 2022 */
+.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]),
+.tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]),
+#firefox-view-button[attention], .webextension-browser-action[attention="true"] {
+  background-position-y: bottom 5px !important;
+}
+
+/* Override font-size for tabs */
+
+.tabbrowser-tab {
+    font-size: 12px !important;
+}
+
+/* Tweak Options as of 12/10/2022; Generated Thu May 16 2024 22:06:40 GMT+1000 (Australian Eastern Standard Time) */
