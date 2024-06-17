@@ -1,0 +1,7 @@
+[Desktop entry]
+
+Type=Application
+Version=1.0
+Name="Open Link"
+Exec=/home/bennett/bin/open-link %u
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;

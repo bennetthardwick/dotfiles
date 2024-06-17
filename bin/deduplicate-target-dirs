@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Deduplicating Rust target/ folder files with duperemove."
+echo "This will take a while and use a lot of CPU."
+
+sleep 3
+
+duperemove -r -d $(fd --type directory --no-ignore "^target$" $HOME)

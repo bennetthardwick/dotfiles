@@ -1,3 +1,17 @@
 #!/bin/bash
 
-notes
+set -ex
+
+NOTE="/home/bennett/notes/00 Inbox/notes-$(date +%y-%m-%d).md"
+
+if [ ! -f "$NOTE" ]; then
+  touch "$NOTE"
+  echo "---" >> "$NOTE"
+  echo "type: temp" >> "$NOTE"
+  echo "---" >> "$NOTE"
+  echo "" >> "$NOTE"
+  echo "# Notes for $(date +%y-%m-%d)" >> "$NOTE"
+  echo "" >> "$NOTE"
+fi
+
+nvim "$NOTE"

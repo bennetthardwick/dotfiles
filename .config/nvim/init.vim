@@ -60,6 +60,10 @@ if has('nvim')
 
   set termguicolors
 
+  set breakindent
+  set formatoptions=l
+  set lbr
+
   lua require('init')
 
   colorscheme gruvbox
@@ -70,7 +74,8 @@ if has('nvim')
   let &t_Co=256
 
   nnoremap <silent> <leader>sv :source ~/.config/nvim/init.vim<CR>
-  
+  nnoremap <silent> <leader>t :r!date +\%H:\%M<CR>A - 
+
   let g:gruvbox_contrast_dark = "medium"
 
   " set conceallevel=2
