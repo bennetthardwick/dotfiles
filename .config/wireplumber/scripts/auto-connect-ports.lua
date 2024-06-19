@@ -205,6 +205,8 @@ auto_connect_ports {
   input = Constraint { "object.path", "matches", "bluez_output.*" },
   connect = {
     ["FL"] = "FL",
-    ["FR"] = "FR"
+    ["FR"] = "FR",
+    ["FL"] = "MONO",
+    ["FR"] = "MONO"
   }
 }
