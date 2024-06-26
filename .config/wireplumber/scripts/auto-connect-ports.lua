@@ -139,14 +139,18 @@ function auto_connect_ports(args)
 
     print("Delete links", delete_links)
 
-    for output_name, input_name in pairs(args.connect) do
-      local output = output_om:lookup { Constraint { "audio.channel", "equals", output_name } }
-      local input =  input_om:lookup { Constraint { "audio.channel", "equals", input_name } }
+    for output_name, input_names in pairs(args.connect) do
+      local input_names = input_names[1] == nil and { input_names } or input_names
 
-      if delete_links then
-        delete_link(all_links, output, input)
-      else
-        link_port(output, input)
+      for _i, input_name in pairs(input_names) do
+        local output = output_om:lookup { Constraint { "audio.channel", "equals", output_name } }
+        local input =  input_om:lookup { Constraint { "audio.channel", "equals", input_name } }
+
+        if delete_links then
+          delete_link(all_links, output, input)
+        else
+          link_port(output, input)
+        end
       end
     end
   end
@@ -204,9 +208,8 @@ auto_connect_ports {
   output = Constraint { "object.path", "matches", "stereo-null-sink:*" },
   input = Constraint { "object.path", "matches", "bluez_output.*" },
   connect = {
-    ["FL"] = "FL",
-    ["FR"] = "FR",
-    ["FL"] = "MONO",
-    ["FR"] = "MONO"
+    -- Connect to the correct channel or "MONO" if the output is in "headset" mode
+    ["FL"] = { "FL", "MONO" },
+    ["FR"] = { "FR", "MONO" }
   }
 }
