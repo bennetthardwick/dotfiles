@@ -144,6 +144,8 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     -- set to enable = true to use treesitter for highlighting
     enable = true,
+
+    disable = { "vim", "vimdoc"}
   },
 
   playground = {

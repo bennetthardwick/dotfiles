@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 NOTE="/home/bennett/notes/00 Inbox/notes-$(date +%y-%m-%d).md"
 

@@ -1,0 +1,7 @@
+[Desktop entry]
+
+Type=Application
+Version=1.0
+Name="Open Image"
+Exec=/home/bennett/bin/open-image %u
+MimeType=image/png;image/jpg;image/jpeg;image/gif;
