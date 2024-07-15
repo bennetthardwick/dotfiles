@@ -96,6 +96,8 @@ fi
 
 if type "zoxide" > /dev/null; then
   eval "$(zoxide init zsh)"
+
+	alias cd="z"
 fi
 
 # export GTK_IM_MODULE=fcitx

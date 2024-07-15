@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 
+while true
+do
+  if [[ "$(killall -u $USER steam 2>&1)" == 'steam: no process found' ]]; then
+    break
+  fi
+
+  sleep 0.2
+done
+
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-  while true
-  do
-    if [[ "$(killall -u $USER steam 2>&1)" == 'steam: no process found' ]]; then
-      break
-    fi
-
-    sleep 0.2
-  done
-
   if [ "$1" = "--remote-play" ]; then
-    gamemoderun mangohud gamescope -w 1920 -h 1080 -W 1920 -H 1080 -r 60 -O DP-3 -e -- steam -gamepadui
+    gamemoderun gamescope -w 1920 -h 1080 -W 1920 -H 1080 -r 60 -O DP-1 -e -- steam -gamepadui
   else 
-    gamescope -w 2560 -h 1440 -W 3840 -H 2160 -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
-    # gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
+    # gamescope -w 2560 -h 1440 -W 3840 -H 2160 -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
+    gamemoderun gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 60 -O DP-1 -e --mangoapp -- steam -gamepadui
   fi
 else
-  echo "start-gamescope must be called from outside a compositor"
+	gamemoderun gamescope -w 3840 -h 2160 -r 60 --mangoapp -- steam -gamepadui
 fi

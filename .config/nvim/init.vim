@@ -20,7 +20,7 @@ set tabstop=2
 " Make Vim work with the mouse (clicking, scrolling, etc.)
 set mouse=a
 " Use spaces instead of tabs when the tab key is pressed
-set expandtab
+" set expandtab
 " Keep indentation when going to the next line
 set autoindent
 " Add a tab depending on syntax (works for C like languages)
@@ -48,6 +48,8 @@ if has('nvim')
   " Show a line where the current cursor is
   set cursorline
 
+	set inccommand=split
+
   " Show completion items using the pop-up-menu (pum)
   set wildoptions=pum
   " Give the pum some transparency
@@ -62,6 +64,7 @@ if has('nvim')
 
   set breakindent
   set formatoptions=l
+ 	let &showbreak = '↳ '
   set lbr
 
   lua require('init')
@@ -129,3 +132,4 @@ if has('persistent_undo')
   set undofile
   set undodir=$HOME/.vim/undo
 endif
+

@@ -32,6 +32,7 @@ require("lazy").setup {
   'nvim-lua/lsp-status.nvim',
 
   'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-ui-select.nvim',
 
   'dcampos/nvim-snippy',
 
@@ -47,5 +48,9 @@ require("lazy").setup {
 
   'norcalli/nvim-colorizer.lua',
 
-  'simrat39/rust-tools.nvim'
+	{
+	  'mrcjkb/rustaceanvim',
+	  version = '^4', -- Recommended
+	  lazy = false, -- This plugin is already lazy
+	}
 }

@@ -90,31 +90,57 @@ require('lspconfig')['tsserver'].setup {
 -- 
 -- vim.api.nvim_create_user_command('ExpandRustMacro', function() require("rust-tools").expand_macro.expand_macro() end, {})
 
-require('lspconfig')['rust_analyzer'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    -- Server-specific settings...
-    settings = {
-      ["rust-analyzer"] = {
-        procMacro = {
-          enable = true
-        },
-        cargo = {
-          buildScripts = {
-            enable = true
-          },
-          features = "all",
-          checkOnSave = {
-            allTargets = true
-          },
-          procMacro = {
-            enable = true
-          }
-        }
-      }
-    }
+vim.g.rustaceanvim = {
+	server = {
+		on_attach = on_attach
+	},
+
+	default_settings = {
+		['rust-analyzer'] = {
+			procMacro = {
+				enable = true
+			},
+
+			cargo = {
+				buildScripts = {
+					enable = true
+				},
+
+				features = "all",
+
+				procMacro = {
+					enable = true
+				}
+			}
+		}
+	}
 }
+
+-- require('lspconfig')['rust_analyzer'].setup {
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+--     -- Server-specific settings...
+--     settings = {
+--       ["rust-analyzer"] = {
+--         procMacro = {
+--           enable = true
+--         },
+--         cargo = {
+--           buildScripts = {
+--             enable = true
+--           },
+--           features = "all",
+--           checkOnSave = {
+--             allTargets = true
+--           },
+--           procMacro = {
+--             enable = true
+--           }
+--         }
+--       }
+--     }
+-- }
 
 require('lspconfig')['marksman'].setup {
   on_attach = on_attach,
@@ -144,8 +170,6 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     -- set to enable = true to use treesitter for highlighting
     enable = true,
-
-    disable = { "vim", "vimdoc"}
   },
 
   playground = {
@@ -175,6 +199,7 @@ require('telescope').setup {
   },
 }
 
+require("telescope").load_extension("ui-select")
 
 local telescope = require("telescope.builtin")
 
