@@ -69,6 +69,8 @@ safe_source /home/bennett/.asdf/asdf.sh
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+export PATH="/opt/google-cloud-cli/bin/:$PATH"
+
 export NPM_TOKEN=${NPM_TOKEN:-""}
 
 stty -ixon
