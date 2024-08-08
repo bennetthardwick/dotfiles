@@ -52,6 +52,8 @@ safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
 export PATH="/usr/lib:/usr/bin:/bin"
 
+export PATH="/usr/bin/vendor_perl/:/usr/bin/core_perl/:$PATH"
+
 export PATH="$HOME/.yarn/bin:$PATH"
 
 safe_source /home/bennett/.ghcup/env

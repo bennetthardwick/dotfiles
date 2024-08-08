@@ -67,6 +67,8 @@ if has('nvim')
  	let &showbreak = '↳ '
   set lbr
 
+  set conceallevel=2
+
   lua require('init')
 
   colorscheme gruvbox
@@ -81,7 +83,6 @@ if has('nvim')
 
   let g:gruvbox_contrast_dark = "medium"
 
-  " set conceallevel=2
   " set concealcursor=nc
 
   " Statusline

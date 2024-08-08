@@ -52,5 +52,27 @@ require("lazy").setup {
 	  'mrcjkb/rustaceanvim',
 	  version = '^4', -- Recommended
 	  lazy = false, -- This plugin is already lazy
+	},
+
+	{
+		'epwalsh/obsidian.nvim',
+		version = '*',
+		lazy = true,
+		ft = "markdown",
+		dependencies = {
+			'nvim-lua/plenary.nvim'
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "notes",
+					path = "~/notes/"
+				}
+			},
+			completion = {
+				nvim_cmp = true,
+				min_chars = 1
+			}
+		}
 	}
 }

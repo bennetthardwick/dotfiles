@@ -7,4 +7,4 @@ if [ -z "$@" ]; then
   exit 1
 fi
 
-rsync -ah --partial --info=progress2 "$@" "rsync://tower-arch.local/files/Inbox"
+rsync -ah --partial --info=progress2 --no-perms --no-owner --no-group "$@" "rsync://tower-arch.local/files/Inbox"

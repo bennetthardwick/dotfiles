@@ -6,15 +6,11 @@ mime_type=`file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p'
 
 case $mime_type in
   image/*)
-
     open-image "$file"
-
     ;;
 
   video/*)
-
     mpv "$file"
-
     ;;
 
   inode/directory)
@@ -23,7 +19,10 @@ case $mime_type in
       cd $file
       open "$(fzf)"
     )
+    ;;
 
+  application/pdf)
+    zathura "$file"
     ;;
 
   *)

@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+file=$(mktemp)
+
+cat << EOT >> $file
+<openbox_config>
+	<applications>
+		<application name="REAPER" title="REAPER v* - Registered to *">
+		  <decor>no</decor>
+			<fullscreen>yes</fullscreen>
+			<maximized>yes</maximized>
+		</application>
+	</applications>
+</openbox_config>
+EOT
+
+Xwayland :12 &
+
+start-jack
+
+DISPLAY=:12 openbox --config-file $file --startup reaper
