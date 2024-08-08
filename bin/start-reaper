@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# Create a random file for the Openbox config to live in
 file=$(mktemp)
 
+# Choose a random port number for the X11 display to open on
+display=$RANDOM
+
+# Dump some Openbox config so that the Reaper application is maximized and doesn't have a window border when it is opened.
 cat << EOT >> $file
 <openbox_config>
 	<applications>
@@ -14,8 +19,11 @@ cat << EOT >> $file
 </openbox_config>
 EOT
 
-Xwayland :12 &
+# Start the Xwayland process on the random display port
+Xwayland :$display &
 
+# Start the Jack audio server for better mic input
 start-jack
 
-DISPLAY=:12 openbox --config-file $file --startup reaper
+# Start Reaper in Openbox under Xwayland with the provided config
+DISPLAY=:$display openbox --config-file $file --startup reaper
