@@ -98,24 +98,25 @@ require('lspconfig')['gopls'].setup {
 
 vim.g.rustaceanvim = {
 	server = {
-		on_attach = on_attach
-	},
+		on_attach = on_attach,
 
-	default_settings = {
-		['rust-analyzer'] = {
-			procMacro = {
-				enable = true
-			},
-
-			cargo = {
-				buildScripts = {
+		default_settings = {
+			['rust-analyzer'] = {
+				procMacro = {
 					enable = true
 				},
 
-				features = "all",
+				cargo = {
+					features = "all",
 
-				procMacro = {
-					enable = true
+					buildScripts = {
+						enable = true
+					},
+
+
+					procMacro = {
+						enable = true
+					}
 				}
 			}
 		}
@@ -153,6 +154,14 @@ require('lspconfig')['marksman'].setup {
   flags = lsp_flags,
   capabilities = capabilities
 }
+
+require('lspconfig')['gopls'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities
+}
+
+
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = {

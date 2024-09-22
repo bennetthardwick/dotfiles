@@ -118,16 +118,21 @@ function auto_connect_ports(args)
 
       if delete_links then
       else
-        local output = output_om:lookup { Constraint { "audio.channel", "equals", output_name } }
+				-- Iterate through all the output ports with the correct channel name
+        for output in output_om:iterate { Constraint { "audio.channel", "equals", output_name } } do
 
-        for _i, input_name in pairs(input_names) do
-          local input =  input_om:lookup { Constraint { "audio.channel", "equals", input_name } }
-          local link = link_port(output, input)
+        	for _i, input_name in pairs(input_names) do
+						-- Iterate through all the input ports with the correct channel name
+        	  for input in input_om:iterate { Constraint { "audio.channel", "equals", input_name } } do
+							-- Link all the nodes
+        	  	local link = link_port(output, input)
 
-          if link then
-            table.insert(links, link)
-          end
-        end
+        	  	if link then
+        	  	  table.insert(links, link)
+        	  	end
+						end
+        	end
+				end
       end
     end
   end
@@ -167,10 +172,9 @@ auto_connect_ports {
   }
 }
 
--- Auto connect the stereo null sink to the jack_sink for when the jack server gets started
 auto_connect_ports {
   output = Constraint { "object.path", "matches", "stereo-null-sink:*" },
-  input = Constraint { "object.path", "matches", "alsa:pcm:*" },
+  input = Constraint { "object.path", "matches", "alsa:*" },
   connect = {
     ["FL"] = "FL",
     ["FR"] = "FR"

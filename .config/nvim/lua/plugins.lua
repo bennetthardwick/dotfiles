@@ -74,5 +74,7 @@ require("lazy").setup {
 				min_chars = 1
 			}
 		}
-	}
+	},
+
+		'David-Kunz/gen.nvim',
 }
