@@ -28,7 +28,7 @@ DISABLE_AUTO_UPDATE="true"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-export SHELL="/usr/bin/zsh"
+export SHELL="$(which zsh)"
 
 safe_source() {
   if [ -f "$1" ]; then
@@ -56,22 +56,28 @@ export PATH="/usr/bin/vendor_perl/:/usr/bin/core_perl/:$PATH"
 
 export PATH="$HOME/.yarn/bin:$PATH"
 
-safe_source /home/bennett/.ghcup/env
+safe_source $HOME/.ghcup/env
 
-export PNPM_HOME="/home/bennett/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 export N_PREFIX="$HOME/.n/"
 export PATH="$N_PREFIX/bin:$PATH"
 
-safe_source /home/bennett/.cargo/env
+safe_source $HOME/.cargo/env
 
-safe_source /home/bennett/.asdf/asdf.sh
+safe_source $HOME/.asdf/asdf.sh
 
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export PATH="/opt/google-cloud-cli/bin/:$PATH"
+
+if [ -f "/opt/homebrew/bin/brew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 export NPM_TOKEN=${NPM_TOKEN:-""}
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-set -x
+if [ "$(uname -s)" = "Darwin" ]; then
+	exit $(/usr/bin/open --url "$@")
+fi
+
 
 WORKSPACE_FILTER=$(hyprctl monitors -j | jq -r '. | map(.activeWorkspace.id) | map(".workspace.id == \(.)") | join(" or ")')
 # Get a Firefox that is on currently active workspaces
