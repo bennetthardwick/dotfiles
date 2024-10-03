@@ -1,5 +1,10 @@
-source $HOME/.bashrc
-export GPG_TTY=$(tty)
+safe_source() {
+  if [ -f "$1" ]; then
+   source $1
+  fi
+}
+
+safe_source $HOME/.bashrc
 
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
@@ -29,12 +34,6 @@ DISABLE_AUTO_UPDATE="true"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export SHELL="$(which zsh)"
-
-safe_source() {
-  if [ -f "$1" ]; then
-   source $1
-  fi
-}
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 
@@ -79,6 +78,13 @@ fi
 
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
+# On Mac if LLVM was installed using brew then use that instead of the system
+if [ -d "/opt/homebrew/opt/llvm/" ]; then
+	export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+fi
+
 export NPM_TOKEN=${NPM_TOKEN:-""}
 
 stty -ixon
@@ -90,14 +96,17 @@ export NODE_OPTIONS=--max_old_space_size=16384
 ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 
 AUTO_SUGGEST=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+AUTO_SUGGEST_BREW=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-if [ -f "$AUTO_SUGGEST" ]
-then
-  source $AUTO_SUGGEST
+if [ -f "$AUTO_SUGGEST" ]; then
+  source "$AUTO_SUGGEST"
+elif [ -f "$AUTO_SUGGEST_BREW" ]; then
+  source "$AUTO_SUGGEST_BREW"
 else
   safe_source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
+# Include functions in the `.zfunc` folder
 fpath+=~/.zfunc
 
 if type "compinit" > /dev/null; then
@@ -106,7 +115,6 @@ fi
 
 if type "zoxide" > /dev/null; then
   eval "$(zoxide init zsh)"
-
 	alias cd="z"
 fi
 
@@ -118,9 +126,11 @@ export PIPEWIRE_LATENCY="256/48000"
 export GTK_THEME="Gruvbox"
 export BROWSER="open-link"
 
-# If this is started from tty1 then start X. This is a way to get around having
-# a greeter. This should be the last thing to load so programs launched from i3
-# have the correct PATH / environment variables set.
+# If this is started from tty1 then start the display server / window manager.
+#
+# This is a better alternative to having a greeter and means that the window manager
+# will be run as the current user instead of root. It also means applications spawned by
+# the window manager will have the PATH and other config in this file set.
 if [ "$(tty)" = "/dev/tty1" ]; then
   if false; then
     exit 1
@@ -147,7 +157,6 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 fi
 
 # Anything following this will only be sourced by shells
-
 
 # Aliases
 
