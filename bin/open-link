@@ -6,16 +6,18 @@ fi
 
 
 WORKSPACE_FILTER=$(hyprctl monitors -j | jq -r '. | map(.activeWorkspace.id) | map(".workspace.id == \(.)") | join(" or ")')
-# Get a Firefox that is on currently active workspaces
-FIREFOX_TO_OPEN=$(hyprctl clients -j | jq -r ".[] | select(.class == \"firefox\" or .class == \"firefox-work\") | select($WORKSPACE_FILTER) | .class" | head -n 1)
+# Get a browser that is on currently active workspaces
+BROWSER_TO_OPEN=$(hyprctl clients -j | jq -r ".[] | select(.class == \"firefox\" or .class == \"firefox-work\" or .class == \"chromium\") | select($WORKSPACE_FILTER) | .class" | head -n 1)
 
-if [[ -z "$FIREFOX_TO_OPEN" ]]; then
+if [[ -z "$BROWSER_TO_OPEN" ]]; then
   # Get the last active one then!
-  FIREFOX_TO_OPEN=$(hyprctl clients -j | jq -s -r ".[] | sort_by(.focusHistoryID) | .[] | select(.class == \"firefox\" or .class == \"firefox-work\") | .class" | head -n 1)
+  BROWSER_TO_OPEN=$(hyprctl clients -j | jq -s -r ".[] | sort_by(.focusHistoryID) | .[] | select(.class == \"firefox\" or .class == \"firefox-work\" or .class == \"chromium\") | .class" | head -n 1)
 fi
 
-if [ "$FIREFOX_TO_OPEN" = "firefox-work" ]; then
+if [ "$BROWSER_TO_OPEN" = "firefox-work" ]; then
   firefox-work --url $1
-else
+elif [ "$BROWSER_TO_OPEN" = "firefox" ]; then
   firefox --url $1
+else
+  chromium $1
 fi

@@ -54,6 +54,7 @@ export PATH="/usr/lib:/usr/bin:/bin"
 export PATH="/usr/bin/vendor_perl/:/usr/bin/core_perl/:$PATH"
 
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 safe_source $HOME/.ghcup/env
 
@@ -123,7 +124,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export PIPEWIRE_LATENCY="256/48000"
 
-export GTK_THEME="Gruvbox"
+export GTK_THEME="Gruvbox:dark"
 export BROWSER="open-link"
 
 # If this is started from tty1 then start the display server / window manager.
@@ -135,7 +136,7 @@ if [ "$(tty)" = "/dev/tty1" ]; then
   if false; then
     exit 1
   elif type "Hyprland" > /dev/null; then
-    export XDG_CURRENT_DESKTOP=hyprland
+    # export XDG_CURRENT_DESKTOP=hyprland
     export MOZ_ENABLE_WAYLAND=1
     export ANKI_WAYLAND=1
 
