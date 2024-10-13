@@ -10,11 +10,12 @@ export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
 
-# Start ssh-agent so that I can call ssh-add
-if type "ssh-agent" > /dev/null; then
-  eval $(ssh-agent) > /dev/null
-else
-  echo "warning: ssh-agent not started"
+if [ "$(uname -s)" != "Darwin" ]; then
+	if type "ssh-agent" > /dev/null; then
+	  eval $(ssh-agent) > /dev/null
+	else
+	  echo "warning: ssh-agent not started"
+	fi
 fi
 
 USER="bennett"
