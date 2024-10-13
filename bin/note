@@ -2,7 +2,7 @@
 
 set -e
 
-NOTE="/home/bennett/notes/00 Inbox/Quick Notes/notes-$(date +%y-%m-%d).md"
+NOTE="$HOME/notes/00 Inbox/Quick Notes/notes-$(date +%y-%m-%d).md"
 
 if [ ! -f "$NOTE" ]; then
   touch "$NOTE"
