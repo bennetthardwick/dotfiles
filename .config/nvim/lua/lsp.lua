@@ -70,7 +70,7 @@ vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format { async
 
 local lsp_flags = {}
 
-require('lspconfig')['tsserver'].setup {
+require('lspconfig')['ts_ls'].setup {
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,

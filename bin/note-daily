@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+
+NOTE="$HOME/notes/01 Daily/$(date +%Y/%m\ %b/%Y-%m-%d.md)"
+
+FOLDER="$(dirname $NOTE)"
+
+mkdir -p "${FOLDER}"
+
+if [ -f "$NOTE" ]; then
+	nvim "$NOTE"
+	exit
+fi
+
+touch "$NOTE"
+
+cat >> "$NOTE" << EOF
+---
+created: "$(date -Iseconds)"
+---
+## Notes
+EOF
+
+nvim "$NOTE"

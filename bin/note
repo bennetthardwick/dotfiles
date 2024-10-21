@@ -1,17 +1,33 @@
 #!/bin/bash
 
-set -e
+PURPOSE="daily"
+POSITIONAL_ARGS=()
 
-NOTE="$HOME/notes/00 Inbox/Quick Notes/notes-$(date +%y-%m-%d).md"
+cd "$HOME/notes/"
 
-if [ ! -f "$NOTE" ]; then
-  touch "$NOTE"
-  echo "---" >> "$NOTE"
-  echo "type: temp" >> "$NOTE"
-  echo "---" >> "$NOTE"
-  echo "" >> "$NOTE"
-  echo "# Notes for $(date +%y-%m-%d)" >> "$NOTE"
-  echo "" >> "$NOTE"
-fi
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -b|--blog-idea)
+      PURPOSE="blog-idea"
+      shift
+      shift
+      ;;
+    -*|--*)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1")
+      shift
+      ;;
+  esac
+done
 
-nvim "$NOTE"
+case $PURPOSE in
+	"daily")
+		note-daily
+		;;
+	"blog-idea")
+		nvim "$HOME/notes/11 Blog/Blog Board.md"
+		;;
+esac
