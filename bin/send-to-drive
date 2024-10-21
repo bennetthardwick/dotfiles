@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ -z "$@" ]; then
+  echo "Input was empty"
+  exit 1
+fi
+
+# Exclude .pp3 files since I'm normally uploading converted photos from RawTherapee
+rclone copy "$@" "google-drive:/0. Inbox/$(date +%y-%m-%d/)/" -P --transfers=12 \
+	--exclude="*.pp3"
