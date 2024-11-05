@@ -72,7 +72,14 @@ safe_source $HOME/.asdf/asdf.sh
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-export PATH="/opt/google-cloud-cli/bin/:$PATH"
+if [ -d "$HOME/.local/opt/google-cloud-sdk/" ]; then
+	source "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc"
+	source "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc"
+fi
+
+if [ -d "$HOME/opt/google-cloud-cli/bin/" ]; then
+	export PATH="/opt/google-cloud-cli/bin/:$PATH"
+fi
 
 if [ -f "/opt/homebrew/bin/brew" ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
