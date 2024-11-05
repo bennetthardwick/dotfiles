@@ -20,7 +20,7 @@ cat << EOT >> $file
 EOT
 
 # Start the Xwayland process on the random display port
-Xwayland :$display &
+Xwayland -hidpi :$display &
 
 # Start the Jack audio server for better mic input
 start-jack

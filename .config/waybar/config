@@ -132,17 +132,16 @@
     },
 
     "mpris": {
-	"format": "{player_icon}  {artist} - {title}",
-	"format-paused": "{status_icon}  {artist} - {title}",
-	"player-icons": {
-                "default": "",
-                "spotifyd": "",
-                "spotify": ""
-	},
-	"status-icons": {
-                "paused": ""
-	},
-	"ignored-players": ["firefox"]
+			"format": "{player_icon}  {artist} - {title}",
+			"format-paused": "{status_icon}  {artist} - {title}",
+			"player-icons": {
+  		              "default": "",
+  		              "spotifyd": "",
+  		              "spotify": ""
+			},
+			"status-icons": {
+  		              "paused": ""
+			},
     },
 
     "custom/pomo": {
