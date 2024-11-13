@@ -72,6 +72,9 @@ require("lazy").setup {
 			completion = {
 				nvim_cmp = true,
 				min_chars = 1
+			},
+			daily_notes = {
+				folder = "01 Daily/" .. os.date("%Y/%m %b/")
 			}
 		}
 	},

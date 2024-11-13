@@ -17,7 +17,6 @@ cat >> "$NOTE" << EOF
 ---
 created: "$(date -Iseconds)"
 ---
-## Notes
 EOF
 
 nvim "$NOTE"

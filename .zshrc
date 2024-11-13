@@ -77,7 +77,7 @@ if [ -d "$HOME/.local/opt/google-cloud-sdk/" ]; then
 	source "$HOME/.local/opt/google-cloud-sdk/path.zsh.inc"
 fi
 
-if [ -d "$HOME/opt/google-cloud-cli/bin/" ]; then
+if [ -d "/opt/google-cloud-cli/bin/" ]; then
 	export PATH="/opt/google-cloud-cli/bin/:$PATH"
 fi
 
