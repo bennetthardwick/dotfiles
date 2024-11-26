@@ -2,8 +2,8 @@
 
 set -e
 
-NOTE="$HOME/notes/01 Daily/$(date +%Y/%m\ %b/%Y-%m-%d.md)"
-TITLE=$(date +'%A, %d %B')
+NOTE="$HOME/notes/01 Daily/$(date +%Y/%m\ %b/Notes/%Y%m%d%H%M.md)"
+
 FOLDER="$(dirname "$NOTE")"
 
 mkdir -p "${FOLDER}"
@@ -17,8 +17,8 @@ cat >> "$NOTE" << EOF
 ---
 created: "$(date -Iseconds)"
 ---
-
-# ${TITLE}
 EOF
+
+cd "$HOME/notes"
 
 nvim "$NOTE"

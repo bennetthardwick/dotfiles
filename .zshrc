@@ -172,6 +172,7 @@ fi
 alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
+alias gti=git
 
 uzip() {
   unzip $1 -d ${1%.zip}

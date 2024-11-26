@@ -9,13 +9,26 @@ do
   sleep 0.2
 done
 
-if [[ "$(tty)" = "/dev/tty"* ]]; then
+WIDTH=3840
+HEIGHT=2160
+
+OUTPUT_WIDTH=3840
+OUTPUT_HEIGHT=2160
+
   if [ "$1" = "--remote-play" ]; then
-    gamemoderun gamescope -w 1920 -h 1080 -W 1920 -H 1080 -r 60 -O DP-1 -e -- steam -gamepadui
-  else 
-    # gamescope -w 2560 -h 1440 -W 3840 -H 2160 -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
-    gamemoderun gamescope -w 3840 -h 2160 -W 3840 -H 2160 -r 60 -O DP-1 -e -- steam -gamepadui
+		WIDTH=1920
+		HEIGHT=1080
+		OUTPUT_WIDTH=1920
+		OUTPUT_HEIGHT=1080
+	elif [ "$1" = "--lowres" ]; then
+		WIDTH=1920
+		HEIGHT=1080
   fi
+
+echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
+
+if [[ "$(tty)" = "/dev/tty"* ]]; then
+	gamemoderun gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
 else
-	gamemoderun gamescope -w 3840 -h 2160 -r 60 -- steam -gamepadui
+	gamemoderun gamescope -w $WIDTH -h $HEIGHT -r 60 -- steam -gamepadui
 fi

@@ -32,6 +32,7 @@ else
 fi
 
 echo "link: $LINK" >> "$NOTE"
+echo "created: \"$(date -Iseconds)\""
 echo "---" >> "$NOTE"
 
 notify-send "Link '$TITLE' added successfully"
