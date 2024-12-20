@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+	echo "The name of the output file should be provided"
+	exit 1
+fi
+
+ffmpeg \
+  -i "/home/bennett/screenshots/$(ls --sort time /home/bennett/screenshots | head -1)" \
+  $@

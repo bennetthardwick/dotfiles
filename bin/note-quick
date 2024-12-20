@@ -8,6 +8,8 @@ FOLDER="$(dirname "$NOTE")"
 
 mkdir -p "${FOLDER}"
 
+cd "$HOME/notes"
+
 if [ -f "$NOTE" ]; then
 	nvim "$NOTE"
 	exit
@@ -18,7 +20,5 @@ cat >> "$NOTE" << EOF
 created: "$(date -Iseconds)"
 ---
 EOF
-
-cd "$HOME/notes"
 
 nvim "$NOTE"

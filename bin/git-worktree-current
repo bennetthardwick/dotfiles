@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+current_dir=$(git rev-parse --show-toplevel)
+
+repo_name=$(basename "$current_dir")
+worktree_dir="$current_dir/../worktrees"
+
+if [ ! -d "$worktree_dir" ]; then
+	echo "Worktree directory doesn't exist. Checked: '$worktree_dir'"
+	exit 1
+fi
+
+branch=$(git branch --show-current | sed "s/\//-/g")
+
+git worktree add "$worktree_dir/$repo_name/$branch" HEAD

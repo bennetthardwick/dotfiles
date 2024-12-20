@@ -1,5 +1,6 @@
 #main-window #titlebar {
   overflow: hidden;
+	height: 0 !important;
   transition: height 0.3s 0.3s !important;
 }
 /* Default state: Set initial height to enable animation */
