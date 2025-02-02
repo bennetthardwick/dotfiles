@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo "Outputing to $1"
+if [ -z "$1" ]; then
+	echo "usage: convert-latest <output>"
+	exit 1
+fi
 
-ffmpeg \
-  -i "/home/bennett/recordings/$(ls --sort time /home/bennett/recordings | head -1)" \
-  -c:v libx264 \
-  -map 0 \
-  -af "loudnorm=I=-16:TP=-1.5:LRA=11" $@
+convert-video "/home/bennett/recordings/$(ls --sort time /home/bennett/recordings | head -1)" "$1"

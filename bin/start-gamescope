@@ -28,7 +28,7 @@ OUTPUT_HEIGHT=2160
 echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
 
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-	gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -F fsr -O DP-1 -e -- gamemoderun steam -gamepadui
+	gamemoderun gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
 else
-	gamescope -w $WIDTH -h $HEIGHT -r 60 -f -- gamemoderun steam -gamepadui
+	gamemoderun gamescope -w $WIDTH -h $HEIGHT -r 60 -f -- steam -gamepadui
 fi

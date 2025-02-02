@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+	echo "usage: convert-video <input> <output>"
+	exit 1
+}
+
+if [ -z "$1" ]; then
+	usage
+fi
+
+if [ -z "$2" ]; then
+	usage
+fi
+
+ffmpeg \
+	-i "$1" \
+	-c:v libx264 \
+	-map 0 \
+	-af "loudnorm=I=-16:TP=-1.5:LRA=11" \
+	"$2"
+
