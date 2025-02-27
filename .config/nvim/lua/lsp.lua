@@ -102,6 +102,10 @@ vim.g.rustaceanvim = {
 
 		default_settings = {
 			['rust-analyzer'] = {
+				check = {
+					command = "clippy"
+				},
+
 				procMacro = {
 					enable = true
 				},

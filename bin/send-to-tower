@@ -2,9 +2,25 @@
 
 set -e
 
-if [ -z "$@" ]; then
+source_path="$@"
+
+if [ -z "$source_path" ]; then
   echo "Input was empty"
   exit 1
 fi
 
-rsync -ah --partial --info=progress2 --no-perms --no-owner --no-group "$@" "rsync://tower-arch.local/files/Inbox"
+target_path=""
+
+if [ -d "$source_path" ]; then
+	# target is directory, so create directory in inbox
+	dir_name=$(basename $(echo "$source_path"))
+	target_path="$dir_name/"
+elif [ -f "$source_path" ]; then
+	# target is not a directory so just put it in the root of the inbox folder
+	target_path=""
+else
+	echo "Passed input was invalid."
+	exit 1
+fi
+
+rclone copy -P "$source_path" "tower:/files/Inbox/$target_path"
