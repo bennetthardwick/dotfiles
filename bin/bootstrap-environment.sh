@@ -173,7 +173,7 @@ fi
 cd $HOME
 
 echo ""
-echo "Install complete.
+echo "Install complete."
 echo ""
 echo "Exit the shell and log back in to start the desktop environment."
 echo ""
