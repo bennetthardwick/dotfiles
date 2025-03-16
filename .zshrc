@@ -4,6 +4,14 @@ safe_source() {
   fi
 }
 
+safe_source_zsh() {
+	if [ -z "${BASH:-}" ]; then
+		safe_source $1
+	else
+		echo "Running from bash. Not sourcing '$1'."
+	fi
+}
+
 safe_source $HOME/.bashrc
 
 export LANG=en_AU.UTF-8
@@ -42,7 +50,7 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir -p $ZSH_CACHE_DIR
 fi
 
-safe_source $ZSH/oh-my-zsh.sh
+safe_source_zsh $ZSH/oh-my-zsh.sh
 
 safe_source /opt/miniconda3/etc/profile.d/conda.sh
 
@@ -108,21 +116,21 @@ AUTO_SUGGEST=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 AUTO_SUGGEST_BREW=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [ -f "$AUTO_SUGGEST" ]; then
-  source "$AUTO_SUGGEST"
+  safe_source_zsh "$AUTO_SUGGEST"
 elif [ -f "$AUTO_SUGGEST_BREW" ]; then
-  source "$AUTO_SUGGEST_BREW"
+  safe_source_zsh "$AUTO_SUGGEST_BREW"
 else
-  safe_source "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+  safe_source_zsh "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # Include functions in the `.zfunc` folder
 fpath+=~/.zfunc
 
-if type "compinit" > /dev/null; then
+if type "compinit" 2>1 > /dev/null; then
   compinit -C
 fi
 
-if type "zoxide" > /dev/null; then
+if type "zoxide" 2>1 > /dev/null; then
   eval "$(zoxide init zsh)"
 	alias cd="z"
 fi
