@@ -23,4 +23,4 @@ else
 	exit 1
 fi
 
-rclone copy -P "$source_path" "tower:/files/Inbox/$target_path"
+rclone copy --transfers 16 -P "$source_path" "tower:/files/Inbox/$target_path"
