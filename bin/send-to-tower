@@ -13,7 +13,7 @@ target_path=""
 
 if [ -d "$source_path" ]; then
 	# target is directory, so create directory in inbox
-	dir_name=$(basename $(echo "$source_path"))
+	dir_name="$(basename "$source_path")"
 	target_path="$dir_name/"
 elif [ -f "$source_path" ]; then
 	# target is not a directory so just put it in the root of the inbox folder

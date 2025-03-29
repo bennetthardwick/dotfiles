@@ -74,6 +74,8 @@ export N_PREFIX="$HOME/.n/"
 export PATH="$N_PREFIX/bin:$PATH"
 
 safe_source $HOME/.cargo/env
+# ~/.cargo/env might not exist depending on how rustup
+export PATH="$HOME/.cargo/bin:$PATH"
 
 safe_source $HOME/.asdf/asdf.sh
 

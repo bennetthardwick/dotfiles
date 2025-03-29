@@ -101,6 +101,7 @@ sudo pacman -S --noconfirm --needed \
 	grim \
 	htop \
 	hyprland \
+	jack2-dbus \
 	less \
 	mako \
 	ntp \
