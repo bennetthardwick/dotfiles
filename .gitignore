@@ -2,15 +2,9 @@
 node_modules/
 package-lock.json
 
-.config/coc/commands
-.config/coc/extensions
-.config/coc/history.json
-.config/coc/memos.json
-.config/coc/lists
-.config/coc/mru
-.config/coc/suggest.txt
-
 .config/pomo/time
 .config/pomo/pid
 
 .config/nvim/plugin/
+
+.config/rclone/

@@ -102,6 +102,7 @@ sudo pacman -S --noconfirm --needed \
 	htop \
 	hyprland \
 	jack2-dbus \
+	keychain \
 	less \
 	mako \
 	ntp \
@@ -113,6 +114,7 @@ sudo pacman -S --noconfirm --needed \
 	pipewire-jack-client \
 	pipewire-pulse \
 	ripgrep \
+	rustup \
 	slurp \
 	swaylock \
 	ttf-fantasque-nerd \
@@ -123,25 +125,18 @@ sudo pacman -S --noconfirm --needed \
 	xdg-desktop-portal-hyprland \
 	zsh \
 	zsh-autosuggestions \
+  fcitx \
+  fcitx-configtool \
+  fcitx-gtk3 \
+  fcitx-mozc \
+  noto-fonts \
+  noto-fonts-cjk \
+  noto-fonts-emoji \
+  noto-fonts-extra \
 	--
 
 # Enable getting the time from the internet
 systemctl_enable ntpd
-
-echo ""
-echo "Optional Dependencies. Press n to not install."
-echo ""
-
-sudo pacman -S --needed \
-  noto-fonts-extra \
-  noto-fonts \
-  noto-fonts-emoji \
-  noto-fonts-cjk \
-  fcitx \
-  fcitx-gtk3 \
-  fcitx-mozc \
-  fcitx-configtool \
-	-- || echo "Not installing optional dependencies"
 
 # Get zsh environment variables
 source $HOME/.zshrc
@@ -158,16 +153,10 @@ else
 	echo "Skipping, already installed."
 fi
 
-echo ""
-echo "Installing Rust through curl script"
-echo ""
-
-if [ ! -x "$(command -v rustup)" ]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-	# The above script adds this so get rid of it:
-	sed -i '/^. "$HOME\/.cargo\/env"$/d' ~/.bashrc
-else
-	echo "Skipping, already installed."
+# Check a ssh config file if it doesn't exist that imports the shared config
+if [ ! -f "$HOME/.ssh/config" ]; then
+	mkdir -p "$HOME/.ssh/"
+	echo "Include $HOME/.config/ssh-shared.config" > "$HOME/.ssh/config"
 fi
 
 # Return home so new shells open at home

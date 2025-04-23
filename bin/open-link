@@ -4,6 +4,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
 	exit $(/usr/bin/open --url "$@")
 fi
 
+# Give me some time to frantically find the right browser
+sleep 1
 
 WORKSPACE_FILTER=$(hyprctl monitors -j | jq -r '. | map(.activeWorkspace.id) | map(".workspace.id == \(.)") | join(" or ")')
 # Get a browser that is on currently active workspaces
@@ -12,6 +14,14 @@ BROWSER_TO_OPEN=$(hyprctl clients -j | jq -r ".[] | select(.class == \"firefox\"
 if [[ -z "$BROWSER_TO_OPEN" ]]; then
   # Get the last active one then!
   BROWSER_TO_OPEN=$(hyprctl clients -j | jq -s -r ".[] | sort_by(.focusHistoryID) | .[] | select(.class == \"firefox\" or .class == \"firefox-work\" or .class == \"chromium\") | .class" | head -n 1)
+fi
+
+domain=$(echo $1 | awk -F[/:] '{print $4}')
+personal_only_domains=("youtube.com" "www.youtube.com" "news.ycombinator.com")
+
+# If we're clicking on something like youtube don't send it to the work profile.
+if [[ ${personal_only_domains[@]} =~ "\<${domain}\>" ]]; then
+	BROWSER_TO_OPEN="firefox"
 fi
 
 if [ "$BROWSER_TO_OPEN" = "firefox-work" ]; then

@@ -5,10 +5,6 @@
 #main-window #TabsToolbar > .toolbar-items {
   overflow: hidden;
 }
-/* Default state: Set initial height to enable animation */
-#main-window #TabsToolbar > .toolbar-items { height: 2.7em !important; }
-#main-window[uidensity="touch"] #TabsToolbar > .toolbar-items { height: 3.35em !important; }
-#main-window[uidensity="compact"] #TabsToolbar > .toolbar-items { height: 2.7em !important; }
 /* Hidden state: Hide native tabs strip */
 #main-window[titlepreface*="​"] #TabsToolbar > .toolbar-items { height: 0 !important; }
 /* Hidden state: Fix z-index of active pinned tabs */
@@ -17,4 +13,8 @@
 #main-window[titlepreface*="​"] #TabsToolbar .titlebar-spacer,
 #main-window[titlepreface*="​"] #TabsToolbar .titlebar-buttonbox-container {
   display: none !important;
+}
+
+.tabbrowser-tab {
+	font-size: 12px !important;
 }

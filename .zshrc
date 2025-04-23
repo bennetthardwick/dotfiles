@@ -18,8 +18,15 @@ export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
 
+if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
+	export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass" 
+	export SSH_ASKPASS_REQUIRE=prefer
+fi
+
 if [ "$(uname -s)" != "Darwin" ]; then
-	if type "ssh-agent" > /dev/null; then
+	if type "keychain" > /dev/null; then
+		eval "$(keychain --timeout 10 --quick --quiet --eval --agents ssh,gpg)"
+	elif type "ssh-agent" > /dev/null; then
 	  eval $(ssh-agent) > /dev/null
 	else
 	  echo "warning: ssh-agent not started"
@@ -135,6 +142,10 @@ fi
 if type "zoxide" 2>1 > /dev/null; then
   eval "$(zoxide init zsh)"
 	alias cd="z"
+fi
+
+if type "fzf" 2>1 > /dev/null; then
+	source <(fzf --zsh)
 fi
 
 # export GTK_IM_MODULE=fcitx

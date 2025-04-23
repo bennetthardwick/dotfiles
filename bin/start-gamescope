@@ -15,20 +15,27 @@ HEIGHT=2160
 OUTPUT_WIDTH=3840
 OUTPUT_HEIGHT=2160
 
-  if [ "$1" = "--remote-play" ]; then
-		WIDTH=1920
-		HEIGHT=1080
-		OUTPUT_WIDTH=1920
-		OUTPUT_HEIGHT=1080
-	elif [ "$1" = "--lowres" ]; then
-		WIDTH=1920
-		HEIGHT=1080
-  fi
+STEAM_COMMAND="steam -gamepadui"
+
+if [ "$1" = "--remote-play" ]; then
+	sunshine &
+	sleep 10
+
+	WIDTH=1920
+	HEIGHT=1080
+	OUTPUT_WIDTH=1920
+	OUTPUT_HEIGHT=1080
+elif [ "$1" = "--lowres" ]; then
+	WIDTH=1920
+	HEIGHT=1080
+fi
 
 echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
 
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-	gamemoderun gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -F fsr -O DP-1 -e -- steam -gamepadui
+	#gamemoderun
+	gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -O DP-1 -e -- $STEAM_COMMAND
 else
-	gamemoderun gamescope -w $WIDTH -h $HEIGHT -r 60 -f -- steam -gamepadui
+	#gamemoderun
+	gamescope -w $WIDTH -h $HEIGHT -r 60 -f -- $STEAM_COMMAND
 fi

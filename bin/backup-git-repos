@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -eux
+
+hostname=$(cat /etc/hostname)
+
+repos=$(find $HOME/{git,foxglove} -not \( -path "$HOME/git/.aur/**/*" -type d -prune \) -type d -name ".git")
+
+temp_dir=$HOME/.temp-directory
+
+for dir in $repos; do
+	cd $dir
+	cd ..
+
+	repo_name=$(basename `pwd`)
+
+	cp --reflink=always -r . $temp_dir
+
+	git add -A
+	git commit -m "Backup: $(TZ="Australia/Sydney" date)"
+	git checkout -b $hostname
+	
+	current_ref=$(git rev-parse HEAD)
+
+	git remote add temp-gitea-archive git@tower.local:archive/${repo_name}.git
+
+	if [ ! git push temp-gitea-archive "$hostname" ]; then
+		echo "failed"
+	fi
+done

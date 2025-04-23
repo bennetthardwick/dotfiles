@@ -23,9 +23,7 @@ require("lazy").setup {
   
   'neovim/nvim-lspconfig',
 
-  {
-    'nvim-treesitter/nvim-treesitter',
-  },
+  'nvim-treesitter/nvim-treesitter',
 
   'nvim-treesitter/playground',
 
@@ -43,8 +41,6 @@ require("lazy").setup {
   'hrsh7th/nvim-cmp',
 
   'nvim-lua/plenary.nvim',
-  'jose-elias-alvarez/null-ls.nvim',
-  'MunifTanjim/prettier.nvim',
 
   'norcalli/nvim-colorizer.lua',
 
@@ -83,5 +79,25 @@ require("lazy").setup {
 		}
 	},
 
-		'David-Kunz/gen.nvim',
+	{
+  	"olimorris/codecompanion.nvim",
+  	config = true,
+  	dependencies = {
+  	  "nvim-lua/plenary.nvim",
+  	  "nvim-treesitter/nvim-treesitter",
+  	},
+		opts = {
+  		strategies = {
+  		  chat = {
+  		    adapter = "ollama",
+  		  },
+  		  inline = {
+  		    adapter = "ollama",
+  		  },
+  		  cmd = {
+  		    adapter = "ollama",
+  		  }
+  		}
+		}
+	}
 }

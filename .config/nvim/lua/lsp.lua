@@ -51,13 +51,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('v', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', function()
     vim.lsp.buf.format { async = false } 
-    vim.cmd("Prettier")
+		-- vim.cmd("Prettier")
   end, bufopts)
 
 
   vim.keymap.set('n', '<leader>p', function()
     vim.lsp.buf.format { async = false }
-    vim.cmd("Prettier")
+    -- vim.cmd("Prettier")
     vim.api.nvim_command('write')
   end, bufopts)
 
@@ -295,22 +295,22 @@ cmp.setup {
 
 local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 
-local prettier = require("prettier")
-
-prettier.setup {
-  bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
-  filetypes = {
-    "css",
-    "graphql",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "less",
-    "markdown",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-  },
-}
+-- local prettier = require("prettier")
+-- 
+-- prettier.setup {
+--   bin = 'prettier', -- or `'prettierd'` (v0.23.3+)
+--   filetypes = {
+--     "css",
+--     "graphql",
+--     "html",
+--     "javascript",
+--     "javascriptreact",
+--     "json",
+--     "less",
+--     "markdown",
+--     "scss",
+--     "typescript",
+--     "typescriptreact",
+--     "yaml",
+--   },
+-- }
