@@ -18,9 +18,11 @@ for dir in $repos; do
 
 	cp --reflink=always -r . $temp_dir
 
+	cd $temp_dir
+
+	git checkout -b $hostname
 	git add -A
 	git commit -m "Backup: $(TZ="Australia/Sydney" date)"
-	git checkout -b $hostname
 	
 	current_ref=$(git rev-parse HEAD)
 
