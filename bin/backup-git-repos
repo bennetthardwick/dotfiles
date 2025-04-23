@@ -9,6 +9,8 @@ repos=$(find $HOME/{git,foxglove} -not \( -path "$HOME/git/.aur/**/*" -type d -p
 temp_dir=$HOME/.temp-directory
 
 for dir in $repos; do
+	rm -rf $temp_dir
+	
 	cd $dir
 	cd ..
 
@@ -24,7 +26,7 @@ for dir in $repos; do
 
 	git remote add temp-gitea-archive git@tower.local:archive/${repo_name}.git
 
-	if [ ! git push temp-gitea-archive "$hostname" ]; then
+	if [ ! $(git push temp-gitea-archive "$hostname") ]; then
 		echo "failed"
 	fi
 done
