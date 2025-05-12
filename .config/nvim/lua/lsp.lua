@@ -19,6 +19,10 @@ lsp_status.config {
 
 lsp_status.register_progress()
 
+local format = function()
+	vim.lsp.buf.format { async = false }
+end
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -175,7 +179,11 @@ require('lspconfig')['gopls'].setup {
   capabilities = capabilities
 }
 
-
+require('lspconfig')['clangd'].setup {
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities
+}
 
 require('nvim-treesitter.configs').setup {
   ensure_installed = {
@@ -237,6 +245,7 @@ require('telescope').setup {
 }
 
 require("telescope").load_extension("ui-select")
+require("telescope").load_extension("fzf")
 
 local telescope = require("telescope.builtin")
 

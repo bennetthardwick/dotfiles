@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+directory="$(mktemp --directory)"
+
+unzip "$1" -d "$directory"
+
+cd directory

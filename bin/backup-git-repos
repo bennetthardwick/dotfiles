@@ -1,34 +1,40 @@
 #!/usr/bin/env bash
 
-set -eux
+set -eu
 
 hostname=$(cat /etc/hostname)
 
 repos=$(find $HOME/{git,foxglove} -not \( -path "$HOME/git/.aur/**/*" -type d -prune \) -type d -name ".git")
 
-temp_dir=$HOME/.temp-directory
+# echo $repos
+
+filter_file=$(mktemp)
 
 for dir in $repos; do
-	rm -rf $temp_dir
-	
 	cd $dir
 	cd ..
 
-	repo_name=$(basename `pwd`)
+	current_dir=$(pwd)/
+	repo_dir=${current_dir#"$HOME/"}
 
-	cp --reflink=always -r . $temp_dir
-
-	cd $temp_dir
-
-	git checkout -b $hostname
-	git add -A
-	git commit -m "Backup: $(TZ="Australia/Sydney" date)"
-	
-	current_ref=$(git rev-parse HEAD)
-
-	git remote add temp-gitea-archive git@tower.local:archive/${repo_name}.git
-
-	if [ ! $(git push temp-gitea-archive "$hostname") ]; then
-		echo "failed"
+	if [ -z "$(find . -mtime -30 -print -quit)" ]; then
+		echo "Skipping $repo_dir as no files have changed in 30 days"
+		continue
 	fi
+
+
+	git ls-files -com --ignored --directory --exclude-standard | sed "s,^,- $repo_dir," >> $filter_file || echo "failed to ls files"
+
+	echo "- $repo_dir.git/" >> $filter_file
+
+	echo "+ $repo_dir/**" >> $filter_file
+
 done
+
+echo $filter_file
+
+echo "- **" >> $filter_file
+
+cd $HOME
+
+rclone sync --transfers 16 -P "./" "tower:/files/State/$hostname/" --filter-from $filter_file

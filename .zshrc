@@ -25,7 +25,7 @@ fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
 	if type "keychain" > /dev/null; then
-		eval "$(keychain --timeout 10 --quick --quiet --eval --agents ssh,gpg)"
+		eval "$(keychain --timeout 10 --quick --quiet --eval)"
 	elif type "ssh-agent" > /dev/null; then
 	  eval $(ssh-agent) > /dev/null
 	else
@@ -197,4 +197,10 @@ alias gti=git
 
 uzip() {
   unzip $1 -d ${1%.zip}
+}
+
+tzip() {
+	directory="$(mktemp --directory)"
+	unzip "$1" -d "$directory"
+	cd $directory
 }

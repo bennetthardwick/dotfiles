@@ -1,0 +1,6 @@
+[Desktop entry]
+
+Type=Application
+Version=1.0
+Name="Send to Tower"
+Exec=/home/bennett/bin/send-to-tower %u

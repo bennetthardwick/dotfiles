@@ -19,8 +19,9 @@ elif [ -f "$source_path" ]; then
 	# target is not a directory so just put it in the root of the inbox folder
 	target_path=""
 else
-	echo "Passed input was invalid."
-	exit 1
+	target_path=""
+	# echo "Passed input was invalid."
+	# exit 1
 fi
 
 rclone copy --transfers 16 -P "$source_path" "tower:/files/Inbox/$target_path"

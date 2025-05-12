@@ -5,7 +5,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 fi
 
 # Give me some time to frantically find the right browser
-sleep 1
+sleep 0.5
 
 WORKSPACE_FILTER=$(hyprctl monitors -j | jq -r '. | map(.activeWorkspace.id) | map(".workspace.id == \(.)") | join(" or ")')
 # Get a browser that is on currently active workspaces

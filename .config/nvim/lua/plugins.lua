@@ -31,6 +31,7 @@ require("lazy").setup {
 
   'nvim-telescope/telescope.nvim',
   'nvim-telescope/telescope-ui-select.nvim',
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   'dcampos/nvim-snippy',
 
@@ -46,7 +47,7 @@ require("lazy").setup {
 
 	{
 	  'mrcjkb/rustaceanvim',
-	  version = '^4', -- Recommended
+	  version = '^6', -- Recommended
 	  lazy = false, -- This plugin is already lazy
 	},
 
@@ -87,6 +88,18 @@ require("lazy").setup {
   	  "nvim-treesitter/nvim-treesitter",
   	},
 		opts = {
+			adapters = {
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = "qwen3:14b"
+							}
+						}
+					})
+				end
+			},
+
   		strategies = {
   		  chat = {
   		    adapter = "ollama",
