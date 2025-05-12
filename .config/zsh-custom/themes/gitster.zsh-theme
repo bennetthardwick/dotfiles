@@ -5,7 +5,7 @@ local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 #  echo "$ZSH_THEME_GIT_PROMPT_PREFIX$(current_branch)$ZSH_THEME_GIT_PROMPT_SUFFIX$(parse_git_dirty)"
 #}
 
-function get_pwd(){
+function get_pwd() {
   git_root=$PWD
   while [[ $git_root != / && ! -e $git_root/.git ]]; do
     git_root=$git_root:h
@@ -20,7 +20,13 @@ function get_pwd(){
   echo $prompt_short_dir
 }
 
-PROMPT='$ret_status %{$fg[white]%}$(get_pwd) $(git_prompt_info)%{$reset_color%}%{$reset_color%} '
+function get_ssh_info() {
+	if [ ! -z "$SSH_CLIENT" ]; then
+		echo "$(uname -n): "
+	fi
+}
+
+PROMPT='$ret_status $(get_ssh_info) %{$fg[white]%}$(get_pwd) $(git_prompt_info)%{$reset_color%}%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
