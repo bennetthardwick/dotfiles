@@ -22,11 +22,11 @@ function get_pwd() {
 
 function get_ssh_info() {
 	if [ ! -z "$SSH_CLIENT" ]; then
-		echo "$(uname -n): "
+		echo "$(uname -n):"
 	fi
 }
 
-PROMPT='$ret_status $(get_ssh_info) %{$fg[white]%}$(get_pwd) $(git_prompt_info)%{$reset_color%}%{$reset_color%} '
+PROMPT='$ret_status %{$fg[white]%}$(get_ssh_info) $(get_pwd) $(git_prompt_info)%{$reset_color%}%{$reset_color%} '
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[cyan]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
