@@ -19,8 +19,14 @@ lsp_status.config {
 
 lsp_status.register_progress()
 
+local conform = require("conform")
+
 local format = function()
-	vim.lsp.buf.format { async = false }
+	conform.format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 500
+	})
 end
 
 -- Use an on_attach function to only map the following keys
@@ -53,15 +59,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('v', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', '<space>f', function()
-    vim.lsp.buf.format { async = false } 
-		-- vim.cmd("Prettier")
-  end, bufopts)
-
+  vim.keymap.set('n', '<space>f', format, bufopts)
 
   vim.keymap.set('n', '<leader>p', function()
-    vim.lsp.buf.format { async = false }
-    -- vim.cmd("Prettier")
+		format()
     vim.api.nvim_command('write')
   end, bufopts)
 
@@ -70,7 +71,7 @@ local on_attach = function(client, bufnr)
   -- end
 end
 
-vim.api.nvim_create_user_command('Format', function() vim.lsp.buf.format { async = true } end, {})
+vim.api.nvim_create_user_command('Format', format, {})
 
 local lsp_flags = {}
 
