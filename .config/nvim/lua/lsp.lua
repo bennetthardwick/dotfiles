@@ -206,7 +206,8 @@ require('nvim-treesitter.configs').setup {
     "tsx",
     "query",
     "make",
-    "markdown"
+    "markdown",
+		"php"
   },
 
   auto_install = true,

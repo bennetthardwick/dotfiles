@@ -18,6 +18,7 @@ require("lazy").setup {
   'ellisonleao/gruvbox.nvim',
 
   'airblade/vim-gitgutter',
+	'tpope/vim-sleuth',
 
   'tpope/vim-fugitive',
   
