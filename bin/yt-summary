@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -e
+
+yt-dlp --skip-download --write-auto-subs --sub-lang "en.*" -o /tmp/transcription $1
+
+<< EOM
+
+EOM
+
+cat <(cat << EOM
+Summarize the following transcript from a YouTube video.
+At the beginning include an overview and then go more in depth with bullet points.
+Be succinct but accurate.
+
+Include quotes and timestamps for me to refer to later.
+
+The transcript starts now:
+
+---
+EOM
+) /tmp/transcription.en.vtt > prompt.txt
+
+
+cat prompt.txt | ollama run qwen3:14b

@@ -2,13 +2,11 @@
 
 set -eu
 
-hostname=$(cat /etc/hostname)
+hostname=$(uname -n)
 
 repos=$(find $HOME/{git,foxglove} -not \( -path "$HOME/git/.aur/**/*" -type d -prune \) -type d -name ".git")
 
-# echo $repos
-
-filter_file=$(mktemp)
+filter_file=/tmp/backup-git-repos.filter-file
 
 for dir in $repos; do
 	cd $dir
@@ -27,11 +25,8 @@ for dir in $repos; do
 
 	echo "- $repo_dir.git/" >> $filter_file
 
-	echo "+ $repo_dir/**" >> $filter_file
-
+	echo "+ $repo_dir**" >> $filter_file
 done
-
-echo $filter_file
 
 echo "- **" >> $filter_file
 
