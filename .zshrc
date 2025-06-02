@@ -65,7 +65,7 @@ safe_source /opt/miniconda3/etc/profile.d/conda.sh
 export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
 
-export PATH="/usr/lib:/usr/bin:/bin"
+export PATH="/usr/lib:/usr/bin:/bin:/sbin"
 
 export PATH="/usr/bin/vendor_perl/:/usr/bin/core_perl/:$PATH"
 
