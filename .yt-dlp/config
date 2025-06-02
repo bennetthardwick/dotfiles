@@ -1,3 +1,5 @@
---cookies-from-browser firefox
+--sub-lang "en.*"
+--write-auto-subs
+--embed-subs
 
 -o ~/Videos/YouTube/%(title)s.%(ext)s

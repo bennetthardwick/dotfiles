@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+workspace="$1"
+
+if [ ! -z "$HYPRLAND_CMD" ]; then
+	hyprctl dispatch workspace "$workspace"
+else
+	notify-send -u critical "failed to detect window manager"
+fi

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 # Create a random file for the Openbox config to live in
 file=$(mktemp)
 
@@ -16,14 +18,81 @@ cat << EOT >> $file
 			<maximized>yes</maximized>
 		</application>
 	</applications>
+	<theme>
+		<titleLayout>MC</titleLayout>
+		<keepBorder>no</keepBorder>
+	</theme>
+	<keyboard>
+		<keybind key="W-1">
+			<action name="Execute">
+				<command>workspace 1</command>
+			</action>
+		</keybind>
+		<keybind key="W-2">
+			<action name="Execute">
+				<command>workspace 2</command>
+			</action>
+		</keybind>
+		<keybind key="W-3">
+			<action name="Execute">
+				<command>workspace 3</command>
+			</action>
+		</keybind>
+		<keybind key="W-4">
+			<action name="Execute">
+				<command>workspace 4</command>
+			</action>
+		</keybind>
+		<keybind key="W-5">
+			<action name="Execute">
+				<command>workspace 5</command>
+			</action>
+		</keybind>
+		<keybind key="W-6">
+			<action name="Execute">
+				<command>workspace 6</command>
+			</action>
+		</keybind>
+		<keybind key="W-7">
+			<action name="Execute">
+				<command>workspace 7</command>
+			</action>
+		</keybind>
+		<keybind key="W-8">
+			<action name="Execute">
+				<command>workspace 8</command>
+			</action>
+		</keybind>
+		<keybind key="W-9">
+			<action name="Execute">
+				<command>workspace 9</command>
+			</action>
+		</keybind>
+		<keybind key="W-10">
+			<action name="Execute">
+				<command>workspace 10</command>
+			</action>
+		</keybind>
+		<keybind key="W-0">
+			<action name="Execute">
+				<command>workspace 0</command>
+			</action>
+		</keybind>
+	</keyboard>
 </openbox_config>
 EOT
 
 # Start the Xwayland process on the random display port
-Xwayland -hidpi :$display &
+Xwayland -geometry 2560x1440 -host-grab -fullscreen -hidpi :$display &
+
+export XWAYLAND_PID=$!
 
 # Start the Jack audio server for better mic input
 start-jack
 
 # Start Reaper in Openbox under Xwayland with the provided config
-DISPLAY=:$display openbox --config-file $file --startup reaper
+export DISPLAY=:$display
+
+openbox --config-file $file --startup reaper-then-kill-xwayland
+
+kill $XWAYLAND_PID

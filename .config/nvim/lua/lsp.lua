@@ -217,6 +217,15 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+	["af"] = "@function.outer"
+      }
+    }
+  },
+
 	incremental_selection = {
 		enable = true,
 		keymaps = {

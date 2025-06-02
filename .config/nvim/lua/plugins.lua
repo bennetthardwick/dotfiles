@@ -25,8 +25,13 @@ require("lazy").setup {
   'neovim/nvim-lspconfig',
 
   'nvim-treesitter/nvim-treesitter',
-
+  'nvim-treesitter/nvim-treesitter-textobjects',
   'nvim-treesitter/playground',
+
+
+  
+
+
 
   'nvim-lua/lsp-status.nvim',
 
