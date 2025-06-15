@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+IMAGE_PATH=$(realpath "$1")
+
+ollama run gemma3:12b "Read the entirety of the text from the following image. Include only text from the image in your output. $IMAGE_PATH"

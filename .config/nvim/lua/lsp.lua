@@ -268,9 +268,12 @@ local telescope = require("telescope.builtin")
 
 vim.keymap.set('n', '<leader>ff', telescope.find_files, {})
 vim.keymap.set('n', '<C-p>', telescope.find_files, {})
+
 vim.keymap.set('n', '<leader>fg', telescope.live_grep, {})
 vim.keymap.set('n', '<leader>fb', telescope.buffers, {})
 vim.keymap.set('n', '<leader>fh', telescope.help_tags, {})
+vim.keymap.set('n', '<leader>fc', telescope.commands, {})
+vim.keymap.set('n', '<C-S-p>', telescope.commands, {})
 
 vim.api.nvim_create_user_command('Rg', function() print('To search use "<leader>fg" in normal mode') end, {})
 

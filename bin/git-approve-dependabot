@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# Automate the tedious process of approving and merging dependabot PRs.
+
+set -e
+
+# JQ filter that will generate a script of `gh` commands to merge all the dependabot PRs.
+JQ_FILTER=".[] | [ "
+JQ_FILTER+='"# \(.number): \(.title) [\([.labels.[].name] | join(","))]", '
+JQ_FILTER+='"gh pr review \(.number) --approve", '
+JQ_FILTER+='"gh pr comment \(.number) --body \"@dependabot merge\""'
+JQ_FILTER+='] | join("\n")'
+
+OUTPUT_FILE=$(mktemp --suffix .sh)
+
+echo "Created temporary file at $OUTPUT_FILE"
+echo ""
+
+echo "# Edit the following script to make sure only the PRs you want to approve are listed." > $OUTPUT_FILE
+echo "# " >> $OUTPUT_FILE
+
+gh pr list --author "app/dependabot" $@ --json=title,labels,number -q "$JQ_FILTER" >> $OUTPUT_FILE
+
+# Open a text editor to review the generated script
+$EDITOR $OUTPUT_FILE
+
+# Ask for confirmation on whether to run the script
+read -p "Run the script? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+
+cat $OUTPUT_FILE | while read line; do
+	echo "+ $line"
+	eval "$line"
+done
+
+rm $OUTPUT_FILE

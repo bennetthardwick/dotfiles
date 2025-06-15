@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 source_path="$@"
 
@@ -24,4 +24,4 @@ else
 	# exit 1
 fi
 
-rclone copy --transfers 16 -P "$source_path" "tower:/files/Inbox/$target_path"
+rclone copy --transfers "${TOWER_TRANSFER_CONCURRENCY:-16}" -P "$source_path" "tower:/files/Inbox/$target_path"
