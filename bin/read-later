@@ -2,6 +2,24 @@
 
 set -eu pipefail
 
+error_msg=""
+
+cleanup() {
+  ret="$?"
+  if [ $ret = 0 ]; then
+    exit 0
+  fi
+  notify-send -u critical "Failed to save read later$error_msg"
+  exit $ret
+}
+
+trap "cleanup" EXIT
+
+if ! type "hq" > /dev/null; then
+  error_msg=": hq binary does not exist"
+  exit 1
+fi
+
 LINK=`wl-paste`
 
 OUTPUT=$(curl -L -f "$LINK")

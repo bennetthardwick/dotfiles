@@ -78,6 +78,10 @@ require("lazy").setup({
 			daily_notes = {
 				folder = "01 Daily/" .. os.date("%Y/%m %b/"),
 			},
+
+			follow_url_func = function(url)
+				vim.fn.jobstart({ "open", url })
+			end,
 		},
 	},
 
@@ -136,6 +140,8 @@ require("lazy").setup({
 					graphql = { "prettier" },
 					lua = { "stylua" },
 					python = { "isort", "black" },
+					sh = { "shfmt" },
+					zsh = { "shfmt" },
 				},
 			})
 		end,

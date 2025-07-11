@@ -1,8 +1,18 @@
 #!/usr/bin/env bash
 
-file="$@"
-mime_type=`file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p'`
+set -ex
 
+file="$@"
+
+# bash seems to require a separate var
+url_regex="https?://.*"
+
+if [[ $file =~ $url_regex ]]; then
+  open-link "$file"
+  exit 0 
+fi
+
+mime_type=`file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p'`
 
 case $mime_type in
   image/*)

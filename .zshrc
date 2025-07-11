@@ -1,7 +1,7 @@
 safe_source() {
-  if [ -f "$1" ]; then
-   source $1
-  fi
+	if [ -f "$1" ]; then
+		source $1
+	fi
 }
 
 safe_source_zsh() {
@@ -19,29 +19,29 @@ export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
 
 if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
-	export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass" 
+	export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
 	export SSH_ASKPASS_REQUIRE=prefer
 fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
-	if type "keychain" > /dev/null; then
+	if type "keychain" >/dev/null; then
 		eval "$(keychain --timeout 10 --quick --quiet --eval)"
-	elif type "ssh-agent" > /dev/null; then
-	  eval $(ssh-agent) > /dev/null
+	elif type "ssh-agent" >/dev/null; then
+		eval $(ssh-agent) >/dev/null
 	else
-	  echo "warning: ssh-agent not started"
+		echo "warning: ssh-agent not started"
 	fi
 fi
 
 USER="bennett"
-DEFAULT_USER=`whoami`
+DEFAULT_USER=$(whoami)
 
 ZSH_CUSTOM="$HOME/.config/zsh-custom"
 
 if [ -d "$HOME/.oh-my-zsh" ]; then
-  ZSH=$HOME/.oh-my-zsh
+	ZSH=$HOME/.oh-my-zsh
 else
-  ZSH=/usr/share/oh-my-zsh/
+	ZSH=/usr/share/oh-my-zsh/
 fi
 
 ZSH_THEME="gitster"
@@ -54,13 +54,12 @@ export SHELL="$(which zsh)"
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
-  mkdir -p $ZSH_CACHE_DIR
+	mkdir -p $ZSH_CACHE_DIR
 fi
 
 safe_source_zsh $ZSH/oh-my-zsh.sh
 
 safe_source /opt/miniconda3/etc/profile.d/conda.sh
-
 
 export WORKON_HOME=~/.virtualenvs
 safe_source /usr/bin/virtualenvwrapper_lazy.sh
@@ -99,7 +98,7 @@ if [ -d "/opt/google-cloud-cli/bin/" ]; then
 fi
 
 if [ -f "/opt/homebrew/bin/brew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
@@ -107,8 +106,8 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 # On Mac if LLVM was installed using brew then use that instead of the system
 if [ -d "/opt/homebrew/opt/llvm/" ]; then
 	export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-  export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+	export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+	export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 fi
 
 export NPM_TOKEN=${NPM_TOKEN:-""}
@@ -125,26 +124,26 @@ AUTO_SUGGEST=/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 AUTO_SUGGEST_BREW=/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 if [ -f "$AUTO_SUGGEST" ]; then
-  safe_source_zsh "$AUTO_SUGGEST"
+	safe_source_zsh "$AUTO_SUGGEST"
 elif [ -f "$AUTO_SUGGEST_BREW" ]; then
-  safe_source_zsh "$AUTO_SUGGEST_BREW"
+	safe_source_zsh "$AUTO_SUGGEST_BREW"
 else
-  safe_source_zsh "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+	safe_source_zsh "$HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
 # Include functions in the `.zfunc` folder
 fpath+=~/.zfunc
 
-if type "compinit" 2>1 > /dev/null; then
-  compinit -C
+if type "compinit" 2>1 >/dev/null; then
+	compinit -C
 fi
 
-if type "zoxide" 2>1 > /dev/null; then
-  eval "$(zoxide init zsh)"
+if type "zoxide" 2>1 >/dev/null; then
+	eval "$(zoxide init zsh)"
 	alias cd="z"
 fi
 
-if type "fzf" 2>1 > /dev/null; then
+if type "fzf" 2>1 >/dev/null; then
 	source <(fzf --zsh)
 fi
 
@@ -162,28 +161,28 @@ export BROWSER="open-link"
 # will be run as the current user instead of root. It also means applications spawned by
 # the window manager will have the PATH and other config in this file set.
 if [ "$(tty)" = "/dev/tty1" ]; then
-  if false; then
-    exit 1
-  elif type "Hyprland" > /dev/null; then
-    # export XDG_CURRENT_DESKTOP=hyprland
-    export MOZ_ENABLE_WAYLAND=1
-    export ANKI_WAYLAND=1
+	if false; then
+		exit 1
+	elif type "Hyprland" >/dev/null; then
+		# export XDG_CURRENT_DESKTOP=hyprland
+		export MOZ_ENABLE_WAYLAND=1
+		export ANKI_WAYLAND=1
 
-    Hyprland 2> /tmp/hyprland.log
-    exit 0
-  elif type "sway" > /dev/null; then
-    export XDG_CURRENT_DESKTOP=sway
-    export MOZ_ENABLE_WAYLAND=1
-    export ANKI_WAYLAND=1
+		Hyprland 2>/tmp/hyprland.log
+		exit 0
+	elif type "sway" >/dev/null; then
+		export XDG_CURRENT_DESKTOP=sway
+		export MOZ_ENABLE_WAYLAND=1
+		export ANKI_WAYLAND=1
 
-    sway -d 2> /tmp/sway.log
-    exit 0
-  elif type "sx" > /dev/null; then
-    sx
-    exit 0
-  else
-    echo "warning: sx is not installed"
-  fi
+		sway -d 2>/tmp/sway.log
+		exit 0
+	elif type "sx" >/dev/null; then
+		sx
+		exit 0
+	else
+		echo "warning: sx is not installed"
+	fi
 fi
 
 # Anything following this will only be sourced by shells
@@ -196,7 +195,7 @@ alias ....="cd ../../../"
 alias gti=git
 
 uzip() {
-  unzip $1 -d ${1%.zip}
+	unzip $1 -d ${1%.zip}
 }
 
 tzip() {
