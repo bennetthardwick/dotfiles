@@ -136,7 +136,8 @@ require("lazy").setup({
 					html = { "prettier" },
 					json = { "prettier" },
 					yaml = { "prettier" },
-					markdown = { "prettier" },
+					-- This breaks markdown lists
+					-- markdown = { "prettier" },
 					graphql = { "prettier" },
 					lua = { "stylua" },
 					python = { "isort", "black" },

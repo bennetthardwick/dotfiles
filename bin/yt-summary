@@ -2,7 +2,7 @@
 
 set -e
 
-yt-dlp --skip-download --write-auto-subs --sub-lang "en.*" -o /tmp/transcription $1
+yt-dlp --skip-download --write-auto-subs --sub-lang "en" -o /tmp/transcription $1
 
 << EOM
 

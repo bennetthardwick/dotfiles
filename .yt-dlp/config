@@ -1,5 +1,7 @@
---sub-lang "en.*"
+--sub-lang "en"
 --write-auto-subs
 --embed-subs
+--force-ipv4
+--cookies-from-browser firefox
 
 -o ~/Videos/YouTube/%(title)s.%(ext)s

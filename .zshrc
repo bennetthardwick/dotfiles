@@ -86,6 +86,12 @@ export PATH="$HOME/.cargo/bin:$PATH"
 safe_source $HOME/.asdf/asdf.sh
 
 export PATH="$HOME/bin:$PATH"
+
+# Also add nested bin folders
+for d in $HOME/.local/bin/*/bin; do
+	export PATH="$d:$PATH"
+done
+
 export PATH="$HOME/.local/bin:$PATH"
 
 if [ -d "$HOME/.local/opt/google-cloud-sdk/" ]; then

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if type "picom" >2&1> /dev/null; then
+	picom &
+fi
+
 reaper
 
 kill $XWAYLAND_PID

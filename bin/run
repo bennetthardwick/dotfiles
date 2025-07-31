@@ -6,6 +6,8 @@ try() {
   fi
 }
 
-echo "haha"
+echo "+ $@"
 
-exit $($@)
+bash $@
+
+exit $?
