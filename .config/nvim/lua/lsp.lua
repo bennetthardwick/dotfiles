@@ -117,6 +117,9 @@ vim.g.rustaceanvim = {
 					command = "clippy",
 				},
 
+				-- script in my dotfiles that will use ra-multiplex if available, else normal ra
+				serverPath = "rust-analyzer-proxy",
+
 				procMacro = {
 					enable = true,
 				},
@@ -194,7 +197,7 @@ require("lspconfig")["clangd"].setup({
 require("lspconfig")["ltex"].setup({
 	on_attach = on_attach,
 	flags = { debounce_text_changes = 3000 },
-	filetypes = { "markdown", "text", "rust", "go", "javascript", "typescript", "tsx", "terraform", "zsh", "sh" },
+	filetypes = { "markdown", "mdx", "text", "rust", "go", "javascript", "typescript", "tsx", "zsh", "sh" },
 	settings = {
 		ltex = {
 			enabled = {

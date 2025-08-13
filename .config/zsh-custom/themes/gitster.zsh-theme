@@ -6,18 +6,18 @@ local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ %s)"
 #}
 
 function get_pwd() {
-  git_root=$PWD
-  while [[ $git_root != / && ! -e $git_root/.git ]]; do
-    git_root=$git_root:h
-  done
-  if [[ $git_root = / ]]; then
-    unset git_root
-    prompt_short_dir=%~
-  else
-    parent=${git_root%\/*}
-    prompt_short_dir=${PWD#$parent/}
-  fi
-  echo $prompt_short_dir
+	git_root=$PWD
+	while [[ $git_root != / && ! -e $git_root/.git ]]; do
+		git_root=$git_root:h
+	done
+	if [[ $git_root = / ]]; then
+		unset git_root
+		prompt_short_dir=%~
+	else
+		parent=${git_root%\/*}
+		prompt_short_dir=${PWD#$parent/}
+	fi
+	echo $prompt_short_dir
 }
 
 function get_ssh_info() {

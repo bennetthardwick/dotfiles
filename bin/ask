@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# run docker ps to ensure docker (how I run ollama) is up and running
+docker ps > /dev/null
+
+ollama run gemma3 "You are a terminal command called 'ask'. Answer the following in the most succinct way possible. Your output must be pure text, no markdown. Question: $@" --nowordwrap 2> /dev/null

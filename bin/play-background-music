@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+playlist="$(mktemp --suffix .m3u8)"
+
+trap "rm $playlist" EXIT
+
+find $HOME/Videos/Relaxing/ -name "*.mp4" -o -name "*.webm" -o -name "*.mkv" > $playlist
+
+shuf $playlist -o $playlist
+
+mpv $playlist

@@ -17,10 +17,13 @@ safe_source $HOME/.bashrc
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
-if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
-	export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
-	export SSH_ASKPASS_REQUIRE=prefer
+if [ ! -z "$SSH_CLIENT" ]; then
+	if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
+		export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
+		export SSH_ASKPASS_REQUIRE=prefer
+	fi
 fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
