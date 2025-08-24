@@ -91,11 +91,9 @@ safe_source $HOME/.asdf/asdf.sh
 export PATH="$HOME/bin:$PATH"
 
 # Also add nested bin folders
-for d in $HOME/.local/bin/*/bin; do
+for d in $(find $HOME/.local/bin/ -type d -name bin); do
 	export PATH="$d:$PATH"
 done
-
-export PATH="$HOME/.local/bin:$PATH"
 
 if [ -d "$HOME/.local/opt/google-cloud-sdk/" ]; then
 	source "$HOME/.local/opt/google-cloud-sdk/completion.zsh.inc"

@@ -44,9 +44,14 @@ touch "$NOTE"
 echo "---" > "$NOTE"
 
 if [[ "$LINK" == *"youtube.com"* ]]; then
-  echo "tags: later,website,youtube" >> "$NOTE"
+  echo "tags:" >> "$NOTE"
+  echo "  - later" >> "$NOTE"
+  echo "  - website" >> "$NOTE"
+  echo "  - youtube" >> "$NOTE"
 else
-  echo "tags: later,website" >> "$NOTE"
+  echo "tags:" >> "$NOTE"
+  echo "  - later" >> "$NOTE"
+  echo "  - website" >> "$NOTE"
 fi
 
 echo "link: $LINK" >> "$NOTE"

@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-set -eu
+set -u
 
 hostname=$(uname -n)
 
 repos=$(find $HOME/{git,foxglove} -not \( -path "$HOME/git/.aur/**/*" -type d -prune \) -type d -name ".git")
+
+set -e
 
 filter_file=/tmp/backup-git-repos.filter-file
 
