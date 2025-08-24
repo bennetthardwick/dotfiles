@@ -13,6 +13,8 @@ JQ_FILTER+='] | join("\n")'
 
 OUTPUT_FILE=$(mktemp --suffix .sh)
 
+trap "rm $OUTPUT_FILE" EXIT
+
 echo "Created temporary file at $OUTPUT_FILE"
 echo ""
 

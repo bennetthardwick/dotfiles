@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Paste only the paths in the clipboard that actually exist
+for path in $(wl-paste); do
+	if [ -f "$path" ]; then
+		echo $path
+	fi
+done

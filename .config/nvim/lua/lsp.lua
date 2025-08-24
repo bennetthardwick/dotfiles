@@ -73,7 +73,9 @@ end
 
 vim.api.nvim_create_user_command("Format", format, {})
 
-local lsp_flags = {}
+local lsp_flags = {
+	debounce_text_changes = 250
+}
 
 require("lspconfig")["ts_ls"].setup({
 	on_attach = on_attach,
@@ -196,7 +198,7 @@ require("lspconfig")["clangd"].setup({
 
 require("lspconfig")["ltex"].setup({
 	on_attach = on_attach,
-	flags = { debounce_text_changes = 3000 },
+	flags = { debounce_text_changes = 1000 },
 	filetypes = { "markdown", "mdx", "text", "rust", "go", "javascript", "typescript", "tsx", "zsh", "sh" },
 	settings = {
 		ltex = {

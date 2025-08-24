@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OUTPUT_FILE=$(mktemp --suffix .sh)
+
+trap "rm $OUTPUT_FILE" EXIT
+
+$EDITOR $OUTPUT_FILE
+
+read -p "Run the script? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+
+cat $OUTPUT_FILE | while read line; do
+	echo "+ $line"
+	eval "$line"
+done

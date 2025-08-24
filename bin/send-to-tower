@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -eu
 
 source_path="$@"
 

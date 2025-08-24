@@ -14,11 +14,11 @@ HEIGHT=2160
 OUTPUT_WIDTH=3840
 OUTPUT_HEIGHT=2160
 
-STEAM_COMMAND="steam -gamepadui"
+STEAM_COMMAND="steam -gamepadui --dev"
 
 if [ "$1" = "--remote-play" ]; then
 	sunshine &
-	sleep 10
+	sleep 5
 
 	WIDTH=1920
 	HEIGHT=1080
@@ -32,7 +32,7 @@ fi
 echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
 
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-	gamemoderun gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -O DP-1 -e -- $STEAM_COMMAND
+	gamescope --mangoapp --rt --backend drm -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -O DP-1 -e --rt -- $STEAM_COMMAND
 else
-	gamemoderun gamescope -w $WIDTH -h $HEIGHT -r 60 -f -- $STEAM_COMMAND
+	gamescope --mangoapp --rt -w $WIDTH -h $HEIGHT -r 60 -f -- $STEAM_COMMAND
 fi
