@@ -82,8 +82,13 @@ cat << EOT >> $file
 </openbox_config>
 EOT
 
+resolution="1920x1080"
+if [ "$(uname -n)" = "bennett-desktop" ]; then
+	resolution="2560x1440"
+fi
+
 # Start the Xwayland process on the random display port
-Xwayland -geometry 2560x1440 -host-grab -fullscreen -hidpi :$display &
+Xwayland -geometry "$resolution" -host-grab -fullscreen -hidpi :$display &
 
 export XWAYLAND_PID=$!
 

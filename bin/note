@@ -24,13 +24,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 case $PURPOSE in
-	"daily")
-		note-daily
-		;;
-	"quick")
-		note-quick
-		;;
-	"blog-idea")
-		nvim "$HOME/notes/11 Blog/Blog Board.md"
-		;;
+  "daily")
+    note-daily
+    ;;
+  "quick")
+    note-quick
+    ;;
+  "blog-idea")
+    nvim "$HOME/notes/11 Blog/Blog Board.md"
+    ;;
 esac
