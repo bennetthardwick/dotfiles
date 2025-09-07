@@ -77,8 +77,12 @@ window#waybar.empty #window {
 #mpris {
   padding: 0 6px;
   font-weight: normal;
-  background-color: #253526;
+  background-color: rgba(255, 255, 255, 0.1);
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   padding: 0px 12px;
+}
+
+#mpris.spotify {
+  background-color: #253526;
 }

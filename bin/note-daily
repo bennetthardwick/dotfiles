@@ -10,18 +10,17 @@ mkdir -p "${FOLDER}"
 
 cd "$HOME/notes"
 
-if [ -f "$NOTE" ]; then
-	nvim "$NOTE"
-	exit
-fi
-
-cat >> "$NOTE" << EOF
+if [ ! -f "$NOTE" ]; then
+	cat >> "$NOTE" << EOF
 ---
 created: "$(date -Iseconds)"
 ---
 
 # ${TITLE}
 EOF
+fi
 
+echo "" >> "$NOTE"
+echo "$(date "+%H:%M") - " >> "$NOTE"
 
-nvim "$NOTE"
+nvim "$NOTE" -c '$ | startinsert!'

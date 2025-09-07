@@ -94,15 +94,17 @@ require("lazy").setup({
 		},
 		opts = {
 			adapters = {
-				ollama = function()
-					return require("codecompanion.adapters").extend("ollama", {
-						schema = {
-							model = {
-								default = "qwen3:14b",
+				http = {
+					ollama = function()
+						return require("codecompanion.adapters").extend("ollama", {
+							schema = {
+								model = {
+									default = "gpt-oss",
+								},
 							},
-						},
-					})
-				end,
+						})
+					end,
+				},
 			},
 
 			strategies = {

@@ -24,7 +24,8 @@ LINK=`wl-paste`
 
 OUTPUT=$(curl -L -f "$LINK")
 
-TITLE=$(echo $OUTPUT | \
+TITLE=$(set -eu pipefail
+  echo $OUTPUT | \
   grep -o '<title[^<]*>[^<]*</title>' | \
   sed -e "s/’/'/g" | \
   sed -e 's/<title[^<]*>//g' -e 's/<\/title>//g' | \
@@ -55,7 +56,7 @@ else
 fi
 
 echo "link: $LINK" >> "$NOTE"
-echo "created: \"$(date -Iseconds)\""
+echo "created: \"$(date -Iseconds)\"" >> "$NOTE"
 echo "---" >> "$NOTE"
 
 notify-send "Link '$TITLE' added successfully"

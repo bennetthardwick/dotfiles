@@ -15,10 +15,26 @@ if [ -z "$2" ]; then
 	usage
 fi
 
+bitrate="${3:-"3000k"}"
+
+ffmpeg -y -i "$1" \
+	-preset slow \
+	-tune film \
+	-c:v libx264 \
+	-b:v "$bitrate" \
+	-pass 1 \
+	-an \
+	-f null \
+	/dev/null
+
 ffmpeg \
 	-i "$1" \
+	-preset slow \
+	-tune film \
 	-c:v libx264 \
-	-map 0 \
+	-b:v "$bitrate" \
+	-pass 2 \
+	-c:a aac \
+	-b:a 128k \
 	-af "loudnorm=I=-16:TP=-1.5:LRA=11" \
 	"$2"
-

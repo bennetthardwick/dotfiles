@@ -14,7 +14,7 @@ HEIGHT=2160
 OUTPUT_WIDTH=3840
 OUTPUT_HEIGHT=2160
 
-STEAM_COMMAND="steam -gamepadui --dev"
+STEAM_COMMAND="steam -dev steam://open/bigpicture"
 
 if [ "$1" = "--remote-play" ]; then
 	sunshine &
