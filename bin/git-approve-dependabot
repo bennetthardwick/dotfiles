@@ -11,7 +11,7 @@ JQ_FILTER+='"gh pr review \(.number) --approve", '
 JQ_FILTER+='"gh pr comment \(.number) --body \"@dependabot merge\""'
 JQ_FILTER+='] | join("\n")'
 
-OUTPUT_FILE=$(mktemp --suffix .sh)
+OUTPUT_FILE=$(mktemp)
 
 trap "rm $OUTPUT_FILE" EXIT
 
@@ -33,5 +33,3 @@ cat $OUTPUT_FILE | while read line; do
 	echo "+ $line"
 	eval "$line"
 done
-
-rm $OUTPUT_FILE
