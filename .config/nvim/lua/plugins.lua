@@ -28,7 +28,7 @@ require("lazy").setup({
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	"nvim-treesitter/playground",
 
-	"nvim-lua/lsp-status.nvim",
+	{ "j-hui/fidget.nvim", opts = {} },
 
 	"nvim-telescope/telescope.nvim",
 	"nvim-telescope/telescope-ui-select.nvim",

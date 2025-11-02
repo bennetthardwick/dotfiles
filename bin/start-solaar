@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+solaar --restart-on-wake-up --window=hide

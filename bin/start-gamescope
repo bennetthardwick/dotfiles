@@ -32,7 +32,10 @@ fi
 echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
 
 if [[ "$(tty)" = "/dev/tty"* ]]; then
-	gamescope --mangoapp --rt --backend drm -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT -r 60 -O DP-1 -e --rt -- $STEAM_COMMAND
+	gamescope --backend drm \
+		-w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT \
+		-r 60 -O DP-1 --rt --xwayland-count 2 \
+		-F fsr -e -- $STEAM_COMMAND
 else
 	gamescope --mangoapp --rt -w $WIDTH -h $HEIGHT -r 60 -f -- $STEAM_COMMAND
 fi

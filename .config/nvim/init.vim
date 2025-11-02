@@ -99,7 +99,7 @@ if has('nvim')
   set statusline=
   set statusline+=%f\ 
   set statusline+=%h%m%r
-  set statusline+=\ %{LspStatus()}
+  " set statusline+=\ %{LspStatus()}
   set statusline+=%=
   set statusline+=\ %y
   set statusline+=\ %l:%c

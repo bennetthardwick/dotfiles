@@ -9,16 +9,6 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local capabilities = {}
 
-local lsp_status = require("lsp-status")
-
-lsp_status.config({
-	status_symbol = "",
-	indicator_ok = "",
-	indicator_errors = "",
-})
-
-lsp_status.register_progress()
-
 local conform = require("conform")
 
 local format = function()
@@ -32,8 +22,6 @@ end
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-	lsp_status.on_attach(client)
-
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -41,9 +29,9 @@ local on_attach = function(client, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+	-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+	-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
@@ -77,37 +65,30 @@ local lsp_flags = {
 	debounce_text_changes = 250
 }
 
-require("lspconfig")["ts_ls"].setup({
+vim.lsp.config("ts_ls", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
-require("lspconfig")["eslint"].setup({
+vim.lsp.config("eslint", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
-require("lspconfig")["gopls"].setup({
+vim.lsp.enable("gopls", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
--- require('lspconfig')['eslint'].setup {
---     on_attach = on_attach,
---     flags = lsp_flags,
---     capabilities = capabilities,
--- }
-
--- require("rust-tools").setup {
---   server = {
---     on_attach = on_attach
---   }
--- }
---
--- vim.api.nvim_create_user_command('ExpandRustMacro', function() require("rust-tools").expand_macro.expand_macro() end, {})
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("eslint")
+vim.lsp.enable("gopls")
+vim.lsp.enable("marksman")
+vim.lsp.enable("clangd")
+vim.lsp.enable("ltex")
 
 vim.g.rustaceanvim = {
 	server = {
@@ -142,61 +123,19 @@ vim.g.rustaceanvim = {
 	},
 }
 
--- for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
--- 	local default_diagnostic_handler = vim.lsp.handlers[method]
--- 	vim.lsp.handlers[method] = function(err, result, context, config)
--- 		if err ~= nil and err.code == -32802 then
--- 			return
--- 		end
--- 		return default_diagnostic_handler(err, result, context, config)
--- 	end
--- end
-
--- require('lspconfig')['rust_analyzer'].setup {
---     on_attach = on_attach,
---     flags = lsp_flags,
---     capabilities = capabilities,
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {
---         procMacro = {
---           enable = true
---         },
---         cargo = {
---           buildScripts = {
---             enable = true
---           },
---           features = "all",
---           checkOnSave = {
---             allTargets = true
---           },
---           procMacro = {
---             enable = true
---           }
---         }
---       }
---     }
--- }
-
-require("lspconfig")["marksman"].setup({
+vim.lsp.config("marksman", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
-require("lspconfig")["gopls"].setup({
+vim.lsp.config("clangd", {
 	on_attach = on_attach,
 	flags = lsp_flags,
 	capabilities = capabilities,
 })
 
-require("lspconfig")["clangd"].setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
-})
-
-require("lspconfig")["ltex"].setup({
+vim.lsp.config("ltex", {
 	on_attach = on_attach,
 	flags = { debounce_text_changes = 1000 },
 	filetypes = { "markdown", "mdx", "text", "rust", "go", "javascript", "typescript", "tsx", "zsh", "sh" },
@@ -300,6 +239,10 @@ vim.keymap.set("n", "<leader>fb", telescope.buffers, {})
 vim.keymap.set("n", "<leader>fh", telescope.help_tags, {})
 vim.keymap.set("n", "<leader>fc", telescope.commands, {})
 vim.keymap.set("n", "<C-S-p>", telescope.commands, {})
+
+vim.keymap.set("n", "gr", telescope.lsp_references, {})
+vim.keymap.set("n", "gd", telescope.lsp_definitions, {})
+vim.keymap.set("n", "gi", telescope.lsp_implementations, {})
 
 vim.api.nvim_create_user_command("Rg", function()
 	print('To search use "<leader>fg" in normal mode')

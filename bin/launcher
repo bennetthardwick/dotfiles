@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+bemenu-run --single-instance --tf '#458588' --hf '#458588' -H 30 -b
