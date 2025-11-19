@@ -2,6 +2,10 @@
 
 set -e
 
+if type "loupe" >/dev/null; then
+  exit $(loupe "$@")
+fi
+
 if [ ! -z "$WAYLAND_DISPLAY" ]; then
   imv -s full "$@" -w __floating
 else
