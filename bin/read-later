@@ -55,7 +55,7 @@ else
   echo "  - website" >> "$NOTE"
 fi
 
-echo "link: $LINK" >> "$NOTE"
+echo "url: $LINK" >> "$NOTE"
 echo "created: \"$(date -Iseconds)\"" >> "$NOTE"
 echo "---" >> "$NOTE"
 

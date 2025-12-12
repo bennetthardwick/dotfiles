@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if type "picom" >2&1> /dev/null; then
+	picom &
+fi
+
+davinci-resolve
+
+kill $XWAYLAND_PID

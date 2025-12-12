@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd $HOME
+
+fd "^Cargo.lock$" -x bash -c 'cd {//} && cargo clean'

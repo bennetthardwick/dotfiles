@@ -20,10 +20,10 @@ if [ "$1" = "--remote-play" ]; then
 	sunshine &
 	sleep 5
 
-	WIDTH=1920
-	HEIGHT=1080
-	OUTPUT_WIDTH=1920
-	OUTPUT_HEIGHT=1080
+	WIDTH=2560
+	HEIGHT=1440
+	OUTPUT_WIDTH=2560
+	OUTPUT_HEIGHT=1440
 elif [ "$1" = "--lowres" ]; then
 	WIDTH=1920
 	HEIGHT=1080
