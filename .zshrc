@@ -17,7 +17,10 @@ safe_source $HOME/.bashrc
 export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
+
+if type "gpg-connect-agent" > /dev/null; then
+	gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
 
 if [ -z "$SSH_CLIENT" ]; then
 	if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
@@ -27,7 +30,7 @@ if [ -z "$SSH_CLIENT" ]; then
 fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
-	if type "keychain" >/dev/null; then
+	if type "keychain" > /dev/null; then
 		eval "$(keychain --timeout 10 --quick --quiet --eval)"
 	elif type "ssh-agent" >/dev/null; then
 		eval $(ssh-agent) >/dev/null
