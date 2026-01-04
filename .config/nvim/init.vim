@@ -55,6 +55,8 @@ if has('nvim')
   " Give the pum some transparency
   set pumblend=0
 
+  set autowriteall
+
   highlight PmenuSel blend=0
 
   " Make sure the terminal buffer has no numbers and no sign column
