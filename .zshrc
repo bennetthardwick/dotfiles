@@ -18,7 +18,7 @@ export LANG=en_AU.UTF-8
 export LC_ALL=en_AU.UTF-8
 export GPG_TTY=$(tty)
 
-if type "gpg-connect-agent" > /dev/null; then
+if type "gpg-connect-agent" >/dev/null; then
 	gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
@@ -30,7 +30,7 @@ if [ -z "$SSH_CLIENT" ]; then
 fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
-	if type "keychain" > /dev/null; then
+	if type "keychain" >/dev/null; then
 		eval "$(keychain --timeout 10 --quick --quiet --eval)"
 	elif type "ssh-agent" >/dev/null; then
 		eval $(ssh-agent) >/dev/null
@@ -178,7 +178,12 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 		export MOZ_ENABLE_WAYLAND=1
 		export ANKI_WAYLAND=1
 
-		Hyprland 2>/tmp/hyprland.log
+		if type "uwsm" >/dev/null; then
+			exec uwsm start hyprland.desktop
+		else
+			Hyprland 2>/tmp/hyprland.log
+		fi
+
 		exit 0
 	elif type "sway" >/dev/null; then
 		export XDG_CURRENT_DESKTOP=sway

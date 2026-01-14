@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+jq_filter='"\(.obs.temp.dry_bulb_1min_cel)° (\(.obs.temp.apparent_1min_cel)°)"'
+
+curl 'https://api.bom.gov.au/apikey/v1/observations/latest/66214/atm/surf_air?include_qc_results=false' \
+  --silent \
+  --compressed \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:146.0) Gecko/20100101 Firefox/146.0' \
+  -H 'Accept: application/json, */*;q=0.8' \
+  -H 'Referer: https://www.bom.gov.au/' \
+  -H 'Origin: https://www.bom.gov.au' \
+  -H 'Sec-GPC: 1' \
+  -H 'Connection: keep-alive' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: same-site' \
+  -H 'Priority: u=4' \
+  -H 'Pragma: no-cache' \
+  -H 'Cache-Control: no-cache' \
+  -H 'TE: trailers' | jq -r "$jq_filter"

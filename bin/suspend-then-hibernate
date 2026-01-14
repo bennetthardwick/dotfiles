@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ "$HOST" = "bennett-desktop" ]; then
+	# Don't do it on desktop!
+	# systemctl suspend
+else
+	systemctl suspend-then-hibernate
+fi
