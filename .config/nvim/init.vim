@@ -135,6 +135,3 @@ if has('persistent_undo')
   set undofile
   set undodir=$HOME/.vim/undo
 endif
-
-" I always accidentally do e1 instead of e!
-cnoremap e1 e!
