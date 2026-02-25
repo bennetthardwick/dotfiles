@@ -2,6 +2,7 @@
 --write-auto-subs
 --embed-subs
 --force-ipv4
---cookies-from-browser firefox
+--cookies-from-browser chromium
+# --impersonate ""
 
 -o ~/Videos/YouTube/%(title)s.%(ext)s

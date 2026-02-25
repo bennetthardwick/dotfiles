@@ -144,16 +144,16 @@ fi
 # Include functions in the `.zfunc` folder
 fpath+=~/.zfunc
 
-if type "compinit" 2>1 >/dev/null; then
+if type "compinit" 2>&1 >/dev/null; then
 	compinit -C
 fi
 
-if type "zoxide" 2>1 >/dev/null; then
+if [[ -o interactive ]] && command -v zoxide >/dev/null 2>&1; then
 	eval "$(zoxide init zsh)"
 	alias cd="z"
 fi
 
-if type "fzf" 2>1 >/dev/null; then
+if type "fzf" 2>&1 >/dev/null; then
 	source <(fzf --zsh)
 fi
 

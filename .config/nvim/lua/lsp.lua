@@ -71,11 +71,11 @@ vim.lsp.config("ts_ls", {
 	capabilities = capabilities,
 })
 
-vim.lsp.config("eslint", {
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
-})
+-- vim.lsp.config("eslint", {
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- 	capabilities = capabilities,
+-- })
 
 vim.lsp.enable("gopls", {
 	on_attach = on_attach,

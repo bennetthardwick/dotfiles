@@ -15,3 +15,7 @@ fi
 branch=$(git branch --show-current | sed "s/\//-/g")
 
 git worktree add "$worktree_dir/$repo_name/$branch" HEAD
+
+echo "Created worktree at '$worktree_dir/$repo_name/$branch'"
+
+cd "$worktree_dir/$repo_name/$branch"

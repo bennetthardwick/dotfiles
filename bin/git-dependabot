@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Automate the tedious process of approving and merging dependabot PRs.
+
+set -e
+
+usage() {
+	echo "Usage: git dependabot {approve|merge} [gh-options]"
+	exit 1
+}
+
+if [[ $# -lt 1 ]]; then
+	usage
+fi
+
+MODE="$1"
+shift
+
+case "$MODE" in
+approve | merge) ;;
+*) usage ;;
+esac
+
+# JQ filter that will generate a script of `gh` commands for the selected mode.
+JQ_FILTER='.[] | [ "", '
+JQ_FILTER+='"# \(.number): \(.title) [\([.labels.[].name] | join(","))]", '
+
+if [[ "$MODE" == "approve" ]]; then
+	JQ_FILTER+='"gh pr review \(.number) --approve"'
+elif [[ "$MODE" == "merge" ]]; then
+	JQ_FILTER+='"gh pr merge \(.number) --squash"'
+fi
+
+JQ_FILTER+='] | join("\n")'
+
+OUTPUT_FILE=$(mktemp)
+
+trap "rm $OUTPUT_FILE" EXIT
+
+echo "Created temporary file at $OUTPUT_FILE"
+echo ""
+
+echo "# Edit the following script to make sure only the PRs you want to $MODE are listed." >$OUTPUT_FILE
+
+gh pr list --author "app/dependabot" "$@" --json=title,labels,number -q "$JQ_FILTER" >>$OUTPUT_FILE
+
+# Open a text editor to review the generated script
+$EDITOR "$OUTPUT_FILE"
+
+# Ask for confirmation on whether to run the script
+read -p "Run the script? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+
+cat "$OUTPUT_FILE" | while read -r line; do
+	echo "+ $line"
+	eval "$line"
+done
