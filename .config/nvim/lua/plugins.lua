@@ -46,6 +46,8 @@ require("lazy").setup({
 
 	"norcalli/nvim-colorizer.lua",
 
+	"swaits/zellij-nav.nvim",
+
 	{
 		"mrcjkb/rustaceanvim",
 		version = "^6", -- Recommended
