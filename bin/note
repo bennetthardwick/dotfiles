@@ -6,31 +6,31 @@ POSITIONAL_ARGS=()
 cd "$HOME/notes/"
 
 while [[ $# -gt 0 ]]; do
-  case $1 in
-    -b|--blog-idea)
-      PURPOSE="blog-idea"
-      shift
-      shift
-      ;;
-    -*|--*)
-      echo "Unknown option $1"
-      exit 1
-      ;;
-    *)
-      POSITIONAL_ARGS+=("$1")
-      shift
-      ;;
-  esac
+	case $1 in
+	-b | --blog-idea)
+		PURPOSE="blog-idea"
+		shift
+		shift
+		;;
+	-* | --*)
+		echo "Unknown option $1"
+		exit 1
+		;;
+	*)
+		POSITIONAL_ARGS+=("$1")
+		shift
+		;;
+	esac
 done
 
 case $PURPOSE in
-  "daily")
-    note-daily
-    ;;
-  "quick")
-    note-quick
-    ;;
-  "blog-idea")
-    nvim "$HOME/notes/11 Blog/Blog Board.md"
-    ;;
+"daily")
+	note-daily
+	;;
+"quick")
+	note-quick
+	;;
+"blog-idea")
+	nvim "$HOME/notes/11 Blog/Blog Board.md"
+	;;
 esac

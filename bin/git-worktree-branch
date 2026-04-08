@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+git_common_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
+repo_dir="${git_common_dir%.git}"
+
+repo_name=$(basename "$repo_dir")
+worktree_dir="$repo_dir/../worktrees"
+
+if [ ! -d "$worktree_dir" ]; then
+	echo "Worktree directory doesn't exist. Checked: '$worktree_dir'"
+	exit 1
+fi
+
+branch_name="${1:-}"
+
+if [ -z "$branch_name" ]; then
+	echo "Provide the branch name as the first param"
+	exit 1
+fi
+
+worktree_branch=$(echo "$branch_name" | sed "s/\//-/g")
+worktree_branch_dir="$worktree_dir/$repo_name/$worktree_branch"
+
+if [ ! -d "$worktree_branch_dir" ]; then
+	git fetch origin main
+
+	if [ -z $(git branch --list "$branch_name") ]; then
+		git worktree add "$worktree_branch_dir" -b "$branch_name" origin/main
+	else
+		git worktree add "$worktree_branch_dir" "$branch_name"
+	fi
+
+	echo "Created worktree at '$worktree_branch_dir'"
+fi
+
+echo "$worktree_branch_dir" >$HOME/.latest-git-worktree-branch

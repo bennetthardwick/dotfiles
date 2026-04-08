@@ -6,10 +6,10 @@ INPUT=${@:-"$HOME/screenshots/$(date +%s).png"}
 FILE="${INPUT%.png}.png"
 
 if [ ! -z "$WAYLAND_DISPLAY" ]; then
-  grim -g "$(slurp)" $FILE
-  wl-copy < $FILE
+	grim -g "$(slurp)" $FILE
+	wl-copy <$FILE
 else
-  maim -s $FILE
+	maim -s $FILE
 fi
 
 notify-send "Saved screenshot to \"$FILE\"" -t 5000

@@ -24,9 +24,33 @@ require("lazy").setup({
 
 	"neovim/nvim-lspconfig",
 
-	"nvim-treesitter/nvim-treesitter",
-	"nvim-treesitter/nvim-treesitter-textobjects",
-	"nvim-treesitter/playground",
+	{
+	 'nvim-treesitter/nvim-treesitter',
+	  branch = "main",
+	  lazy = false,
+	  build = ':TSUpdate'
+	},
+
+	-- {
+	--   "nvim-treesitter/nvim-treesitter-textobjects",
+	--   branch = "main",
+	--   init = function()
+	--     -- Disable entire built-in ftplugin mappings to avoid conflicts.
+	--     -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+	--     vim.g.no_plugin_maps = true
+	-- 
+	--     -- Or, disable per filetype (add as you like)
+	--     -- vim.g.no_python_maps = true
+	--     -- vim.g.no_ruby_maps = true
+	--     -- vim.g.no_rust_maps = true
+	--     -- vim.g.no_go_maps = true
+	--   end,
+	--   config = function()
+	--     -- put your config here
+	--   end,
+	-- },
+
+	-- "nvim-treesitter/playground",
 
 	{ "j-hui/fidget.nvim", opts = {} },
 
@@ -101,7 +125,7 @@ require("lazy").setup({
 						return require("codecompanion.adapters").extend("ollama", {
 							schema = {
 								model = {
-									default = "gpt-oss",
+									default = "gemma4",
 								},
 							},
 						})

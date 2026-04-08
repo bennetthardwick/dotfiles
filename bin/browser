@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 try() {
-  if type "$1" 2>&1> /dev/null; then
-    exit $($1)
-  fi
+	if type "$1" 2>&1 >/dev/null; then
+		exit $($1)
+	fi
 }
 
 if [[ "$1" = "work" ]]; then
-  try firefox-work
+	try firefox-work
 fi
 
 try firefox

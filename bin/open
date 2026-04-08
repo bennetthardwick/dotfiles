@@ -8,44 +8,42 @@ file="$@"
 url_regex="https?://.*"
 
 if [[ $file =~ $url_regex ]]; then
-  open-link "$file"
-  exit 0 
+	open-link "$file"
+	exit 0
 fi
 
-mime_type=`file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p'`
+mime_type=$(file "$file" --dereference --mime-type | sed -n 's/^.*: \(.*\)$/\1/p')
 
 case $mime_type in
-  image/*)
-    open-image "$file"
-    ;;
+image/*)
+	open-image "$file"
+	;;
 
-  video/*)
-    mpv "$file"
-    ;;
+video/*)
+	mpv "$file"
+	;;
 
-  inode/directory)
-    (
-      set -e
-      cd $file
-      open "$(fzf)"
-    )
-    ;;
+inode/directory)
+	(
+		set -e
+		cd $file
+		open "$(fzf)"
+	)
+	;;
 
-  application/pdf)
-    zathura "$file"
-    ;;
+application/pdf)
+	zathura "$file"
+	;;
 
-  *)
+*)
 
-    echo $mime_type
+	echo $mime_type
 
-    bat "$file"
+	bat "$file"
 
-    ;;
+	;;
 
 esac
-
-
 
 # if [ ! -z "$WAYLAND_DISPLAY" ]; then
 #   imv -s full $FILE -w __floating

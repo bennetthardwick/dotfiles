@@ -3,7 +3,7 @@
 set -e
 
 usage() {
-	echo "usage: convert-video <input> <output>"
+	echo "usage: convert-video <input> <output> <?bitrate>"
 	exit 1
 }
 

@@ -3,11 +3,11 @@
 set -e
 
 if type "loupe" >/dev/null; then
-  exit $(loupe "$@")
+	exit $(loupe "$@")
 fi
 
 if [ ! -z "$WAYLAND_DISPLAY" ]; then
-  imv -s full "$@" -w __floating
+	imv -s full "$@" -w __floating
 else
-  feh "$@" --class __floating
+	feh "$@" --class __floating
 fi

@@ -3,14 +3,14 @@
 set -e
 
 echo_err() {
-  echo "$@" >&2;
+	echo "$@" >&2
 }
 
-if type "$1" &> /dev/null; then
-  $@
+if type "$1" &>/dev/null; then
+	$@
 else
-  PACKAGE=$(pacman -F "/usr/bin/$1" --quiet)
-  echo_err "Install package '$PACKAGE'?"
-  sudo pacman -S $PACKAGE
-  $@
+	PACKAGE=$(pacman -F "/usr/bin/$1" --quiet)
+	echo_err "Install package '$PACKAGE'?"
+	sudo pacman -S $PACKAGE
+	$@
 fi

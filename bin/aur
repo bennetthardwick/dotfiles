@@ -3,18 +3,18 @@
 set -e
 
 usage() {
-    echo "Usage: aur {package}"
-    echo "       aur {repo}"
+	echo "Usage: aur {package}"
+	echo "       aur {repo}"
 }
 
 if [ "$#" -ne 1 ]; then
-  usage
-  exit 1
+	usage
+	exit 1
 fi
 
 if [ "$1" == "help" ]; then
-  usage
-  exit 1
+	usage
+	exit 1
 fi
 
 INPUT="$1"
@@ -23,25 +23,24 @@ REPO=""
 PACKAGE=""
 
 if [[ $INPUT == https://aur.archlinux.org/*.git ]]; then
-  REPO=$INPUT
-  PACKAGE=$(basename "$INPUT" .git)
+	REPO=$INPUT
+	PACKAGE=$(basename "$INPUT" .git)
 else
-  REPO="https://aur.archlinux.org/$INPUT.git"
-  PACKAGE=$INPUT
+	REPO="https://aur.archlinux.org/$INPUT.git"
+	PACKAGE=$INPUT
 fi
 
 PACKAGE_DIR=$HOME/git/.aur/$PACKAGE
 
-
 if [[ -d "$PACKAGE_DIR" ]]; then
-  pushd $PACKAGE_DIR
-  BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
-  git fetch origin $BRANCH
-  git reset --hard origin/$BRANCH
+	pushd $PACKAGE_DIR
+	BRANCH=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+	git fetch origin $BRANCH
+	git reset --hard origin/$BRANCH
 else
-  mkdir -p $PACKAGE_DIR
-  git clone $REPO $PACKAGE_DIR
-  pushd $PACKAGE_DIR
+	mkdir -p $PACKAGE_DIR
+	git clone $REPO $PACKAGE_DIR
+	pushd $PACKAGE_DIR
 fi
 
 nvim PKGBUILD

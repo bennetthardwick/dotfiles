@@ -15,7 +15,7 @@ if [ -f "$NOTE" ]; then
 	exit
 fi
 
-cat >> "$NOTE" << EOF
+cat >>"$NOTE" <<EOF
 ---
 created: "$(date -Iseconds)"
 ---

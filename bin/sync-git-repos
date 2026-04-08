@@ -22,15 +22,14 @@ for dir in $repos; do
 		continue
 	fi
 
+	git ls-files -com --ignored --directory --exclude-standard | sed "s,^,- $repo_dir," >>$filter_file || echo "failed to ls files"
 
-	git ls-files -com --ignored --directory --exclude-standard | sed "s,^,- $repo_dir," >> $filter_file || echo "failed to ls files"
+	echo "- $repo_dir.git/" >>$filter_file
 
-	echo "- $repo_dir.git/" >> $filter_file
-
-	echo "+ $repo_dir**" >> $filter_file
+	echo "+ $repo_dir**" >>$filter_file
 done
 
-echo "- **" >> $filter_file
+echo "- **" >>$filter_file
 
 cd $HOME
 

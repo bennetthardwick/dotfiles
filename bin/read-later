@@ -5,59 +5,61 @@ set -eu pipefail
 error_msg=""
 
 cleanup() {
-  ret="$?"
-  if [ $ret = 0 ]; then
-    exit 0
-  fi
-  notify-send -u critical "Failed to save read later$error_msg"
-  exit $ret
+	ret="$?"
+	if [ $ret = 0 ]; then
+		exit 0
+	fi
+	notify-send -u critical "Failed to save read later$error_msg"
+	exit $ret
 }
 
 trap "cleanup" EXIT
 
-if ! type "hq" > /dev/null; then
-  error_msg=": hq binary does not exist"
-  exit 1
+if ! type "hq" >/dev/null; then
+	error_msg=": hq binary does not exist"
+	exit 1
 fi
 
-LINK=`wl-paste`
+LINK=$(wl-paste)
 
 OUTPUT=$(curl -L -f "$LINK")
 
-TITLE=$(set -eu pipefail
-  echo $OUTPUT | \
-  grep -o '<title[^<]*>[^<]*</title>' | \
-  sed -e "s/’/'/g" | \
-  sed -e 's/<title[^<]*>//g' -e 's/<\/title>//g' | \
-  recode html | \
-  sed -e 's/|/-/g' | \
-  sed -e "s/\//-/g" | \
-  # sed -e 's/\(.*\)/\L\1/') | \
-  # sed -e "s/\s/-/g" | \
-  # sed -e "s/,//g" | \
-  # sed -e "s/'//g" | \
-  sed -e "s/:/-/g")
+TITLE=$(
+	set -eu pipefail
+	echo $OUTPUT |
+		grep -o '<title[^<]*>[^<]*</title>' |
+		sed -e "s/’/'/g" |
+		sed -e 's/<title[^<]*>//g' -e 's/<\/title>//g' |
+		recode html |
+		sed -e 's/|/-/g' |
+		sed -e "s/\//-/g" |
+		# sed -e 's/\(.*\)/\L\1/') | \
+		# sed -e "s/\s/-/g" | \
+		# sed -e "s/,//g" | \
+		# sed -e "s/'//g" | \
+		sed -e "s/:/-/g"
+)
 
 NOTE="$HOME/notes/00 Inbox/Read Later/$TITLE.md"
 
 touch "$NOTE"
 
-echo "---" > "$NOTE"
+echo "---" >"$NOTE"
 
 if [[ "$LINK" == *"youtube.com"* ]]; then
-  echo "tags:" >> "$NOTE"
-  echo "  - later" >> "$NOTE"
-  echo "  - website" >> "$NOTE"
-  echo "  - youtube" >> "$NOTE"
+	echo "tags:" >>"$NOTE"
+	echo "  - later" >>"$NOTE"
+	echo "  - website" >>"$NOTE"
+	echo "  - youtube" >>"$NOTE"
 else
-  echo "tags:" >> "$NOTE"
-  echo "  - later" >> "$NOTE"
-  echo "  - website" >> "$NOTE"
+	echo "tags:" >>"$NOTE"
+	echo "  - later" >>"$NOTE"
+	echo "  - website" >>"$NOTE"
 fi
 
-echo "url: $LINK" >> "$NOTE"
-echo "created: \"$(date -Iseconds)\"" >> "$NOTE"
-echo "---" >> "$NOTE"
+echo "url: $LINK" >>"$NOTE"
+echo "created: \"$(date -Iseconds)\"" >>"$NOTE"
+echo "---" >>"$NOTE"
 
 notify-send "Link '$TITLE' added successfully"
 

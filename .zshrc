@@ -157,6 +157,11 @@ if type "fzf" 2>&1 >/dev/null; then
 	source <(fzf --zsh)
 fi
 
+if type "fd" 2>&1 >/dev/null; then
+	export FZF_DEFAULT_COMMAND="fd --type file --color=always --hidden"
+	export FZF_DEFAULT_OPTS="--ansi"
+fi
+
 # export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -209,6 +214,15 @@ alias ...="cd ../../"
 alias ....="cd ../../../"
 alias gti=git
 
+worktree() {
+	tab="$(zellij action current-tab-info --json | jq '.tab_id')"
+	git worktree-branch "$1" || return $?
+	cd $(cat $HOME/.latest-git-worktree-branch) || return $?
+	zellij action go-to-tab-by-id "$tab" || return $?
+	zellij run -- claude || return $?
+	nvim
+}
+
 uzip() {
 	unzip $1 -d ${1%.zip}
 }
@@ -217,4 +231,12 @@ tzip() {
 	directory="$(mktemp --directory)"
 	unzip "$1" -d "$directory"
 	cd $directory
+}
+
+kill_port() { 
+	kill -9 "$(lsof -i :$1 -sTCP:LISTEN -t)" || true
+}
+
+kill_8080() { 
+	kill_port 8080
 }

@@ -48,7 +48,7 @@ if has('nvim')
   " Show a line where the current cursor is
   set cursorline
 
-	set inccommand=split
+  set inccommand=split
 
   " Show completion items using the pop-up-menu (pum)
   set wildoptions=pum
@@ -85,23 +85,10 @@ if has('nvim')
 
   let g:gruvbox_contrast_dark = "medium"
 
-  " set concealcursor=nc
-
-  " Statusline
-  function! LspStatus() abort
-    if luaeval('#vim.lsp.buf_get_clients() > 0')
-      return luaeval("require('lsp-status').status()")
-    endif
-  
-    return ''
-  endfunction
-
   tnoremap <Esc> <C-\><C-n>
 
-  set statusline=
-  set statusline+=%f\ 
+  set statusline=%f\ 
   set statusline+=%h%m%r
-  " set statusline+=\ %{LspStatus()}
   set statusline+=%=
   set statusline+=\ %y
   set statusline+=\ %l:%c

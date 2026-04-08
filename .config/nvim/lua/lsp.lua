@@ -62,7 +62,7 @@ end
 vim.api.nvim_create_user_command("Format", format, {})
 
 local lsp_flags = {
-	debounce_text_changes = 250
+	debounce_text_changes = 250,
 }
 
 vim.lsp.config("ts_ls", {
@@ -109,6 +109,8 @@ vim.g.rustaceanvim = {
 
 				cargo = {
 					features = "all",
+
+					targetDir = true,
 
 					buildScripts = {
 						enable = true,
@@ -157,52 +159,85 @@ vim.lsp.config("ltex", {
 	capabilities = capabilities,
 })
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"c",
-		"lua",
-		"vim",
-		"vimdoc",
-		"rust",
-		"terraform",
-		"hcl",
-		"javascript",
-		"typescript",
-		"tsx",
-		"query",
-		"make",
-		"markdown",
-		"php",
-	},
+require("nvim-treesitter").setup({})
 
-	auto_install = true,
-
-	highlight = {
-		-- set to enable = true to use treesitter for highlighting
-		enable = true,
-	},
-
-	textobjects = {
-		select = {
-			enable = true,
-			keymaps = {
-				["af"] = "@function.outer",
-			},
-		},
-	},
-
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			node_incremental = "v",
-			node_decremental = "V",
-		},
-	},
-
-	playground = {
-		enable = true,
-	},
+require("nvim-treesitter").install({
+	"c",
+	"bash",
+	"lua",
+	"vim",
+	"vimdoc",
+	"rust",
+	"terraform",
+	"hcl",
+	"javascript",
+	"typescript",
+	"tsx",
+	"query",
+	"make",
+	"markdown",
+	"php",
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "*" },
+	callback = function(args)
+		local lang = vim.treesitter.language.get_lang(args.match)
+		if lang and vim.treesitter.language.add(lang) then
+			vim.treesitter.start(args.buf)
+
+			-- vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+			-- vim.wo[0][0].foldmethod = 'expr'
+		end
+	end,
+})
+
+-- require("nvim-treesitter").setup({
+-- 	ensure_installed = {
+-- 		"c",
+-- 		"lua",
+-- 		"vim",
+-- 		"vimdoc",
+-- 		"rust",
+-- 		"terraform",
+-- 		"hcl",
+-- 		"javascript",
+-- 		"typescript",
+-- 		"tsx",
+-- 		"query",
+-- 		"make",
+-- 		"markdown",
+-- 		"php",
+-- 	},
+--
+-- 	auto_install = true,
+--
+-- 	highlight = {
+-- 		-- set to enable = true to use treesitter for highlighting
+-- 		enable = true,
+-- 	},
+--
+-- 	textobjects = {
+-- 		select = {
+-- 			enable = true,
+-- 			keymaps = {
+-- 				["af"] = "@function.outer",
+-- 			},
+-- 		},
+-- 	},
+--
+-- 	incremental_selection = {
+-- 		enable = true,
+-- 		keymaps = {
+-- 			node_incremental = "v",
+-- 			node_decremental = "V",
+-- 		},
+-- 	},
+--
+-- 	playground = {
+-- 		enable = true,
+-- 	},
+-- })
 
 require("gruvbox").setup({
 	italic = {

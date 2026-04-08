@@ -6,7 +6,7 @@
 set -e
 
 maybe_aur() {
- 	if ! pacman -Q $1 2>1 > /dev/null; then
+	if ! pacman -Q $1 2>1 >/dev/null; then
 		aur $1
 	fi
 }
@@ -71,13 +71,13 @@ echo "Installing GTK theme."
 echo ""
 
 if [ ! -d "$GRUVBOX_GTK_FOLDER" ]; then
-  git clone https://github.com/bennetthardwick/gruvbox-gtk.git --depth 1 $GRUVBOX_GTK_FOLDER
+	git clone https://github.com/bennetthardwick/gruvbox-gtk.git --depth 1 $GRUVBOX_GTK_FOLDER
 else
 	echo "Not installing theme. Already installed."
 fi
 
 if [ ! -d "$GRUVBOX_GTK_ICON_FOLDER" ]; then
-  git clone https://github.com/bennetthardwick/gruvbox-icons-gtk.git --depth 1 $GRUVBOX_GTK_ICON_FOLDER
+	git clone https://github.com/bennetthardwick/gruvbox-icons-gtk.git --depth 1 $GRUVBOX_GTK_ICON_FOLDER
 else
 	echo "Not installing icons. Already installed."
 fi
@@ -125,14 +125,14 @@ sudo pacman -S --noconfirm --needed \
 	xdg-desktop-portal-hyprland \
 	zsh \
 	zsh-autosuggestions \
-  fcitx \
-  fcitx-configtool \
-  fcitx-gtk3 \
-  fcitx-mozc \
-  noto-fonts \
-  noto-fonts-cjk \
-  noto-fonts-emoji \
-  noto-fonts-extra \
+	fcitx \
+	fcitx-configtool \
+	fcitx-gtk3 \
+	fcitx-mozc \
+	noto-fonts \
+	noto-fonts-cjk \
+	noto-fonts-emoji \
+	noto-fonts-extra \
 	--
 
 # Enable getting the time from the internet
@@ -146,9 +146,9 @@ echo "Installing N (Node version manager) through curl script"
 echo ""
 
 if [ ! -x "$(command -v n)" ]; then
-  sed -i '/^export\ N_PREFIX/d' $HOME/git/dotfiles/.zshrc
-  N_PREFIX=$HOME/.n/ curl -L https://git.io/n-install | bash /dev/stdin -n
-  n lts
+	sed -i '/^export\ N_PREFIX/d' $HOME/git/dotfiles/.zshrc
+	N_PREFIX=$HOME/.n/ curl -L https://git.io/n-install | bash /dev/stdin -n
+	n lts
 else
 	echo "Skipping, already installed."
 fi
@@ -156,7 +156,7 @@ fi
 # Check a ssh config file if it doesn't exist that imports the shared config
 if [ ! -f "$HOME/.ssh/config" ]; then
 	mkdir -p "$HOME/.ssh/"
-	echo "Include $HOME/.config/ssh-shared.config" > "$HOME/.ssh/config"
+	echo "Include $HOME/.config/ssh-shared.config" >"$HOME/.ssh/config"
 fi
 
 # Return home so new shells open at home

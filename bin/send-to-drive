@@ -3,8 +3,8 @@
 set -e
 
 if [ -z "$@" ]; then
-  echo "Input was empty"
-  exit 1
+	echo "Input was empty"
+	exit 1
 fi
 
 # Exclude .pp3 files since I'm normally uploading converted photos from RawTherapee

@@ -9,7 +9,7 @@ file=$(mktemp)
 display=$RANDOM
 
 # Dump some Openbox config so that the Reaper application is maximized and doesn't have a window border when it is opened.
-cat << EOT >> $file
+cat <<EOT >>$file
 <openbox_config>
 	<applications>
 		<application name="Davinci Resolve" title="Davinci Resolve">

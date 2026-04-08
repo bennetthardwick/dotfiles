@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 cleanup() {
-  rm -f ~/.config/pomo/time
-  rm -f ~/.config/pomo/pid
+	rm -f ~/.config/pomo/time
+	rm -f ~/.config/pomo/pid
 }
 
 play() {
-  mpg123 $1 &> /dev/null &
+	mpg123 $1 &>/dev/null &
 }
 
-notify() { 
-  echo $1
-  notify-send "Pomodoro timer" "$1" -u ${2-"normal"}
+notify() {
+	echo $1
+	notify-send "Pomodoro timer" "$1" -u ${2-"normal"}
 }
 
 if [ -f ~/.config/pomo/time ] || [ -f ~/.config/pomo/pid ]; then
-  notify "There's already a pomo in progress." critical
-  exit 1
+	notify "There's already a pomo in progress." critical
+	exit 1
 fi
 
 trap cleanup EXIT
 
-echo $$ > ~/.config/pomo/pid
+echo $$ >~/.config/pomo/pid
 
 finish=$(date -d '+30 minutes' '+%H:%M')
 
@@ -30,23 +30,23 @@ notify "Starting a 30 minute session. The session will finish at $finish"
 play ~/.config/pomo/pomo-start.mp3
 
 for i in $(seq 1 1 1800); do
-  echo `date -d@"$i" -u +%M:%S` > ~/.config/pomo/time
+	echo $(date -d@"$i" -u +%M:%S) >~/.config/pomo/time
 
-  # 20 minute mark
-  if [ "$i" -eq "1200" ]; then
-    notify "$summary" "5 minutes left..." -u low
-  fi
+	# 20 minute mark
+	if [ "$i" -eq "1200" ]; then
+		notify "$summary" "5 minutes left..." -u low
+	fi
 
-  # 25 minute mark
-  if [ "$i" -eq "1500" ]; then
-    notify "Pomodoro finished. Have a break for 5 minutes."
-    play ~/.config/pomo/pomo-end.mp3
-  fi
+	# 25 minute mark
+	if [ "$i" -eq "1500" ]; then
+		notify "Pomodoro finished. Have a break for 5 minutes."
+		play ~/.config/pomo/pomo-end.mp3
+	fi
 
-  # 30 minute mark
-  if [ "$i" -eq "1800" ]; then
-    notify "Break over - time to do another session?"
-  fi
+	# 30 minute mark
+	if [ "$i" -eq "1800" ]; then
+		notify "Break over - time to do another session?"
+	fi
 
-  sleep 1
+	sleep 1
 done

@@ -5,8 +5,8 @@ set -eu
 source_path="$@"
 
 if [ -z "$source_path" ]; then
-  echo "Input was empty"
-  exit 1
+	echo "Input was empty"
+	exit 1
 fi
 
 target_path=""

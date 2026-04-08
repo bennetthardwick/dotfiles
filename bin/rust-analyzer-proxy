@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if type "ra-multiplex" 2>&1> /dev/null; then
+if type "ra-multiplex" 2>&1 >/dev/null; then
 	exit $(ra-multiplex $@)
 else
 	exit $(rust-analyzer $@)
