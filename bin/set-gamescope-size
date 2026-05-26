@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eu
+
+TARGET_WIDTH="$1"
+TARGET_HEIGHT="$2"

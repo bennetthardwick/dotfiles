@@ -50,7 +50,7 @@ input {
 }
 
 misc {
-  disable_hyprland_logo = yes
+  disable_hyprland_logo=true
   background_color=0x242424
 
   mouse_move_focuses_monitor = true
@@ -114,7 +114,7 @@ animations {
 
 dwindle {
   # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-  pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+  # pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
   preserve_split = yes # you probably want this
 
   force_split = 2
@@ -227,7 +227,7 @@ bind = $mainMod SHIFT, A, exec, screenshot-and-open
 # bind = $mainMod, M, exit, 
 bind = $mainMod SHIFT, space, togglefloating, 
 bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, J, togglesplit, # dwindle
+# bind = $mainMod, J, togglesplit, # dwindle
 
 bind = $mainMod SHIFT, C, resizeactive, exact 60% 60%
 bind = $mainMod SHIFT, C, centerwindow
