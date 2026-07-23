@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-while true; do
-	/usr/bin/waybar $@
-done

@@ -184,9 +184,10 @@ if [ "$(tty)" = "/dev/tty1" ]; then
 		export ANKI_WAYLAND=1
 
 		if type "uwsm" >/dev/null; then
-			exec uwsm start hyprland.desktop
+			export STARTED_WITH_UWSM=1
+			exec uwsm start hyprland-uwsm.desktop
 		else
-			Hyprland 2>/tmp/hyprland.log
+			start-hyprland 2>/tmp/hyprland.log
 		fi
 
 		exit 0
@@ -240,3 +241,7 @@ kill_port() {
 kill_8080() { 
 	kill_port 8080
 }
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/bennett/.local/bin:$PATH"

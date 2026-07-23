@@ -177,6 +177,9 @@ require("nvim-treesitter").install({
 	"make",
 	"markdown",
 	"php",
+	"yaml",
+	"diff",
+	"toml",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -349,3 +352,14 @@ local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false 
 --     "yaml",
 --   },
 -- }
+
+require("diffview").setup({
+	view = {
+		merge_tool = {
+			layout = "diff3_mixed",
+		},
+	},
+	-- file_panel = {
+	-- 	listing_style = "list",
+	-- },
+})

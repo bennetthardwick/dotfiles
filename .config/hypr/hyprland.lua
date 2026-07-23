@@ -15,18 +15,31 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 ---- AUTOSTART ----
 -------------------
 
+local prefix = ""
+
+if os.getenv("STARTED_WITH_UWSM") then
+    prefix = "uwsm app -- "
+end
+
+local exec_cmd = function(arg)
+    hl.exec_cmd(prefix .. arg)
+end
+
+local bind_cmd = function(arg)
+    return hl.dsp.exec_cmd(prefix .. arg)
+end
+
 hl.on("hyprland.start", function()
-	hl.exec_cmd("waybar")
-	hl.exec_cmd("gammastep -t 6500:3600 -l -21:149")
-	hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-	hl.exec_cmd("steam -silent")
-	hl.exec_cmd("mako")
-	hl.exec_cmd("hypridle")
-	hl.exec_cmd("fcitx5 -d --replace")
-	hl.exec_cmd("nm-applet")
-	hl.exec_cmd("blueman-applet")
-	hl.exec_cmd("solaar -w hide")
-	hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+	exec_cmd("waybar")
+	exec_cmd("gammastep -t 6500:3600 -l -21:149")
+	exec_cmd("steam -silent")
+	exec_cmd("mako")
+	exec_cmd("hypridle")
+	exec_cmd("fcitx5 -d --replace")
+	exec_cmd("nm-applet")
+	exec_cmd("blueman-applet")
+	exec_cmd("solaar -w hide")
 end)
 
 ---------------
@@ -147,16 +160,19 @@ hl.gesture({
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + return", hl.dsp.exec_cmd("terminal"))
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("bemenu-run --single-instance --tf '#458588' --hf '#458588' -H 30 -b"))
+hl.bind(mainMod .. " + return", bind_cmd("terminal"))
+hl.bind(
+	mainMod .. " + D",
+	bind_cmd("bemenu-run --single-instance --tf '#458588' --hf '#458588' -H 30 -b")
+)
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
-hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("note-quick-gui"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("note-daily-gui"))
+hl.bind(mainMod .. " + N", bind_cmd("note-quick-gui"))
+hl.bind(mainMod .. " + M", bind_cmd("note-daily-gui"))
 
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("screenshot"))
-hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("tmp-screenshot"))
-hl.bind(mainMod .. " + SHIFT + A", hl.dsp.exec_cmd("screenshot-and-open"))
+hl.bind(mainMod .. " + SHIFT + S", bind_cmd("screenshot"))
+hl.bind(mainMod .. " + SHIFT + D", bind_cmd("tmp-screenshot"))
+hl.bind(mainMod .. " + SHIFT + A", bind_cmd("screenshot-and-open"))
 
 hl.bind(mainMod .. " + SHIFT + space", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -208,15 +224,15 @@ hl.bind(mainMod .. " + a", hl.dsp.focus({ workspace = 9 }))
 hl.bind(mainMod .. " + s", hl.dsp.focus({ workspace = 10 }))
 
 -- Audio / brightness
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"))
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"))
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"))
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"))
+hl.bind("XF86AudioRaiseVolume", bind_cmd("pactl set-sink-volume @DEFAULT_SINK@ +5%"))
+hl.bind("XF86AudioLowerVolume", bind_cmd("pactl set-sink-volume @DEFAULT_SINK@ -5%"))
+hl.bind("XF86AudioMute", bind_cmd("pactl set-sink-mute @DEFAULT_SINK@ toggle"))
+hl.bind("XF86AudioMicMute", bind_cmd("pactl set-source-mute @DEFAULT_SOURCE@ toggle"))
+hl.bind("XF86MonBrightnessDown", bind_cmd("brightnessctl set 5%-"))
+hl.bind("XF86MonBrightnessUp", bind_cmd("brightnessctl set +5%"))
 
 -- Lid switch
-hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend-then-hibernate"), { locked = true })
+hl.bind("switch:on:Lid Switch", bind_cmd("systemctl suspend-then-hibernate"), { locked = true })
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })

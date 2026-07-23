@@ -22,10 +22,18 @@ approve | merge) ;;
 esac
 
 # JQ filter that will generate a script of `gh` commands for the selected mode.
-JQ_FILTER='.[] | [ "", '
+JQ_FILTER='.[] '
+
+# For merge, only include PRs that have already been approved.
+if [[ "$MODE" == "merge" ]]; then
+	JQ_FILTER+='| select(.reviewDecision == "APPROVED") '
+fi
+
+JQ_FILTER+='| [ "", '
 JQ_FILTER+='"# \(.number): \(.title) [\([.labels.[].name] | join(","))]", '
 
 if [[ "$MODE" == "approve" ]]; then
+	JQ_FILTER+='"\([.files.[] | "#   \(.path) (+\(.additions) -\(.deletions))"] | join("\n"))", '
 	JQ_FILTER+='"gh pr review \(.number) --approve"'
 elif [[ "$MODE" == "merge" ]]; then
 	JQ_FILTER+='"gh pr merge \(.number) --squash"'
@@ -42,7 +50,7 @@ echo ""
 
 echo "# Edit the following script to make sure only the PRs you want to $MODE are listed." >$OUTPUT_FILE
 
-gh pr list --author "app/dependabot" "$@" --json=title,labels,number -q "$JQ_FILTER" >>$OUTPUT_FILE
+gh pr list --author "app/dependabot" "$@" --json=title,labels,number,reviewDecision,files -q "$JQ_FILTER" >>$OUTPUT_FILE
 
 # Open a text editor to review the generated script
 $EDITOR "$OUTPUT_FILE"

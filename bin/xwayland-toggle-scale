@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+# Fetch the current integer value
 ZERO_SCALING="$(hyprctl getoption xwayland:force_zero_scaling -j | jq .int)"
 
+# Toggle the value using native Lua eval commands
 if [[ "$ZERO_SCALING" -eq "1" ]]; then
-	hyprctl keyword xwayland:force_zero_scaling false
+    hyprctl eval 'hl.config({ xwayland = { force_zero_scaling = false } })'
 else
-	hyprctl keyword xwayland:force_zero_scaling true
+    hyprctl eval 'hl.config({ xwayland = { force_zero_scaling = true } })'
 fi
 
-hyprctl dispatch forcerendererreload
+# Reload the renderer using the Lua dispatcher namespace
+hyprctl eval 'hl.dsp.forcerendererreload()'

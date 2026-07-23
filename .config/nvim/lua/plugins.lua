@@ -25,10 +25,10 @@ require("lazy").setup({
 	"neovim/nvim-lspconfig",
 
 	{
-	 'nvim-treesitter/nvim-treesitter',
-	  branch = "main",
-	  lazy = false,
-	  build = ':TSUpdate'
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
 	},
 
 	-- {
@@ -38,7 +38,7 @@ require("lazy").setup({
 	--     -- Disable entire built-in ftplugin mappings to avoid conflicts.
 	--     -- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
 	--     vim.g.no_plugin_maps = true
-	-- 
+	--
 	--     -- Or, disable per filetype (add as you like)
 	--     -- vim.g.no_python_maps = true
 	--     -- vim.g.no_ruby_maps = true
@@ -112,42 +112,6 @@ require("lazy").setup({
 	},
 
 	{
-		"olimorris/codecompanion.nvim",
-		config = true,
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		opts = {
-			adapters = {
-				http = {
-					ollama = function()
-						return require("codecompanion.adapters").extend("ollama", {
-							schema = {
-								model = {
-									default = "gemma4",
-								},
-							},
-						})
-					end,
-				},
-			},
-
-			strategies = {
-				chat = {
-					adapter = "ollama",
-				},
-				inline = {
-					adapter = "ollama",
-				},
-				cmd = {
-					adapter = "ollama",
-				},
-			},
-		},
-	},
-
-	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -174,5 +138,56 @@ require("lazy").setup({
 				},
 			})
 		end,
+	},
+
+	{
+		"pwntester/octo.nvim",
+		cmd = "Octo",
+		opts = {
+			-- or "fzf-lua" or "snacks" or "default"
+			picker = "telescope",
+			-- bare Octo command opens picker of commands
+			enable_builtin = true,
+		},
+		keys = {
+			{
+				"<leader>oi",
+				"<CMD>Octo issue list<CR>",
+				desc = "List GitHub Issues",
+			},
+			{
+				"<leader>op",
+				"<CMD>Octo pr list<CR>",
+				desc = "List GitHub PullRequests",
+			},
+			{
+				"<leader>od",
+				"<CMD>Octo discussion list<CR>",
+				desc = "List GitHub Discussions",
+			},
+			{
+				"<leader>on",
+				"<CMD>Octo notification list<CR>",
+				desc = "List GitHub Notifications",
+			},
+			{
+				"<leader>os",
+				function()
+					require("octo.utils").create_base_search_command({ include_current_repo = true })
+				end,
+				desc = "Search GitHub",
+			},
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			-- OR "ibhagwan/fzf-lua",
+			-- OR "folke/snacks.nvim",
+			-- "nvim-tree/nvim-web-devicons", -- optional if file_panel.icons is a function
+		},
+	},
+
+	{
+		"sindrets/diffview.nvim",
 	},
 })
