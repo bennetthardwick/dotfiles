@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
+    # 1. Look for an active Zellij session on your machine
+    ACTIVE_SESSION=$(zellij list-sessions -n 2>/dev/null | grep -v "EXITED" | head -n 1 | awk '{print $1}')
+
+    # 2. If a session is found, force the popup into that specific session
+    if [ -n "$ACTIVE_SESSION" ]; then
+        exec zellij --session "$ACTIVE_SESSION" run --floating --close-on-exit -- pinentry-curses "$@"
+    else
+        exec pinentry-tty "$@"
+    fi
+else
+    exec pinentry-gtk "$@"
+fi

@@ -88,7 +88,8 @@ vim.lsp.enable("eslint")
 vim.lsp.enable("gopls")
 vim.lsp.enable("marksman")
 vim.lsp.enable("clangd")
-vim.lsp.enable("ltex")
+
+-- vim.lsp.enable("ltex")
 
 vim.g.rustaceanvim = {
 	server = {
@@ -98,6 +99,14 @@ vim.g.rustaceanvim = {
 			["rust-analyzer"] = {
 				check = {
 					command = "clippy",
+				},
+
+				files = {
+					-- Let Neovim (the client) watch files instead of rust-analyzer.
+					-- rustaceanvim otherwise forces "server" watching whenever the
+					-- client advertises the capability (lsp/init.lua configure_file_watcher),
+					-- so this must be set explicitly to take effect.
+					watcher = "client",
 				},
 
 				-- script in my dotfiles that will use ra-multiplex if available, else normal ra
@@ -124,6 +133,48 @@ vim.g.rustaceanvim = {
 		},
 	},
 }
+
+-- Stop rust-analyzer after a period of inactivity to reclaim memory.
+-- It restarts automatically on the next activity in a Rust buffer.
+do
+	local idle_timeout = 5 * 60 * 1000 -- 5 minutes
+	local ra_name = "rust-analyzer" -- rustaceanvim names the client with a hyphen
+	local idle_timer = nil
+
+	local function stop_rust_analyzer()
+		local clients = vim.lsp.get_clients({ name = ra_name })
+		if #clients == 0 then
+			return
+		end
+		for _, client in ipairs(clients) do
+			client:stop()
+		end
+		vim.notify("rust-analyzer stopped due to inactivity", vim.log.levels.INFO)
+	end
+
+	local function reset_idle_timer()
+		if not idle_timer then
+			idle_timer = vim.uv.new_timer()
+		end
+		idle_timer:stop()
+		idle_timer:start(idle_timeout, 0, vim.schedule_wrap(stop_rust_analyzer))
+	end
+
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "InsertCharPre", "BufEnter" }, {
+		group = vim.api.nvim_create_augroup("LspInactivityShutdown", { clear = true }),
+		pattern = "*.rs",
+		callback = function()
+			if vim.bo.filetype ~= "rust" then
+				return
+			end
+			-- Restart via rustaceanvim if it was stopped; LspStart does not manage it.
+			if #vim.lsp.get_clients({ name = ra_name }) == 0 then
+				vim.cmd("RustAnalyzer start")
+			end
+			reset_idle_timer()
+		end,
+	})
+end
 
 vim.lsp.config("marksman", {
 	on_attach = on_attach,

@@ -22,16 +22,12 @@ if type "gpg-connect-agent" >/dev/null; then
 	gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
-if [ -z "$SSH_CLIENT" ]; then
-	if [ -f "/usr/lib/seahorse/ssh-askpass" ]; then
-		export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
-		export SSH_ASKPASS_REQUIRE=prefer
-	fi
-fi
+export SSH_ASKPASS="$HOME/bin/pinentry"
+export SSH_ASKPASS_REQUIRE=prefer
 
 if [ "$(uname -s)" != "Darwin" ]; then
 	if type "keychain" >/dev/null; then
-		eval "$(keychain --timeout 10 --quick --quiet --eval)"
+		eval "$(keychain --timeout=120 --quick --quiet --eval)"
 	elif type "ssh-agent" >/dev/null; then
 		eval $(ssh-agent) >/dev/null
 	else

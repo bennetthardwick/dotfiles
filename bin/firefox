@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+taskset -c 0-7 /usr/bin/firefox $@
