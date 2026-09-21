@@ -10,6 +10,10 @@ if [ -n "$SSH_CONNECTION" ] || [ -n "$SSH_CLIENT" ]; then
     else
         exec pinentry-tty "$@"
     fi
-else
+elif type "pinentry-gnome3" >/dev/null; then
+    exec pinentry-gnome3 "$@"
+elif type "pinentry-gtk" >/dev/null; then
     exec pinentry-gtk "$@"
+else
+    exec pinentry-tty "$@"
 fi
