@@ -7,7 +7,7 @@ Usage: $(basename "$0") [options]
 Options:
   --remote-play    Start Sunshine and use 2560x1440
   --lowres         Use 1920x1080 nested resolution
-  --no-reexec      Don't re-launch on tty2 (used when started from SSH)
+  --no-reexec      Don't re-launch on a VT (used when started from SSH)
   -h, --help       Show this help
 EOF
 }
@@ -55,9 +55,9 @@ fi
 # SSH sessions are pts devices, so re-exec on a real VT for DRM on DP-1.
 if [[ "$NO_REEXEC" != true && "$IS_SSH" == true && "$CURRENT_TTY" != /dev/tty* ]]; then
 	self="$(readlink -f "${BASH_SOURCE[0]}")"
-	echo "SSH session detected; re-launching on tty2 via openvt"
+	echo "SSH session detected; re-launching on a free VT via openvt"
 
-	exec sudo openvt -c 2 -f -s -w -- \
+	exec sudo openvt -s -w -- \
 		sudo -u "$USER" \
 		--preserve-env=HOME,PATH,USER,LOGNAME,XDG_RUNTIME_DIR,DBUS_SESSION_BUS_ADDRESS \
 		-- "$self" --no-reexec "${ORIGINAL_ARGS[@]}"
