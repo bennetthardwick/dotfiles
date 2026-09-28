@@ -57,13 +57,28 @@ fi
 # SSH sessions are pts devices, so re-exec on a real VT for DRM.
 if [[ "$NO_REEXEC" != true && "$IS_SSH" == true && "$CURRENT_TTY" != /dev/tty* ]]; then
 	self="$(readlink -f "${BASH_SOURCE[0]}")"
-	echo "SSH session detected; re-launching on a free VT via openvt"
+	uid="$(id -u)"
+	gid="$(id -g)"
+	runtime="${XDG_RUNTIME_DIR:-/run/user/$uid}"
+
+	echo "SSH session detected; re-launching on a free VT via openvt" | tee -a "$LOG"
 	echo "logs: $LOG"
 
-	exec sudo openvt -s -w -- \
-		sudo -u "$USER" \
-		--preserve-env=HOME,PATH,USER,LOGNAME,XDG_RUNTIME_DIR,DBUS_SESSION_BUS_ADDRESS \
-		-- "$self" --no-reexec "${ORIGINAL_ARGS[@]}"
+	# Nested sudo uses a pty (use_pty), so gamescope would not own the VT.
+	# Drop privileges with setpriv instead so stdin stays /dev/ttyN.
+	sudo openvt -v -s -w -- \
+		/usr/bin/env \
+		HOME="$HOME" \
+		USER="$USER" \
+		LOGNAME="${LOGNAME:-$USER}" \
+		PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin" \
+		XDG_RUNTIME_DIR="$runtime" \
+		XDG_SESSION_TYPE=tty \
+		DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$runtime/bus}" \
+		/usr/bin/setpriv --reuid="$uid" --regid="$gid" --init-groups -- \
+		"$self" --no-reexec "${ORIGINAL_ARGS[@]}"
+	echo "openvt exited $?" | tee -a "$LOG"
+	exit $?
 fi
 
 if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
@@ -74,7 +89,7 @@ export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 exec > >(tee -a "$LOG") 2>&1
 echo "==== $(date) ===="
-echo "user=$(id -un) uid=$(id -u) tty=$CURRENT_TTY"
+echo "user=$(id -un) uid=$(id -u) tty=$CURRENT_TTY vt=$(cat /sys/class/tty/tty0/active 2>/dev/null || true)"
 echo "PATH=$PATH"
 echo "XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
 
@@ -101,16 +116,25 @@ OUTPUT_HEIGHT=2160
 
 STEAM_COMMAND="steam -dev steam://open/bigpicture"
 
+SUNSHINE_PID=""
 if [[ "$REMOTE_PLAY" == true ]]; then
-	if ! pgrep -u "$(id -un)" -x sunshine >/dev/null; then
-		sunshine &
-		sleep 5
-	fi
-
 	WIDTH=2560
 	HEIGHT=1440
 	OUTPUT_WIDTH=2560
 	OUTPUT_HEIGHT=1440
+
+	if ! pgrep -u "$(id -un)" -x sunshine >/dev/null; then
+		# KMS capture needs gamescope (or a powered-on display) first.
+		(
+			for _ in $(seq 1 30); do
+				pgrep -u "$(id -un)" -x gamescope >/dev/null && break
+				sleep 1
+			done
+			sleep 2
+			exec sunshine
+		) &
+		SUNSHINE_PID=$!
+	fi
 fi
 
 if [[ "$LOWRES" == true ]]; then
@@ -150,3 +174,7 @@ echo "running: gamescope ${GAMESCOPE_ARGS[*]} -- $STEAM_COMMAND"
 
 gamescope "${GAMESCOPE_ARGS[@]}" -- $STEAM_COMMAND
 echo "gamescope exited with $?"
+
+if [[ -n "$SUNSHINE_PID" ]]; then
+	kill "$SUNSHINE_PID" 2>/dev/null || true
+fi
