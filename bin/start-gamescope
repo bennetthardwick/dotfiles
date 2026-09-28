@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+LOG=/tmp/start-gamescope.log
+
 usage() {
 	cat <<EOF
 Usage: $(basename "$0") [options]
@@ -52,10 +54,11 @@ if [[ -n "${SSH_CONNECTION:-}" || -n "${SSH_CLIENT:-}" || -n "${SSH_TTY:-}" ]]; 
 	IS_SSH=true
 fi
 
-# SSH sessions are pts devices, so re-exec on a real VT for DRM on DP-1.
+# SSH sessions are pts devices, so re-exec on a real VT for DRM.
 if [[ "$NO_REEXEC" != true && "$IS_SSH" == true && "$CURRENT_TTY" != /dev/tty* ]]; then
 	self="$(readlink -f "${BASH_SOURCE[0]}")"
 	echo "SSH session detected; re-launching on a free VT via openvt"
+	echo "logs: $LOG"
 
 	exec sudo openvt -s -w -- \
 		sudo -u "$USER" \
@@ -63,11 +66,30 @@ if [[ "$NO_REEXEC" != true && "$IS_SSH" == true && "$CURRENT_TTY" != /dev/tty* ]
 		-- "$self" --no-reexec "${ORIGINAL_ARGS[@]}"
 fi
 
-while true; do
-	if [[ "$(killall -u $USER steam 2>&1)" == 'steam: no process found' ]]; then
-		break
-	fi
+if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
+	export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+fi
 
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+exec > >(tee -a "$LOG") 2>&1
+echo "==== $(date) ===="
+echo "user=$(id -un) uid=$(id -u) tty=$CURRENT_TTY"
+echo "PATH=$PATH"
+echo "XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
+
+connected_outputs() {
+	local status conn
+	for status in /sys/class/drm/card*-*/status; do
+		[[ -e "$status" ]] || continue
+		[[ "$(<"$status")" == connected ]] || continue
+		conn="$(basename "$(dirname "$status")")"
+		printf '%s\n' "${conn#*-}"
+	done
+}
+
+while pgrep -u "$(id -un)" -x steam >/dev/null; do
+	killall -u "$(id -un)" steam 2>/dev/null || true
 	sleep 0.2
 done
 
@@ -80,8 +102,10 @@ OUTPUT_HEIGHT=2160
 STEAM_COMMAND="steam -dev steam://open/bigpicture"
 
 if [[ "$REMOTE_PLAY" == true ]]; then
-	sunshine &
-	sleep 5
+	if ! pgrep -u "$(id -un)" -x sunshine >/dev/null; then
+		sunshine &
+		sleep 5
+	fi
 
 	WIDTH=2560
 	HEIGHT=1440
@@ -94,15 +118,26 @@ if [[ "$LOWRES" == true ]]; then
 	HEIGHT=1080
 fi
 
+if ! command -v gamescope >/dev/null; then
+	echo "gamescope not found in PATH=$PATH" >&2
+	exit 1
+fi
+
 GAMESCOPE_ARGS=()
 
 if [[ "$NO_REEXEC" == true || "$CURRENT_TTY" == /dev/tty* ]]; then
 	GAMESCOPE_ARGS+=(
 		--backend drm
 		-w "$WIDTH" -h "$HEIGHT" -W "$OUTPUT_WIDTH" -H "$OUTPUT_HEIGHT"
-		-r 60 -O DP-1 --rt --xwayland-count 2
+		-r 60 --rt --xwayland-count 2
 		-F fsr -e
 	)
+
+	outputs="$(connected_outputs | paste -sd, -)"
+	echo "connected outputs: ${outputs:-none}"
+	if [[ -n "$outputs" ]]; then
+		GAMESCOPE_ARGS+=(-O "$outputs")
+	fi
 else
 	GAMESCOPE_ARGS+=(
 		--mangoapp --rt
@@ -111,6 +146,7 @@ else
 	)
 fi
 
-echo "running: gamescope ${GAMESCOPE_ARGS[*]}"
+echo "running: gamescope ${GAMESCOPE_ARGS[*]} -- $STEAM_COMMAND"
 
 gamescope "${GAMESCOPE_ARGS[@]}" -- $STEAM_COMMAND
+echo "gamescope exited with $?"
