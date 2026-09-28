@@ -93,22 +93,19 @@ if [[ "$REMOTE_PLAY" == true ]]; then
 	OUTPUT_WIDTH=2560
 	OUTPUT_HEIGHT=1440
 
-	# Sibling process: does not inherit gamescope's WAYLAND_DISPLAY.
-	# 2026 Sunshine drops CAP_SYS_ADMIN, so KMS cannot open card1 while
-	# gamescope is DRM master. Capture the compositor via wlr-screencopy.
+	# KMS cannot open card1 while gamescope is DRM master. wlr capture needs
+	# xdg_output, which gamescope does not implement. Capture Xwayland :0.
 	(
-		socket="${XDG_RUNTIME_DIR}/gamescope-0"
-		# -S is true for a leftover socket file that nothing is listening on.
+		socket=/tmp/.X11-unix/X0
 		for _ in $(seq 1 60); do
 			if [[ -S "$socket" ]] && python3 -c "import socket; s=socket.socket(socket.AF_UNIX); s.settimeout(1); s.connect('$socket')" 2>/dev/null; then
 				break
 			fi
 			sleep 0.5
 		done
-		export WAYLAND_DISPLAY=gamescope-0
+		unset WAYLAND_DISPLAY SSH_CONNECTION SSH_CLIENT SSH_TTY
 		export DISPLAY=:0
-		unset SSH_CONNECTION SSH_CLIENT SSH_TTY
-		exec sunshine capture=wlr
+		exec sunshine capture=x11
 	) &
 	SUNSHINE_PID=$!
 fi
