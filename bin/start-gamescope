@@ -78,7 +78,7 @@ for proc in steam gamescope sunshine; do
 		sleep 0.2
 	done
 done
-rm -f "${XDG_RUNTIME_DIR}/gamescope-"*.lock
+rm -f "${XDG_RUNTIME_DIR}/gamescope-"*.lock "${XDG_RUNTIME_DIR}"/gamescope-*
 
 WIDTH=3840
 HEIGHT=2160
@@ -98,9 +98,12 @@ if [[ "$REMOTE_PLAY" == true ]]; then
 	# gamescope is DRM master. Capture the compositor via wlr-screencopy.
 	(
 		socket="${XDG_RUNTIME_DIR}/gamescope-0"
-		for _ in $(seq 1 30); do
-			[[ -S "$socket" ]] && break
-			sleep 1
+		# -S is true for a leftover socket file that nothing is listening on.
+		for _ in $(seq 1 60); do
+			if [[ -S "$socket" ]] && python3 -c "import socket; s=socket.socket(socket.AF_UNIX); s.settimeout(1); s.connect('$socket')" 2>/dev/null; then
+				break
+			fi
+			sleep 0.5
 		done
 		export WAYLAND_DISPLAY=gamescope-0
 		export DISPLAY=:0
