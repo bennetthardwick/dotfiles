@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
-LOG=/tmp/start-gamescope.log
-
 usage() {
 	cat <<EOF
 Usage: $(basename "$0") [options]
 
 Options:
-  --remote-play    Start Sunshine and use 2560x1440
-  --lowres         Use 1920x1080 nested resolution
-  --no-reexec      Ignored (openvt re-exec was removed)
-  -h, --help       Show this help
+  --remote-play         Start Sunshine (KMS) at 2560x1440
+  --lowres              1920x1080 nested resolution
+  --output CONNECTOR    DRM output (default: DP-1)
+  -h, --help            Show this help
 EOF
 }
 
 REMOTE_PLAY=false
 LOWRES=false
+OUTPUT=DP-1
 
 while [[ $# -gt 0 ]]; do
 	case $1 in
@@ -27,7 +26,20 @@ while [[ $# -gt 0 ]]; do
 		LOWRES=true
 		shift
 		;;
-	--no-reexec)
+	--output)
+		if [[ -z "${2:-}" || "$2" == -* ]]; then
+			echo "--output requires a connector name (e.g. DP-1)" >&2
+			exit 1
+		fi
+		OUTPUT="$2"
+		shift 2
+		;;
+	--output=*)
+		OUTPUT="${1#*=}"
+		if [[ -z "$OUTPUT" ]]; then
+			echo "--output requires a connector name (e.g. DP-1)" >&2
+			exit 1
+		fi
 		shift
 		;;
 	-h | --help)
@@ -45,38 +57,11 @@ while [[ $# -gt 0 ]]; do
 	esac
 done
 
-CURRENT_TTY="$(tty 2>/dev/null || true)"
-
-if [[ -z "${XDG_RUNTIME_DIR:-}" ]]; then
-	export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-fi
-
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
-exec > >(tee -a "$LOG") 2>&1
-echo "==== $(date) ===="
-echo "user=$(id -un) uid=$(id -u) tty=$CURRENT_TTY vt=$(cat /sys/class/tty/tty0/active 2>/dev/null || true)"
-echo "PATH=$PATH"
-echo "XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR"
-echo "WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-}"
-echo "DISPLAY=${DISPLAY:-}"
-
-connected_outputs() {
-	local status conn
-	for status in /sys/class/drm/card*-*/status; do
-		[[ -e "$status" ]] || continue
-		[[ "$(<"$status")" == connected ]] || continue
-		conn="$(basename "$(dirname "$status")")"
-		printf '%s\n' "${conn#*-}"
-	done
-}
-
-# Leftover DRM gamescope holds the lockfile and pauses the next seat.
 for proc in steam gamescope sunshine; do
-	while pgrep -u "$(id -un)" -x "$proc" >/dev/null; do
-		killall -u "$(id -un)" "$proc" 2>/dev/null || true
-		sleep 0.2
-	done
+	killall -u "$(id -un)" "$proc" 2>/dev/null || true
 done
 rm -f "${XDG_RUNTIME_DIR}/gamescope-"*.lock "${XDG_RUNTIME_DIR}"/gamescope-*
 
@@ -86,28 +71,11 @@ OUTPUT_WIDTH=3840
 OUTPUT_HEIGHT=2160
 STEAM_COMMAND="steam -dev steam://open/bigpicture"
 
-SUNSHINE_PID=""
 if [[ "$REMOTE_PLAY" == true ]]; then
 	WIDTH=2560
 	HEIGHT=1440
 	OUTPUT_WIDTH=2560
 	OUTPUT_HEIGHT=1440
-
-	# KMS cannot open card1 while gamescope is DRM master. wlr capture needs
-	# xdg_output, which gamescope does not implement. Capture Xwayland :0.
-	(
-		socket=/tmp/.X11-unix/X0
-		for _ in $(seq 1 60); do
-			if [[ -S "$socket" ]] && python3 -c "import socket; s=socket.socket(socket.AF_UNIX); s.settimeout(1); s.connect('$socket')" 2>/dev/null; then
-				break
-			fi
-			sleep 0.5
-		done
-		unset WAYLAND_DISPLAY SSH_CONNECTION SSH_CLIENT SSH_TTY
-		export DISPLAY=:0
-		exec sunshine capture=x11
-	) &
-	SUNSHINE_PID=$!
 fi
 
 if [[ "$LOWRES" == true ]]; then
@@ -115,47 +83,37 @@ if [[ "$LOWRES" == true ]]; then
 	HEIGHT=1080
 fi
 
-if ! command -v gamescope >/dev/null; then
-	echo "gamescope not found in PATH=$PATH" >&2
-	exit 1
+SUNSHINE_PID=""
+if [[ "$REMOTE_PLAY" == true ]]; then
+	WAYLAND_DISPLAY= DISPLAY= sunshine capture=kms &
+	SUNSHINE_PID=$!
 fi
 
-# Nested mangoapp only inside an existing Wayland session. SSH / TTY / no
-# compositor: DRM via seatd. openvt is not required for that.
-USE_DRM=false
+CURRENT_TTY="$(tty 2>/dev/null || true)"
+
 if [[ "$CURRENT_TTY" == /dev/tty* || -z "${WAYLAND_DISPLAY:-}" ]]; then
-	USE_DRM=true
-fi
-
-GAMESCOPE_ARGS=()
-if [[ "$USE_DRM" == true ]]; then
-	# ssh -X would otherwise make gamescope try to nest on the forwarded DISPLAY.
+	# DRM seat binds to the foreground VT. Default tty3 so tty1 stays a login.
+	vt="${GAMESCOPE_VT:-3}"
+	if [[ "$CURRENT_TTY" != "/dev/tty${vt}" ]]; then
+		sudo chvt "$vt" || true
+	fi
 	unset WAYLAND_DISPLAY DISPLAY
-
-	GAMESCOPE_ARGS+=(
+	GAMESCOPE_ARGS=(
 		--backend drm
 		-w "$WIDTH" -h "$HEIGHT" -W "$OUTPUT_WIDTH" -H "$OUTPUT_HEIGHT"
 		-r 60 --rt --xwayland-count 2
 		-F fsr -e
+		-O "$OUTPUT"
 	)
-
-	outputs="$(connected_outputs | paste -sd, -)"
-	echo "connected outputs: ${outputs:-none}"
-	if [[ -n "$outputs" ]]; then
-		GAMESCOPE_ARGS+=(-O "$outputs")
-	fi
 else
-	GAMESCOPE_ARGS+=(
+	GAMESCOPE_ARGS=(
 		--mangoapp --rt
 		-w "$WIDTH" -h "$HEIGHT"
 		-r 60 -f
 	)
 fi
 
-echo "running: gamescope ${GAMESCOPE_ARGS[*]} -- $STEAM_COMMAND"
-
 gamescope "${GAMESCOPE_ARGS[@]}" -- $STEAM_COMMAND
-echo "gamescope exited with $?"
 
 if [[ -n "$SUNSHINE_PID" ]]; then
 	kill "$SUNSHINE_PID" 2>/dev/null || true
