@@ -31,7 +31,7 @@ fi
 
 if [ "$(uname -s)" != "Darwin" ]; then
 	if type "keychain" >/dev/null; then
-		eval "$(keychain --timeout=120 --quick --quiet --eval)"
+		eval "$(keychain --timeout=10 --quick --quiet --eval)"
 	elif type "ssh-agent" >/dev/null; then
 		eval $(ssh-agent) >/dev/null
 	else

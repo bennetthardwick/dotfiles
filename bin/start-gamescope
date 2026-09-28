@@ -1,5 +1,68 @@
 #!/usr/bin/env bash
 
+usage() {
+	cat <<EOF
+Usage: $(basename "$0") [options]
+
+Options:
+  --remote-play    Start Sunshine and use 2560x1440
+  --lowres         Use 1920x1080 nested resolution
+  --no-reexec      Don't re-launch on tty2 (used when started from SSH)
+  -h, --help       Show this help
+EOF
+}
+
+ORIGINAL_ARGS=("$@")
+REMOTE_PLAY=false
+LOWRES=false
+NO_REEXEC=false
+
+while [[ $# -gt 0 ]]; do
+	case $1 in
+	--remote-play)
+		REMOTE_PLAY=true
+		shift
+		;;
+	--lowres)
+		LOWRES=true
+		shift
+		;;
+	--no-reexec)
+		NO_REEXEC=true
+		shift
+		;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	-*)
+		echo "Unknown option $1" >&2
+		exit 1
+		;;
+	*)
+		echo "Unexpected argument $1" >&2
+		exit 1
+		;;
+	esac
+done
+
+CURRENT_TTY="$(tty 2>/dev/null || true)"
+IS_SSH=false
+if [[ -n "${SSH_CONNECTION:-}" || -n "${SSH_CLIENT:-}" || -n "${SSH_TTY:-}" ]]; then
+	IS_SSH=true
+fi
+
+# SSH sessions are pts devices, so re-exec on a real VT for DRM on DP-1.
+if [[ "$NO_REEXEC" != true && "$IS_SSH" == true && "$CURRENT_TTY" != /dev/tty* ]]; then
+	self="$(readlink -f "${BASH_SOURCE[0]}")"
+	echo "SSH session detected; re-launching on tty2 via openvt"
+
+	exec sudo openvt -c 2 -f -s -w -- \
+		sudo -u "$USER" \
+		--preserve-env=HOME,PATH,USER,LOGNAME,XDG_RUNTIME_DIR,DBUS_SESSION_BUS_ADDRESS \
+		-- "$self" --no-reexec "${ORIGINAL_ARGS[@]}"
+fi
+
 while true; do
 	if [[ "$(killall -u $USER steam 2>&1)" == 'steam: no process found' ]]; then
 		break
@@ -16,7 +79,7 @@ OUTPUT_HEIGHT=2160
 
 STEAM_COMMAND="steam -dev steam://open/bigpicture"
 
-if [ "$1" = "--remote-play" ]; then
+if [[ "$REMOTE_PLAY" == true ]]; then
 	sunshine &
 	sleep 5
 
@@ -24,18 +87,30 @@ if [ "$1" = "--remote-play" ]; then
 	HEIGHT=1440
 	OUTPUT_WIDTH=2560
 	OUTPUT_HEIGHT=1440
-elif [ "$1" = "--lowres" ]; then
+fi
+
+if [[ "$LOWRES" == true ]]; then
 	WIDTH=1920
 	HEIGHT=1080
 fi
 
-echo "running: gamescope -w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT"
+GAMESCOPE_ARGS=()
 
-if [[ "$(tty)" = "/dev/tty"* ]]; then
-	gamescope --backend drm \
-		-w $WIDTH -h $HEIGHT -W $OUTPUT_WIDTH -H $OUTPUT_HEIGHT \
-		-r 60 -O DP-1 --rt --xwayland-count 2 \
-		-F fsr -e -- $STEAM_COMMAND
+if [[ "$NO_REEXEC" == true || "$CURRENT_TTY" == /dev/tty* ]]; then
+	GAMESCOPE_ARGS+=(
+		--backend drm
+		-w "$WIDTH" -h "$HEIGHT" -W "$OUTPUT_WIDTH" -H "$OUTPUT_HEIGHT"
+		-r 60 -O DP-1 --rt --xwayland-count 2
+		-F fsr -e
+	)
 else
-	gamescope --mangoapp --rt -w $WIDTH -h $HEIGHT -r 60 -f -- $STEAM_COMMAND
+	GAMESCOPE_ARGS+=(
+		--mangoapp --rt
+		-w "$WIDTH" -h "$HEIGHT"
+		-r 60 -f
+	)
 fi
+
+echo "running: gamescope ${GAMESCOPE_ARGS[*]}"
+
+gamescope "${GAMESCOPE_ARGS[@]}" -- $STEAM_COMMAND
